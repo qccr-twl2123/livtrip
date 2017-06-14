@@ -1,0 +1,6 @@
+.product_images_ul{ margin:10px 0px;list-style-type:none; }
+.product_images_ul li{float:left; margin:5px; }
+.product_images_ul li img{width:200px; height:200px; border-radius:3px; }
+.hotel_map{ margin-left:210px; padding:0px; width:400px; height:300px; border:1px solid #d1d1d1;}
+.page{ margin:5px 0px; padding:0px; border:1px solid #d1d1d1; height:40px; border-radius:3px;
+    line-height:40px; vertical-align:middle; text-align:right;}

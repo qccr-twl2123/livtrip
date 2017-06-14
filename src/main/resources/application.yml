@@ -1,0 +1,12 @@
+mybatis:
+  config-location: classpath:mybatis-config.xml
+app:
+  datasource:
+    trbs:
+      driverClassName: com.mysql.jdbc.Driver
+      url: jdbc:mysql://47.89.193.4:3306/livtrip?useSSL=false
+      username: livtrip
+      password: livtrip#A2016
+      testOnBorrow: true
+      testWhileIdle: true
+      validationQuery: select 1
