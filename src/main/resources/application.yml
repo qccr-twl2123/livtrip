@@ -10,3 +10,7 @@ app:
       testOnBorrow: true
       testWhileIdle: true
       validationQuery: select 1
+pagehelper:
+  autoDialect: true
+  closeConn: false
+  reasonable: true
