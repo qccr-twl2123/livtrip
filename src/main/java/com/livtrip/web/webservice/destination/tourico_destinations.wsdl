@@ -1,0 +1,51 @@
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:i0="http://touricoholidays.com/WSDestinations/2008/08/Contracts" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://tempuri.org/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" name="WSDestinationService" targetNamespace="http://tempuri.org/">
+    <wsdl:import namespace="http://touricoholidays.com/WSDestinations/2008/08/Contracts" location="http://destservices.touricoholidays.com/DestinationsService.svc?wsdl=wsdl0"/>
+    <wsdl:types/>
+    <wsdl:binding name="IIS_DestinationHosting" type="i0:IDestinationContracts">
+        <soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="GetDestination">
+            <soap:operation soapAction="http://touricoholidays.com/WSDestinations/2008/08/Contracts/IDestinationContracts/GetDestination" style="document"/>
+            <wsdl:input name="DestinationRequest">
+                <soap:header message="i0:DestinationRequest_Headers" part="LoginHeader" use="literal"/>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="DestinationResultContainer">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="CustomExceptionMessageFault">
+                <soap:fault name="CustomExceptionMessageFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="GetHotelsByDestination">
+            <soap:operation soapAction="http://touricoholidays.com/WSDestinations/2008/08/Contracts/IDestinationContracts/GetHotelsByDestination" style="document"/>
+            <wsdl:input name="HotelDestinationRequest">
+                <soap:header message="i0:HotelDestinationRequest_Headers" part="LoginHeader" use="literal"/>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="HotelDestinationResultContainer">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="CustomExceptionMessageFault">
+                <soap:fault name="CustomExceptionMessageFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="GetActivitiesByDestination">
+            <soap:operation soapAction="http://touricoholidays.com/WSDestinations/2008/08/Contracts/IDestinationContracts/GetActivitiesByDestination" style="document"/>
+            <wsdl:input name="ActivityDestinationRequest">
+                <soap:header message="i0:ActivityDestinationRequest_Headers" part="LoginHeader" use="literal"/>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="ActivityDestinationResultContainer">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="CustomExceptionMessageFault">
+                <soap:fault name="CustomExceptionMessageFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="WSDestinationService">
+        <wsdl:port name="IIS_DestinationHosting" binding="tns:IIS_DestinationHosting">
+            <soap:address location="http://destservices.touricoholidays.com/DestinationsService.svc"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>
