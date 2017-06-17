@@ -24,14 +24,15 @@ public class DestServiceImpl implements DestService {
     public PageInfo<Dest> pageQueryListByCondition(DestQuery destQuery) {
         PageHelper.startPage(destQuery.getPageNumber(),destQuery.getPageSize(),true);
         DestCriteria destCriteria = new DestCriteria();
+        destCriteria.createCriteria();
         if(StringUtils.isNoneBlank(destQuery.getCityName())){
-            destCriteria.createCriteria().andCityNameLike(destQuery.getCityName());
+            destCriteria.getOredCriteria().get(0).andCityNameLike(destQuery.getCityName());
         }
         if(StringUtils.isNoneBlank(destQuery.getState())){
-            destCriteria.createCriteria().andStateLike(destQuery.getState());
+            destCriteria.getOredCriteria().get(0).andStateLike(destQuery.getState());
         }
         if(destQuery.getDestinationId() != null){
-            destCriteria.createCriteria().andDestinationIdEqualTo(destQuery.getDestinationId());
+            destCriteria.getOredCriteria().get(0).andDestinationIdEqualTo(destQuery.getDestinationId());
         }
         List<Dest> dests = destMapper.selectByCriteria(destCriteria);
         return new PageInfo<Dest>(dests);
