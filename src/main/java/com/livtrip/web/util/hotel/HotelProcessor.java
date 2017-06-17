@@ -324,6 +324,7 @@ public class HotelProcessor {
             System.out.println(JSON.toJSONString(hotels));
 
 
+
 //           List<Integer> hotelIds1 = Lists.newArrayList();
 //           hotelIds.add(1249960);
 //           List<Hotel> hotels =checkAvailabilityAndPrices(hotelIds1,defaultCheckIn(),defaultCheckOut(),defaultArrayOfRoomInfo());
