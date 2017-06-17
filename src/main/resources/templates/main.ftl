@@ -1,11 +1,12 @@
+[#escape x as x?html]
 <!DOCTYPE HTML>
 <html>
 <head>
     <title>Livtrip管理系统</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <link href="${base}/resources/assets/css/dpl-min.css" rel="stylesheet" type="text/css" />
-    <link href="${base}/resources/assets/css/bui-min.css" rel="stylesheet" type="text/css" />
-    <link href="${base}/resources/assets/css/main-min.css" rel="stylesheet" type="text/css" />
+    <link href="resources/assets/css/dpl-min.css" rel="stylesheet" type="text/css" />
+    <link href="resources/assets/css/bui-min.css" rel="stylesheet" type="text/css" />
+    <link href="resources/assets/css/main-min.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
 
@@ -17,7 +18,7 @@
         </a>
     </div>
 
-    <div class="dl-log">欢迎您，<span class="dl-log-user">${userName}</span><a href="${base}//backend/admin/loginout" title="退出系统" class="dl-log-quit">[退出]</a><a href="http://http://sc.chinaz.com/" title="文档库" class="dl-log-quit">文档库</a>
+    <div class="dl-log">欢迎您，<span class="dl-log-user">${userName}</span><a href="/backend/admin/loginout" title="退出系统" class="dl-log-quit">[退出]</a><a href="http://http://sc.chinaz.com/" title="文档库" class="dl-log-quit">文档库</a>
     </div>
 </div>
 <div class="content">
@@ -35,9 +36,9 @@
 
     </ul>
 </div>
-<script type="text/javascript" src="${base}/resources/assets/js/jquery-1.8.1.min.js"></script>
-<script type="text/javascript" src="${base}/resources/assets/js/bui.js"></script>
-<script type="text/javascript" src="${base}/resources/assets/js/config.js"></script>
+<script type="text/javascript" src="resources/assets/js/jquery-1.8.1.min.js"></script>
+<script type="text/javascript" src="resources/assets/js/bui.js"></script>
+<script type="text/javascript" src="resources/assets/js/config.js"></script>
 
 <script>
     BUI.use('common/main',function(){
@@ -47,10 +48,10 @@
             menu:[{
                 text:'基础信息',
                 items:[
-                    {id:'code',text:'产品管理',href:'${base}/backend/product/list.do',closeable : false},
-                    {id:'main-menu',text:'城市管理',href:'${base}/backend/dest/list.do'},
-                    {id:'second-menu',text:'定时任务定义',href:'${base}/backend/task/list.do'},
-                    {id:'dyna-menu',text:'定时任务日志',href:'${base}/backend/task/logs.do'}
+                    {id:'code',text:'产品管理',href:'backend/product/list.do',closeable : false},
+                    {id:'main-menu',text:'城市管理',href:'backend/dest/list.html'},
+                    {id:'second-menu',text:'定时任务定义',href:'backend/task/list.do'},
+                    {id:'dyna-menu',text:'定时任务日志',href:'backend/task/logs.do'}
                 ]
             },{
                 text:'会员管理',
@@ -148,3 +149,4 @@
 </div>
 </body>
 </html>
+[/#escape]

@@ -10,11 +10,7 @@
 		</encoder>
 	</appender>
 
-	<logger name="com.trj.jk.web.mapper" level="debug" additivity="false">
-		<appender-ref ref="STDOUT" />
-	</logger>
-
-	<logger name="com.trj.commons" level="debug" additivity="false">
+	<logger name="com.livtrip.web" level="debug" additivity="false">
 		<appender-ref ref="STDOUT" />
 	</logger>
 
