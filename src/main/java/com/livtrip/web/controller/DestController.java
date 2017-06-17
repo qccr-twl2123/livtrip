@@ -1,5 +1,6 @@
 package com.livtrip.web.controller;
 
+import com.alibaba.fastjson.JSON;
 import com.github.pagehelper.PageInfo;
 import com.livtrip.web.domain.Dest;
 import com.livtrip.web.query.DestQuery;
@@ -30,9 +31,10 @@ public class DestController extends BaseController{
     public String list(DestQuery destQuery, ModelMap modelMap){
         PageInfo<Dest> destPageInfo = destService.pageQueryListByCondition(destQuery);
         modelMap.put("page", destPageInfo);
-        modelMap.put("cityName", destQuery.getCityName()==null?"":destQuery.getCityName());
-        modelMap.put("state",destQuery.getState()==null?"":destQuery.getState());
-        modelMap.put("destinationId", destQuery.getDestinationId()==null?0:destQuery.getDestinationId());
+        modelMap.put("cityName", destQuery.getCityName());
+        modelMap.put("state",destQuery.getState());
+        modelMap.put("destinationId", destQuery.getDestinationId());
+        System.out.println(JSON.toJSONString(destPageInfo));
         return "/backend/dest/list";
     }
 

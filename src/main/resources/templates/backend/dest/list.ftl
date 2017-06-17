@@ -1,4 +1,3 @@
-[#escape x as x?html]
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -40,15 +39,15 @@
         <form class="form-inline"  id="listForm" action="#" method="post" style="margin:25px auto; padding:0px;">
             <div class="form-group">
                 <label  class="control-label" for="inputSuccess1">城市名称</label>
-                <input type="text"  name="cityName" value="${cityName}"  class="form-control" id="inputSuccess1"/>
+                <input type="text"  name="cityName" value="${cityName!}"  class="form-control" id="inputSuccess1"/>
             </div>
             <div class="form-group">
                 <label  class="control-label" for="inputSuccess1">所属州</label>
-                <input type="text"  name="state" value="${state}" class="form-control" id="inputSuccess1"/>
+                <input type="text"  name="state" value="${state!}" class="form-control" id="inputSuccess1"/>
             </div>
             <div class="form-group">
                 <label  class="control-label" for="inputSuccess1">DestinationID</label>
-                <input type="text"  name="destinationId" value="${destinationId}"  class="form-control" id="inputSuccess1"/>
+                <input type="text"  name="destinationId" value="${destinationId!}"  class="form-control" id="inputSuccess1"/>
             </div>
 
             <button type="submit" class="btn btn-primary" style="width:120px">查询</button>
@@ -66,19 +65,19 @@
         </tr>
         </thead>
         <tbody>
-            [#list page.list as destination]
+            <#list page.list as destination>
             <tr>
-                <td>${(destination.cityName)!''}</td>
-                <td>${(destination.destinationId)!''}</td>
-                <td>${(destination.state)!''}</td>
+                <td>${destination.cityName!}</td>
+                <td>${destination.destinationId!}</td>
+                <td>${destination.state!} </td>
                 <td align="right">
                     <div class="btn-group btn-group-sm">
                         <button type="button" class="btn btn-bordered btn-success btn-sm"
-                                onclick="fetch(${(destination.destinationId)!''});">采集</button>
+                                onclick="fetch(${destination.destinationId!});">采集</button>
                     </div>
                 </td>
             </tr>
-            [/#list]
+            </#list>
         </tbody>
     </table>
     </form>
@@ -86,4 +85,3 @@
 
 </body>
 </html>
-[/#escape]
