@@ -1,4 +1,3 @@
-[#escape x as x?html]
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -149,4 +148,3 @@
 </div>
 </body>
 </html>
-[/#escape]

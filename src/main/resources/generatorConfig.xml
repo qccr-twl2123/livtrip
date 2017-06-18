@@ -36,34 +36,8 @@
 			<property name="enableSubPackages" value="false" />
 		</sqlMapGenerator>
 
-		<table tableName="liv_amenity" domainObjectName="Amenity">
-			<generatedKey column="id" sqlStatement="JDBC" />
-		</table>
-		<table tableName="liv_admin_user" domainObjectName="AdminUser">
-			<generatedKey column="id" sqlStatement="JDBC" />
-		</table>
-		<table tableName="liv_city" domainObjectName="City">
-			<generatedKey column="id" sqlStatement="JDBC" />
-		</table>
-		<table tableName="liv_city_location" domainObjectName="CityLocation">
-			<generatedKey column="id" sqlStatement="JDBC" />
-		</table>
-		<table tableName="liv_description" domainObjectName="Description">
-			<generatedKey column="id" sqlStatement="JDBC" />
-		</table>
-		<table tableName="liv_dest" domainObjectName="Dest">
-			<generatedKey column="id" sqlStatement="JDBC" />
-		</table>
-		<table tableName="liv_hotel" domainObjectName="HotelProduct">
-			<generatedKey column="id" sqlStatement="JDBC" />
-		</table>
-		<table tableName="liv_hotel_images" domainObjectName="HotelImages">
-			<generatedKey column="id" sqlStatement="JDBC" />
-		</table>
-		<table tableName="liv_location" domainObjectName="Location">
-			<generatedKey column="id" sqlStatement="JDBC" />
-		</table>
-		<table tableName="liv_product" domainObjectName="Product">
+
+		<table tableName="liv_ref_point" domainObjectName="RefPoint">
 			<generatedKey column="id" sqlStatement="JDBC" />
 		</table>
 
