@@ -28,7 +28,7 @@ public class Product {
      *
      * @mbg.generated
      */
-    private Boolean type;
+    private Integer type;
 
     /**
      *
@@ -230,7 +230,7 @@ public class Product {
      *
      * @mbg.generated
      */
-    public Boolean getType() {
+    public Integer getType() {
         return type;
     }
 
@@ -242,7 +242,7 @@ public class Product {
      *
      * @mbg.generated
      */
-    public void setType(Boolean type) {
+    public void setType(Integer type) {
         this.type = type;
     }
 

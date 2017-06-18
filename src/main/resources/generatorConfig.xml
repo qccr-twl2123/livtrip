@@ -54,7 +54,7 @@
 		<table tableName="liv_dest" domainObjectName="Dest">
 			<generatedKey column="id" sqlStatement="JDBC" />
 		</table>
-		<table tableName="liv_hotel" domainObjectName="Hotel">
+		<table tableName="liv_hotel" domainObjectName="HotelProduct">
 			<generatedKey column="id" sqlStatement="JDBC" />
 		</table>
 		<table tableName="liv_hotel_images" domainObjectName="HotelImages">
@@ -63,11 +63,9 @@
 		<table tableName="liv_location" domainObjectName="Location">
 			<generatedKey column="id" sqlStatement="JDBC" />
 		</table>
-		<table tableName="liv_member" domainObjectName="Member">
+		<table tableName="liv_product" domainObjectName="Product">
 			<generatedKey column="id" sqlStatement="JDBC" />
 		</table>
-		<table tableName="liv_member" domainObjectName="Member">
-			<generatedKey column="id" sqlStatement="JDBC" />
-		</table>
+
 	</context>
 </generatorConfiguration>

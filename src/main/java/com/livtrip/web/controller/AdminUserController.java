@@ -29,11 +29,11 @@ public class AdminUserController extends BaseController{
     @RequestMapping("/loginout")
     public String loginout(HttpServletRequest request, HttpServletResponse response){
         request.getSession().invalidate();
-        return "/login";
+        return "redirect:login.html";
     }
     @RequestMapping("/loginPage")
     public  String gotoLoginPage(){
-        return "redirect:index.html";
+        return "redirect:login.html";
     }
 
     @RequestMapping("loginProcess")

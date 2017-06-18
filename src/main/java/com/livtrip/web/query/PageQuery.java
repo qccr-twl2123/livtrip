@@ -4,9 +4,12 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
 /**
- * Created by xierongli on 17/6/17.
+ *
+ * @author xierongli
+ * @version $Id:PageQuery.java v 0.1 2017年01月10日 11:51 xierongli
  */
 public class PageQuery {
+
     public static final int defaultPageSize = 20;
     public static final int defaultPageNo = 1;
 

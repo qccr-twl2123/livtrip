@@ -8,7 +8,7 @@
     -->
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="name" jdbcType="VARCHAR" property="name" />
-    <result column="type" jdbcType="BIT" property="type" />
+    <result column="type" jdbcType="INTEGER" property="type" />
     <result column="thumb" jdbcType="VARCHAR" property="thumb" />
     <result column="currency" jdbcType="VARCHAR" property="currency" />
     <result column="brand_name" jdbcType="VARCHAR" property="brandName" />
@@ -26,6 +26,34 @@
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
     <result column="update_person" jdbcType="VARCHAR" property="updatePerson" />
   </resultMap>
+  <resultMap id="HotelProductMap" type="com.livtrip.web.dto.HotelProductDTO">
+    <result column="id" property="id" />
+    <result column="hotel_id" property="hotelId" />
+    <result column="name" property="name" />
+    <result column="currency" property="currency" />
+    <result column="brand_name" property="brandName" />
+    <result column="keywords" property="keywords" />
+    <result column="description" property="description" />
+    <result column="thumb" property="thumb" />
+    <result column="start_level" property="startLevel" />
+    <result column="rooms" property="rooms" />
+    <result column="provider" property="provider" />
+    <result column="check_in_time" property="checkInTime" />
+    <result column="check_out_time" property="checkOutTime" />
+    <result column="hotel_phone" property="hotelPhone" />
+    <result column="hotel_fax" property="hotelFax" />
+    <result column="market_price" property="marketPrice" />
+    <result column="sale_price" property="salePrice" />
+
+    <result column="country" property="country" />
+    <result column="state" property="state" />
+    <result column="city" property="city" />
+    <result column="address" property="address" />
+    <result column="zip" property="zip" />
+    <result column="longitude" property="longitude" />
+    <result column="latitude" property="latitude" />
+  </resultMap>
+
   <sql id="Criteria_Where_Clause">
     <!--
       WARNING - @mbg.generated
@@ -159,7 +187,7 @@
       hotel_id, label, create_time, 
       create_person, update_time, update_person
       )
-    values (#{name,jdbcType=VARCHAR}, #{type,jdbcType=BIT}, #{thumb,jdbcType=VARCHAR}, 
+    values (#{name,jdbcType=VARCHAR}, #{type,jdbcType=INTEGER}, #{thumb,jdbcType=VARCHAR}, 
       #{currency,jdbcType=VARCHAR}, #{brandName,jdbcType=VARCHAR}, #{keywords,jdbcType=VARCHAR}, 
       #{description,jdbcType=VARCHAR}, #{salePrice,jdbcType=INTEGER}, #{clearPrice,jdbcType=INTEGER}, 
       #{marketPrice,jdbcType=INTEGER}, #{vendor,jdbcType=VARCHAR}, #{isBest,jdbcType=TINYINT}, 
@@ -234,7 +262,7 @@
         #{name,jdbcType=VARCHAR},
       </if>
       <if test="type != null">
-        #{type,jdbcType=BIT},
+        #{type,jdbcType=INTEGER},
       </if>
       <if test="thumb != null">
         #{thumb,jdbcType=VARCHAR},
@@ -310,7 +338,7 @@
         name = #{record.name,jdbcType=VARCHAR},
       </if>
       <if test="record.type != null">
-        type = #{record.type,jdbcType=BIT},
+        type = #{record.type,jdbcType=INTEGER},
       </if>
       <if test="record.thumb != null">
         thumb = #{record.thumb,jdbcType=VARCHAR},
@@ -373,7 +401,7 @@
     update liv_product
     set id = #{record.id,jdbcType=INTEGER},
       name = #{record.name,jdbcType=VARCHAR},
-      type = #{record.type,jdbcType=BIT},
+      type = #{record.type,jdbcType=INTEGER},
       thumb = #{record.thumb,jdbcType=VARCHAR},
       currency = #{record.currency,jdbcType=VARCHAR},
       brand_name = #{record.brandName,jdbcType=VARCHAR},
@@ -405,7 +433,7 @@
         name = #{name,jdbcType=VARCHAR},
       </if>
       <if test="type != null">
-        type = #{type,jdbcType=BIT},
+        type = #{type,jdbcType=INTEGER},
       </if>
       <if test="thumb != null">
         thumb = #{thumb,jdbcType=VARCHAR},
@@ -465,7 +493,7 @@
     -->
     update liv_product
     set name = #{name,jdbcType=VARCHAR},
-      type = #{type,jdbcType=BIT},
+      type = #{type,jdbcType=INTEGER},
       thumb = #{thumb,jdbcType=VARCHAR},
       currency = #{currency,jdbcType=VARCHAR},
       brand_name = #{brandName,jdbcType=VARCHAR},
@@ -502,4 +530,57 @@
       order by ${orderByClause}
     </if>
   </select>
+
+  <select id="queryHotelProduct" resultMap="HotelProductMap">
+    select t1.id,t1.`name`,t1.is_best, t1.thumb, t1.sale_price,t1.market_price, t2.rooms,t2.start_level, t2.check_in_time,t2.check_out_time,
+    t2.hotel_phone, t2.hotel_fax,t2.hotel_id,t3.country, t3.city,t3.state,t3.address,t3.zip, t3.latitude,t3.longitude
+    from liv_product t1, liv_hotel t2, liv_location t3 where t1.id = t2.product_id and t1.id=t3.product_id
+
+    ORDER  BY t1.update_time desc
+  </select>
+
+  <select id="getHotelProductById" resultMap="HotelProductMap">
+    select t1.id,t1.`name`,t1.keywords, t1.is_best, t1.thumb,t1.currency,t1.brand_name, t1.sale_price,t1.market_price,t2.description, t2.rooms,t2.start_level, t2.check_in_time,t2.check_out_time,
+    t2.hotel_phone, t2.hotel_fax,t2.hotel_id,t3.country, t3.city,t3.state,t3.address,t3.zip, t3.latitude,t3.longitude
+    from liv_product t1, liv_hotel t2, liv_location t3 where t1.id = t2.product_id and t1.id=t3.product_id
+
+    and t1.id = #{product_id}
+    ORDER  BY t1.update_time desc
+    LIMIT 1
+  </select>
+
+  <select id="queryProductByHotelIds" resultMap="HotelProductMap">
+    select t1.id,t1.`name`,t1.is_best, t1.thumb, t1.sale_price,t1.market_price, t2.rooms,t2.start_level, t2.check_in_time,t2.check_out_time,
+    t2.hotel_phone, t2.hotel_fax,t2.hotel_id,t3.country, t3.city,t3.state,t3.address,t3.zip, t3.latitude,t3.longitude
+    from liv_product t1, liv_hotel t2, liv_location t3 where t1.id = t2.product_id and t1.id=t3.product_id
+    and t2.hotel_id in
+    <foreach item="item" index="index" collection="hotelIds" open="(" separator="," close=")">
+      #{item}
+    </foreach>
+    ORDER  BY t1.update_time desc
+  </select>
+
+  <select id="queryHotelProductByReq" resultMap="HotelProductMap">
+    select t1.id,t1.`name`,t1.is_best, t1.thumb, t1.sale_price,t1.market_price, t2.rooms,t2.start_level, t2.check_in_time,t2.check_out_time,
+    t2.hotel_phone, t2.hotel_fax,t2.hotel_id,t3.country, t3.city,t3.state,t3.address,t3.zip, t3.latitude,t3.longitude
+    from liv_product t1, liv_hotel t2, liv_location t3 where t1.id = t2.product_id and t1.id=t3.product_id
+
+    <if test="name != null and name != ''">
+      and t1.name like   "%"#{name}"%"
+    </if>
+    <if test="city != null and city != ''">
+      and t3.city like   "%"#{city}"%"
+    </if>
+    <if test="hotelId != null and hotelId != ''">
+      and t2.hotel_id =#{hotelId}
+    </if>
+    <if test="isBest != null and isBest != -1">
+      and t1.is_best = #{isBest}
+    </if>
+    <if test="starLevel != null and starLevel != -1">
+      and t2.start_level =#{starLevel}
+    </if>
+    ORDER  BY t1.update_time desc
+  </select>
+
 </mapper>

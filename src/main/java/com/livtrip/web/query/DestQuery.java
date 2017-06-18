@@ -1,11 +1,9 @@
 package com.livtrip.web.query;
 
-
 /**
- *
- * Created by xierongli on 17/6/17.
+ * Created by xierongli on 17/5/21.
  */
-public class DestQuery extends PageQuery{
+public class DestQuery  extends PageQuery{
 
     private String cityName;
     private String state;
