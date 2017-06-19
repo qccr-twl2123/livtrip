@@ -5,7 +5,7 @@ import com.github.pagehelper.PageInfo;
 import com.livtrip.web.domain.Dest;
 import com.livtrip.web.domain.DestCriteria;
 import com.livtrip.web.mapper.DestMapper;
-import com.livtrip.web.query.DestQuery;
+import com.livtrip.web.model.query.DestQuery;
 import com.livtrip.web.service.DestService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;

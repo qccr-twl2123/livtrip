@@ -1,4 +1,4 @@
-package com.livtrip.web.dto;
+package com.livtrip.web.model.dto;
 
 /**
  * 酒店房型数据列表

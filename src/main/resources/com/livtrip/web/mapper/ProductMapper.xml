@@ -26,7 +26,7 @@
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
     <result column="update_person" jdbcType="VARCHAR" property="updatePerson" />
   </resultMap>
-  <resultMap id="HotelProductMap" type="com.livtrip.web.dto.HotelProductDTO">
+  <resultMap id="HotelProductMap" type="com.livtrip.web.model.dto.HotelProductDTO">
     <result column="id" property="id" />
     <result column="hotel_id" property="hotelId" />
     <result column="name" property="name" />

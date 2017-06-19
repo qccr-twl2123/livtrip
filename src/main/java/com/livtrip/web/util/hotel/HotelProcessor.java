@@ -13,7 +13,7 @@ import com.livtrip.web.constant.Constant;
 import com.livtrip.web.util.Money;
 import com.livtrip.web.util.date.DateStyle;
 import com.livtrip.web.util.date.DateUtil;
-import com.livtrip.web.vo.HotelRoomTypeVO;
+import com.livtrip.web.model.vo.HotelRoomTypeVO;
 import com.livtrip.web.webservice.handler.HotelSOAPHandler;
 import com.livtrip.web.webservice.hotel.*;
 import com.sun.org.apache.xerces.internal.jaxp.datatype.XMLGregorianCalendarImpl;

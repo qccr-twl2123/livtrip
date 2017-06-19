@@ -1,8 +1,8 @@
-package com.livtrip.web.vo.product;
+package com.livtrip.web.model.vo.product;
 
 
 
-import com.livtrip.web.vo.HotelRoomTypeVO;
+import com.livtrip.web.model.vo.HotelRoomTypeVO;
 import com.livtrip.web.webservice.hotel.RoomType;
 
 import java.math.BigDecimal;

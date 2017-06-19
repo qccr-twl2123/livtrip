@@ -1,15 +1,14 @@
-package com.livtrip.web.dto;
+package com.livtrip.web.model.query;
 
 /**
- * 城市查询DTO
+ * 城市Query
  * @author xierongli
- * @version : livtripmanager-parent, v 0.1 2017/4/4 15:54 Exp $$
+ * @version : livtripmanager-parent, v 0.1 2017/4/4 15:28 Exp $$
  */
-public class CityQueryDTO {
+public class CityQuery extends PageQuery{
 
     private String cityName;
     private String stateName;
-    private String stateShort;
     private String destinationCode;
     private Integer destinationId;
 
@@ -27,14 +26,6 @@ public class CityQueryDTO {
 
     public void setStateName(String stateName) {
         this.stateName = stateName;
-    }
-
-    public String getStateShort() {
-        return stateShort;
-    }
-
-    public void setStateShort(String stateShort) {
-        this.stateShort = stateShort;
     }
 
     public String getDestinationCode() {

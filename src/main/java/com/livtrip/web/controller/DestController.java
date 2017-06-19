@@ -3,16 +3,12 @@ package com.livtrip.web.controller;
 import com.alibaba.fastjson.JSON;
 import com.github.pagehelper.PageInfo;
 import com.livtrip.web.domain.Dest;
-import com.livtrip.web.query.DestQuery;
+import com.livtrip.web.model.query.DestQuery;
 import com.livtrip.web.service.DestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 /**
  * Created by xierongli on 17/6/17.

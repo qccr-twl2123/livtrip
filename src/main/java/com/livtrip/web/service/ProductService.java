@@ -2,8 +2,8 @@ package com.livtrip.web.service;
 
 import com.github.pagehelper.PageInfo;
 import com.livtrip.web.domain.Product;
-import com.livtrip.web.dto.HotelProductDTO;
-import com.livtrip.web.query.HotelProductQuery;
+import com.livtrip.web.model.dto.HotelProductDTO;
+import com.livtrip.web.model.query.HotelProductQuery;
 
 import java.util.List;
 

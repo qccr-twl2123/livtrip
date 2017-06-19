@@ -1,4 +1,4 @@
-package com.livtrip.web.vo.product;
+package com.livtrip.web.model.vo.product;
 
 /**
  * @author xierongli

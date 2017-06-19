@@ -1,4 +1,4 @@
-package com.livtrip.web.query;
+package com.livtrip.web.model.query;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;

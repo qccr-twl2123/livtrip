@@ -1,4 +1,4 @@
-package com.livtrip.web.dto.task;
+package com.livtrip.web.model.dto.task;
 
 import java.util.Date;
 

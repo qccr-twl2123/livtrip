@@ -1,4 +1,4 @@
-package com.livtrip.web.query;
+package com.livtrip.web.model.query;
 
 /**
  * Created by xierongli on 17/5/21.

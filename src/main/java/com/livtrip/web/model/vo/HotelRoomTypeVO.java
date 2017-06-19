@@ -1,4 +1,4 @@
-package com.livtrip.web.vo;
+package com.livtrip.web.model.vo;
 
 /**
  * Created by xierongli on 17/6/17.

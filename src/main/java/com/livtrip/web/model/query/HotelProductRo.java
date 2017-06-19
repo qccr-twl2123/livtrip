@@ -1,15 +1,18 @@
-package com.livtrip.web.dto;
+package com.livtrip.web.model.query;
 
+
+import com.livtrip.web.webservice.hotel.RoomType;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.List;
 
 /**
  * 酒店产品结果Ro
  * @author xierongli
  * @version $Id:.java v 0.1 2016年12月28日 15:57 xierongli
  */
-public class HotelProductDTO implements Serializable{
+public class HotelProductRo implements Serializable{
 
     /**产品主键Id*/
     private Integer id;
@@ -59,9 +62,9 @@ public class HotelProductDTO implements Serializable{
     private String longitude;
     private String latitude;
 
+    List<RoomType> roomTypeList;
 
     private BigDecimal minAvgNightPrice;
-
 
     public BigDecimal getMinAvgNightPrice() {
         return minAvgNightPrice;
@@ -87,6 +90,13 @@ public class HotelProductDTO implements Serializable{
         this.brandName = brandName;
     }
 
+    public List<RoomType> getRoomTypeList() {
+        return roomTypeList;
+    }
+
+    public void setRoomTypeList(List<RoomType> roomTypeList) {
+        this.roomTypeList = roomTypeList;
+    }
 
     public String getKeywords() {
         return keywords;

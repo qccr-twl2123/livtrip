@@ -1,4 +1,4 @@
-package com.livtrip.web.vo.destination;
+package com.livtrip.web.model.vo.destination;
 
 /**
  *

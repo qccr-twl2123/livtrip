@@ -1,4 +1,4 @@
-package com.livtrip.web.query;
+package com.livtrip.web.model.query;
 
 /**
  * 后台酒店查询请求模型
