@@ -84,7 +84,7 @@
             <#list page.list as product>
             <tr>
                 <td>${product.name!}</td>
-                <td>${product.hotelId!}</td>
+                <td>${product.hotelId?c}</td>
                 <td>${product.city!}</td>
                 <td>${product.state!}</td>
                 <td>
@@ -100,7 +100,7 @@
                 <td>${product.rooms!}</td>
                 <td align="right">
                     <div class="btn-group">
-                        <button type="button" class="btn btn-bordered btn-primary" onclick="location.href='edit.do?productId=${product.id!}'">详情</button>
+                        <button type="button" class="btn btn-bordered btn-primary" onclick="location.href='edit.do?productId=${product.id?c}'">详情</button>
                         <button type="button" class="btn btn-bordered btn-danger" onclick="javascript:if(confirm('确实要删除该内容吗?'))location='delete.do?productId=${product.id!}'">删除</button>
                     </div>
                 </td>
