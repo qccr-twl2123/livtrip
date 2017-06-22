@@ -1,5 +1,6 @@
 package com.livtrip.web.filter;
 
+import com.google.common.collect.Lists;
 import com.livtrip.web.constant.Constant;
 import org.springframework.stereotype.Component;
 
@@ -10,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.List;
 
 /**
  * Created by xierongli on 17/6/17.
@@ -20,6 +22,15 @@ public class SessionCheckFilter implements Filter {
 
     private FilterConfig config;
 
+    private final static List<String> GREEN_CHANNEL = Lists.newArrayList();
+
+    static {
+        GREEN_CHANNEL.add("/");
+        GREEN_CHANNEL.add("/index.html");
+        GREEN_CHANNEL.add("/loginPage.do");
+        GREEN_CHANNEL.add("/loginServlet.do");
+        GREEN_CHANNEL.add("/login.html");
+    }
 
     public SessionCheckFilter(){}
     @Override
@@ -30,18 +41,16 @@ public class SessionCheckFilter implements Filter {
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
         //获取初始化数据
-        String loginPage = config.getInitParameter("loginPage");
-        String loginServlet = config.getInitParameter("loginServlet");
-
         HttpSession session = ((HttpServletRequest)request).getSession();
         HttpServletRequest req = ((HttpServletRequest)request);
         HttpServletResponse res = ((HttpServletResponse)response);
         String requestPath = req.getRequestURI();
-        requestPath = requestPath.substring(requestPath.lastIndexOf("/"), requestPath.length());
+       //requestPath = requestPath.substring(requestPath.lastIndexOf("/"), requestPath.length());
 
-
+        boolean result = requestPath.indexOf("front") > 0;
+        System.out.println(requestPath.indexOf("front") > 0);
         if(session.getAttribute(Constant.SESSION_USER_NAME) != null
-                || "".equals(requestPath) || requestPath.endsWith(loginPage) || requestPath.endsWith(loginServlet)){
+                || "".equals(requestPath) || GREEN_CHANNEL.contains(requestPath) || requestPath.indexOf("front") > 0){
             chain.doFilter(request, response);
         }else{
             req.setAttribute("tip", "您还未登录,请先登录!");

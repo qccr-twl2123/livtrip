@@ -4,6 +4,7 @@ package com.livtrip.web.controller;
 import com.livtrip.web.constant.Constant;
 import com.livtrip.web.service.AdminUserService;
 import com.livtrip.web.util.MD5;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -39,15 +40,16 @@ public class AdminUserController extends BaseController{
     @RequestMapping("loginProcess")
     public String login(String userName, String password, ModelMap modelMap, HttpServletRequest request, HttpServletResponse response){
         logger.info("用户登录 userName[{}] password[{}]",userName,password);
+        if(StringUtils.isBlank(userName) || StringUtils.isBlank(password)){
+            return "redirect:login.html";
+        }
         Boolean result = adminUserService.queryAdminUser(userName, MD5.GetMD5Code(password));
         if(result){
             request.getSession().setAttribute(Constant.SESSION_USER_NAME, userName);
             modelMap.put("userName", userName);
             return "main";
-        }else{
-            modelMap.addAttribute("error", "无效的用户或密码");
-            return "redirect:login.html";
         }
+        return "redirect:login.html";
     }
 
 

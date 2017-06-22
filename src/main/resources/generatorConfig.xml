@@ -37,7 +37,7 @@
 		</sqlMapGenerator>
 
 
-		<table tableName="liv_ref_point" domainObjectName="RefPoint">
+		<table tableName="liv_hotel" domainObjectName="HotelProduct">
 			<generatedKey column="id" sqlStatement="JDBC" />
 		</table>
 

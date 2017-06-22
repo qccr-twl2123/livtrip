@@ -14,4 +14,18 @@ pagehelper:
   autoDialect: true
   closeConn: false
   reasonable: true
-
+spring:
+    aop:
+      auto: true
+      proxy-target-class: false
+    mail:
+        host: smtp.163.com
+        username: livtrip@163.com
+        password: livtrip2017
+        properties:
+               mail:
+                 smtp:
+                   auth: true
+                   starttls:
+                      enable: true
+                      required: true

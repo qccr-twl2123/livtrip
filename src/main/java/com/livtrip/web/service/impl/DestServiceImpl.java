@@ -37,4 +37,27 @@ public class DestServiceImpl implements DestService {
         List<Dest> dests = destMapper.selectByCriteria(destCriteria);
         return new PageInfo<Dest>(dests);
     }
+
+
+    public Integer getDestinationIdByCityName(String cityName){
+        DestCriteria destCriteria = new DestCriteria();
+        destCriteria.createCriteria().andCityNameEqualTo(cityName);
+        return destMapper.selectByCriteria(destCriteria).get(0).getDestinationId();
+    }
+
+    @Override
+    public int increaseSort(Integer destinationId) {
+        DestCriteria destCriteria = new DestCriteria();
+        destCriteria.createCriteria().andDestinationIdEqualTo(destinationId);
+        Dest dest = destMapper.selectByCriteria(destCriteria).get(0);
+        dest.setSort(dest.getSort() + 1);
+        return destMapper.updateByCriteria(dest, destCriteria);
+    }
+
+    @Override
+    public List<Dest> queryForList(String cityName) {
+        DestCriteria destCriteria = new DestCriteria();
+        destCriteria.createCriteria().andCityNameLike(cityName);
+        return destMapper.selectByCriteria(destCriteria);
+    }
 }
