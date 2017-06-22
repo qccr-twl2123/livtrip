@@ -47,10 +47,10 @@ public class SessionCheckFilter implements Filter {
         String requestPath = req.getRequestURI();
        //requestPath = requestPath.substring(requestPath.lastIndexOf("/"), requestPath.length());
 
-        boolean result = requestPath.indexOf("front") > 0;
-        System.out.println(requestPath.indexOf("front") > 0);
+
+        Boolean flag = requestPath.indexOf("front") > 0 || requestPath.indexOf("resources") > 0;
         if(session.getAttribute(Constant.SESSION_USER_NAME) != null
-                || "".equals(requestPath) || GREEN_CHANNEL.contains(requestPath) || requestPath.indexOf("front") > 0){
+                || "".equals(requestPath) || GREEN_CHANNEL.contains(requestPath) || flag){
             chain.doFilter(request, response);
         }else{
             req.setAttribute("tip", "您还未登录,请先登录!");

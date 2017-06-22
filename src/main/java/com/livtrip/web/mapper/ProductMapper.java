@@ -5,6 +5,7 @@ import com.livtrip.web.domain.ProductCriteria;
 import com.livtrip.web.model.dto.HotelProductDTO;
 import com.livtrip.web.model.query.HotelProductQuery;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -13,9 +14,9 @@ public interface ProductMapper extends BaseMapper<Product, ProductCriteria, Inte
 
     List<HotelProductDTO>  queryHotelProduct();
 
-    HotelProductDTO getHotelProductById(Integer productId);
+    HotelProductDTO getHotelProductById(@Param("productId") Integer productId);
 
-    List<HotelProductDTO> queryProductByHotelIds(List<Integer> hotelIds);
+    List<HotelProductDTO> queryProductByHotelIds(@Param("hotelIds") List<Integer> hotelIds);
 
     List<HotelProductDTO> queryHotelProductByReq(HotelProductQuery hotelProductQuery);
 }

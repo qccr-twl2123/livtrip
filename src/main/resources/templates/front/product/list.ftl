@@ -3,15 +3,15 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>list</title>
-    <link rel="stylesheet" href="resources/style/public.css"/>
+    <link rel="stylesheet" href="/resources/style/public.css"/>
     <link rel="stylesheet" href="http://g.alicdn.com/sui/sui3/0.0.2/old/css/icons.min.css"/>
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"/>
     <link rel="stylesheet" href="http://g.alicdn.com/sui/sui3/0.0.18/css/sui.min.css">
     <script type="text/javascript" src="http://g.alicdn.com/sj/lib/jquery/dist/jquery.min.js"></script>
     <script type="text/javascript" src="http://g.alicdn.com/sui/sui3/0.0.18/js/sui.min.js"></script>
     <script src='http://maps.google.cn/maps/api/js?key=AIzaSyAjNbgkCbR5VzzBw2VsJagYKBASIJoa2iw' type="text/javascript"></script>
-    <script src="resources/js/page.js"></script>
-    <script src="resources/js/product/list.js"></script>
+    <script src="/resources/js/page.js"></script>
+    <script src="/resources/js/product/list.js"></script>
     <script>
         (adsbygoogle = window.adsbygoogle || []).push({
             google_ad_client: "ca-pub-3237101361515251",
@@ -31,8 +31,9 @@
 </head>
 
 <body onload="initizePittingMap();">
-<#include  "nav.ftl"/>
-<#include  "search.ftl"/>
+<form id="listForm" action="list.jhtml" method="post" class="sui-form form-horizontal">
+<#include  "/nav.ftl"/>
+<#include  "/search.ftl"/>
 
 <div class="container">
     <div class="breadcrumb_list">
@@ -41,7 +42,7 @@
 </div>
 <div class="container">
     <div class="product_list">
-        <div id="pids" style="display:none;">${pids}</div>
+        <div id="pids" style="display:none;">${pids!}</div>
         <div style="display:none;">
             <#if page.list??>
                 <#list page.list as product>
@@ -89,14 +90,7 @@
             </li>
             </#list>
         </ul>
-
-        <form id="listForm" action="list.jhtml" method="post" class="sui-form form-horizontal">
-            <input type="hidden" name="destinationName" value="${destinationName}"/>
-            <input type="hidden" name="destination" value="${destination}"/>
-            <input type="hidden" name="checkIn" value="${checkIn}"/>
-            <input type="hidden" name="checkOut" value="${checkOut}"/>
-            <input type="hidden" name="peopleNum" value="${peopleNum}"/>
-                <#include "pagination.ftl"/>
+                <#include "/pagination_admin.ftl"/>
         </form>
     </div>
 
