@@ -1,8 +1,10 @@
+server:
+   port: 8088
 mybatis:
   config-location: classpath:mybatis-config.xml
 app:
   datasource:
-    trbs:
+    livtrip:
       driverClassName: com.mysql.jdbc.Driver
       url: jdbc:mysql://47.89.193.4:3306/livtrip?useSSL=false
       username: livtrip

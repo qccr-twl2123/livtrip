@@ -115,7 +115,7 @@ public class Application extends SpringBootServletInitializer {
     }
 
     @Bean
-    @ConfigurationProperties("app.datasource.trbs")
+    @ConfigurationProperties("app.datasource.livtrip")
     public PoolConfiguration trbsPoolConfiguration() {
         return new PoolProperties();
     }

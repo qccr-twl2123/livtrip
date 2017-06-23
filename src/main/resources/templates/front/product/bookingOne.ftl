@@ -1,10 +1,9 @@
-[#escape x as x?html]
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>预定页面</title>
-    <link rel="stylesheet" href="style/public.css"/>
+    <link rel="stylesheet" href="resources/style/public.css"/>
     <link rel="stylesheet" href="http://g.alicdn.com/sui/sui3/0.0.2/old/css/icons.min.css"/>
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"/>
     <link rel="stylesheet" href="http://g.alicdn.com/sui/sui3/0.0.18/css/sui.min.css">
@@ -149,18 +148,18 @@
                 <div class="panel-body">
                     <table style="margin-bottom: 15px;">
                         <tr>
-                            <td><img src="${hotel.thumb}" style="margin:0px;width:100px;height:100px; border-radius:3px;"></td>
+                            <td><img src="${hotel.thumb!}" style="margin:0px;width:100px;height:100px; border-radius:3px;"></td>
                             <td style="vertical-align: top; margin:0px;padding: 0px 5px;">
-                                <h6 style="margin: 0px;">${hotel.name}</h6>
+                                <h6 style="margin: 0px;">${hotel.name!}</h6>
                                 <p style="margin:0px; font-size:12px;"><i class="fa fa-map-marker" style="color: #ff0000;"></i>&nbsp;${hotel.location.address}</p>
 
                             </td>
                         </tr>
                     </table>
-                    <p><strong>房型:</strong> ${roomName}</p>
-                    <p><strong>含税:</strong> $ ${tax}</p>
-                    <p><strong>入住:</strong> ${checkIn}</p>
-                    <p><strong>退房:</strong> ${checkOut}</p>
+                    <p><strong>房型:</strong> ${roomName!}</p>
+                    <p><strong>含税:</strong> $ ${tax!}</p>
+                    <p><strong>入住:</strong> ${checkIn!}</p>
+                    <p><strong>退房:</strong> ${checkOut!}</p>
                     <p><strong>入住详情:</strong> ${nights} 晚 ${peopleNum}人</p>
                     <p style="margin-bottom:20px; "><strong>订单总额:</strong>  <strong style="font-size: 18px; color: #ff0000; float: right;">$ ${orderPrice}</strong></p>
                     <button type="button" class="btn btn-success  btn-lg btn-block">立即预定</button>
@@ -179,4 +178,3 @@
 
 </body>
 </html>
-[/#escape]

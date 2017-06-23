@@ -83,7 +83,7 @@
                         <p class="booking_policy">免费取消,即刻确认</p>
                         <p class="user_room_area">
                             <button type="button"
-                                    onclick="window.location.href='detail.do?productId=${product.id!}&destination=${destination!}&checkIn=${checkIn!}&checkOut=${checkOut}&peopleNum=${peopleNum!}'" class="btn btn-primary">选择客房>></button>
+                                    onclick="window.location.href='detail.do?productId=${product.id!}&destination=${destination?c}&checkIn=${checkIn!}&checkOut=${checkOut}&peopleNum=${peopleNum!}'" class="btn btn-primary">选择客房>></button>
                         </p>
                     </div>
                 </div>

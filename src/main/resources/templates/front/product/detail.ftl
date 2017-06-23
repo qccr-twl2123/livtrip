@@ -1,17 +1,16 @@
-[#escape x as x?html]
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>${hotelDetail.name}-${hotelDetail.keywords}</title>
-    <link rel="stylesheet" href="${base}/resources/style/public.css"/>
+    <link rel="stylesheet" href="/resources/style/public.css"/>
     <link rel="stylesheet" href="http://g.alicdn.com/sui/sui3/0.0.2/old/css/icons.min.css"/>
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"/>
     <link rel="stylesheet" href="http://g.alicdn.com/sui/sui3/0.0.18/css/sui.min.css">
     <script type="text/javascript" src="http://g.alicdn.com/sj/lib/jquery/dist/jquery.min.js"></script>
     <script type="text/javascript" src="http://g.alicdn.com/sui/sui3/0.0.18/js/sui.min.js"></script>
     <script src='http://maps.google.cn/maps/api/js?key=AIzaSyAjNbgkCbR5VzzBw2VsJagYKBASIJoa2iw' type="text/javascript"></script>
-    <script src="${base}/resources/js/product/detail.js"></script>
+    <script src="/resources/js/product/detail.js"></script>
     <script>
         (adsbygoogle = window.adsbygoogle || []).push({
             google_ad_client: "ca-pub-3237101361515251",
@@ -34,11 +33,11 @@
 <div id="address_text" style="display: none">${hotelDetail.address}</div>
 <div id="lat" style="display:none">${hotelDetail.latitude}</div>
 <div id="lng" style="display:none">${hotelDetail.longitude}</div>
-<input type="hidden" name="hotelId" id="hotelId" value="${hotelDetail.hotelId}"/>
+<input type="hidden" name="hotelId" id="hotelId" value="${hotelDetail.hotelId?c}"/>
 <input type="hidden" name="checkIn" id="checkIn" value="${productQuery.checkIn}"/>
 <input type="hidden" name="checkOut" id="checkOut" value="${productQuery.checkOut}"/>
 <input type="hidden" name="peopleNum" id="peopleNum" value="${productQuery.peopleNum}"/>
-    [#include  "nav.ftl"/]
+    <#include  "/nav.ftl"/>
 <div class="container">
     <ol class="breadcrumb" style="margin:0px;">
         <li><a href="http://www.livtrip.com">Index</a></li>
@@ -48,13 +47,13 @@
     <div class="base_info">
         <ul>
             <li style="width:25%;">
-                <img src="${hotelDetail.thumb}" width="280px" height="100%;" class="border-radius-3"/>
+                <img src="${hotelDetail.thumb!}" width="280px" height="100%;" class="border-radius-3"/>
             </li>
             <li style="width:47%;">
-                <h3 style="color:#82B5CD; margin:0px; font-size: 14px">${hotelDetail.name}&nbsp;
-                    [#if hotelDetail.isBest == 1]
+                <h3 style="color:#82B5CD; margin:0px; font-size: 14px">${hotelDetail.name!}&nbsp;
+                    <#if hotelDetail.isBest == 1>
                         <i class="fa fa-thumbs-o-up" style="color:#FB7F49"></i>
-                    [/#if]
+                    </#if>
                 </h3>
                 <p style="color:#FB7F49;" >
                     <i class="fa  fa-star"></i>
@@ -64,21 +63,21 @@
                 </p>
                 <p style="margin:0px; font-size:15px;">
                     <i class="fa fa-map-marker"></i>&nbsp;
-                    ${hotelDetail.address}
+                    ${hotelDetail.address!}
                 </p>
                 <div class="hotel_pics_box">
                     <ul >
-                        [#list hotelDetail.hotelImageVOList as image]
-                            [#if image_index > 7]
-                                [#break ]
-                            [/#if]
-                            <li><img  src="${image.path}"/></li>
-                        [/#list]
+                        <#list hotelDetail.hotelImageVOList as image>
+                            <#if image_index gt 7>
+                                <#break >
+                            </#if>
+                            <li><img  src="${image.path!}"/></li>
+                        </#list>
                     </ul>
                 </div>
             </li>
             <li style="width:25%;">
-                <p class="text-right" style="font-size:22px; color:#FF0000; font-weight:bold; height:50px;">$ ${hotelDetail.minAvgNightPrice} 起</p>
+                <p class="text-right" style="font-size:22px; color:#FF0000; font-weight:bold; height:50px;">$ ${hotelDetail.minAvgNightPrice!} 起</p>
                 <div class="small_map" id="small_map"></div>
             </li>
         </ul>
@@ -92,10 +91,10 @@
             <div class="panel-body">
                 <div style="margin:10px 0px; padding:0px; border:1px solid #d1d1d1; height:60px; border-radius:5px; text-align:center">
                     <form id="idForm" class="form-inline"  style="margin:15px auto; padding:0px;">
-                        <input type="hidden" name="hotelId" value="${hotelDetail.hotelId}"/>
+                        <input type="hidden" name="hotelId" value="${hotelDetail.hotelId!}"/>
                         <div class="form-group input-daterange" data-toggle="datepicker" >
-                            <input type="text" name="checkIn" value="${hotelDetail.checkIn}" id="checkIn" class="form-control input-date" placeholder="checkIn"  /> -
-                            <input type="text" name="checkOut" value="${hotelDetail.checkOut}" id="checkOut" class="form-control input-date" placeholder="checkOut" />
+                            <input type="text" name="checkIn" value="${hotelDetail.checkIn!}" id="checkIn" class="form-control input-date" placeholder="checkIn"  /> -
+                            <input type="text" name="checkOut" value="${hotelDetail.checkOut!}" id="checkOut" class="form-control input-date" placeholder="checkOut" />
                         </div>
                         <div class="form-group">
                             <select class="form-control" style="width:100px" name="peopleNum">
@@ -121,11 +120,11 @@
                         <th></th>
                     </tr>
 
-                    [#list hotelDetail.roomTypeList as roomType]
-                        [#if roomType.isAvailable == true]
+                    <#list hotelDetail.roomTypeList as roomType>
+                        <#if roomType.isAvailable == true>
                         <tr>
                             <td style="max-width:300px;">
-                            ${roomType.name}
+                            ${roomType.name!}
                            </td>
                             <td  style=" text-align:center; vertical-align:middle;">
                               $ ${roomType.occupancies.occupancy[0].avrNightPrice}
@@ -135,10 +134,10 @@
                             </td>
                             <td  style="text-align:center; vertical-align:middle;">policy</td>
                             <td style="min-width:60px; text-align:center; vertical-align:middle;">
-                                <button type="button" onclick="gotoBookingOne(${roomType.roomId});" class="btn btn-primary">Book</button></td>
+                                <button type="button" onclick="gotoBookingOne(${roomType.roomId?c});" class="btn btn-primary">Book</button></td>
                         </tr>
-                        [/#if]
-                    [/#list]
+                        </#if>
+                    </#list>
 
                 </table>
             </div>
@@ -148,12 +147,12 @@
             <div class="panel-body">
                 ${hotelDetail.description}
                 <br/>
-                [#list hotelDetail.hotelDescriptionVOList as description]
-                <h4>${description.category}</h4>
+                <#list hotelDetail.hotelDescriptionVOList as description>
+                <h4>${description.category!}</h4>
                 <p class="text-justify">
-                    ${description.value}
+                    ${description.value!}
                 </p>
-                [/#list]
+                </#list>
             </div>
         </div>
 
@@ -223,4 +222,3 @@
 
 </body>
 </html>
-[/#escape]
