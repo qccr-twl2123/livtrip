@@ -41,13 +41,13 @@
 </div>
 <div class="container">
     <div class="product_list">
-        <div id="pids" style="display:none;">${pids!}</div>
+        <div id="pids" style="display: none">${pids!}</div>
         <div style="display:none;">
             <#if page.list??>
                 <#list page.list as product>
-                    <div id="${product.id}_latitude" style="display: none">${product.latitude}</div>
-                    <div id="${product.id}_longitude" style="display: none">${product.longitude}</div>
-                    <div id="${product.id}_map_view" style="width:185px;height:80px;text-align:left; display:none">
+                    <div id="${product.id?c}_latitude" style="display: none">${product.latitude}</div>
+                    <div id="${product.id?c}_longitude" style="display: none">${product.longitude}</div>
+                    <div id="${product.id?c}_map_view" style="width:185px;height:80px;text-align:left; display:none">
                     ${product.address}<br>${product.city}<br>${product.state} ${product.country}
                     </div>
                 </#list>

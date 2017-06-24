@@ -127,6 +127,7 @@ public class FrontProductController extends BaseController{
                 hotelProductRo.setStarLevelText(productService.getProductStarLevel(hotelProductRo.getStartLevel().toString()));
                 pids.append(hotelProductRo.getId()).append(",");
             }
+            modelMap.put("pids",pids.toString());
         }catch (Exception e){
             return "/front/product/no_product";
         }

@@ -21,6 +21,7 @@ var mapView = null;
 var prev_infowindow =false;
 function initizePittingMap(){
     var pids = $("#pids").html();
+
     var pidsArray = pids.split(",");
     mapView = document.getElementById("list_map");
     var lat = $("#" +pidsArray[0] + "_latitude").html();
