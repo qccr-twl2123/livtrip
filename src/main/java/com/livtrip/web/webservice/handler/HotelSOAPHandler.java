@@ -57,7 +57,7 @@ public class HotelSOAPHandler implements SOAPHandler<SOAPMessageContext> {
 					envelope.createName("Password", "aut", "http://schemas.tourico.com/webservices/authentication"));
 			elem.addTextNode(HotelPropertyConfigurer.GETHOTELFLOWPWD);
 
-			logger.info("tourico account[{}] password[{}]",HotelPropertyConfigurer.GETHOTELFLOWUSERNAME,HotelPropertyConfigurer.GETHOTELFLOWPWD);
+			logger.error("tourico account[{}] password[{}]",HotelPropertyConfigurer.GETHOTELFLOWUSERNAME,HotelPropertyConfigurer.GETHOTELFLOWPWD);
 			String version = "7";
 			elem = headerElem.addChildElement(
 					envelope.createName("version", "aut", "http://schemas.tourico.com/webservices/authentication"));
