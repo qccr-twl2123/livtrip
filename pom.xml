@@ -38,11 +38,13 @@
 						<artifactId>mysql-connector-java</artifactId>
 						<version>${mysql.version}</version>
 					</dependency>
+					<!--
 					<dependency>
 						<groupId>com.trj.mybatis.generator</groupId>
 						<artifactId>trj-mybatis-generator-plugin</artifactId>
 						<version>0.0.1-SNAPSHOT</version>
 					</dependency>
+					-->
 				</dependencies>
 			</plugin>
 			<plugin>
