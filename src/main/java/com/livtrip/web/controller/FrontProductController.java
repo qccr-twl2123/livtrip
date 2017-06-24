@@ -150,7 +150,7 @@ public class FrontProductController extends BaseController{
                 }
             }
         }
-        return  null;
+        return  hotels.get(0).getRoomTypes().getRoomType();
     }
 
     @RequestMapping("/detail")

@@ -51,9 +51,7 @@
             </li>
             <li style="width:47%;">
                 <h3 style="color:#82B5CD; margin:0px; font-size: 14px">${hotelDetail.name!}&nbsp;
-                    <#if hotelDetail.isBest == 1>
-                        <i class="fa fa-thumbs-o-up" style="color:#FB7F49"></i>
-                    </#if>
+                    <i class="fa fa-thumbs-o-up" style="color:#FB7F49"></i>
                 </h3>
                 <p style="color:#FB7F49;" >
                     <i class="fa  fa-star"></i>
@@ -67,12 +65,14 @@
                 </p>
                 <div class="hotel_pics_box">
                     <ul >
-                        <#list hotelDetail.hotelImageVOList as image>
-                            <#if image_index gt 7>
-                                <#break >
-                            </#if>
-                            <li><img  src="${image.path!}"/></li>
-                        </#list>
+                        <#if hotelDetail.hotelImageVOList??>
+                            <#list hotelDetail.hotelImageVOList as image>
+                                <#if image_index gt 7>
+                                    <#break >
+                                </#if>
+                                <li><img  src="${image.path!}"/></li>
+                            </#list>
+                        </#if>
                     </ul>
                 </div>
             </li>
@@ -147,12 +147,14 @@
             <div class="panel-body">
                 ${hotelDetail.description}
                 <br/>
-                <#list hotelDetail.hotelDescriptionVOList as description>
-                <h4>${description.category!}</h4>
-                <p class="text-justify">
-                    ${description.value!}
-                </p>
-                </#list>
+                <#if hotelDetail.hotelDescriptionVOList??>
+                    <#list hotelDetail.hotelDescriptionVOList as description>
+                        <h4>${description.category!}</h4>
+                        <p class="text-justify">
+                        ${description.value!}
+                        </p>
+                    </#list>
+                </#if>
             </div>
         </div>
 

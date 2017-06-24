@@ -97,7 +97,7 @@
                     <table class="table table-bordered" >
                         <tr>
                             <td style="width:15%;">入住日期</td>
-                            <td>${checkIn} ~ ${checkOut}</td>
+                            <td>${checkIn!} ~ ${checkOut!}</td>
                         </tr>
                         <tr>
                             <td>房间数量</td>
