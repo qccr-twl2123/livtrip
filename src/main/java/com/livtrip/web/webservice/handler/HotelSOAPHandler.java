@@ -22,7 +22,7 @@ import java.util.TreeSet;
 
 public class HotelSOAPHandler implements SOAPHandler<SOAPMessageContext> {
 
-	private final static Logger logger = LoggerFactory.getLogger(this.getClass());
+	private final static Logger logger = LoggerFactory.getLogger(HotelSOAPHandler.class);
 	public static final String NAMESPACE_ECB = "";
 	public static final String NAMESPACE_ECB_STRING = "";
 
