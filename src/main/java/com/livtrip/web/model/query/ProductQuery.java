@@ -10,8 +10,10 @@ import java.util.List;
 public class ProductQuery  extends PageQuery{
 
     private Integer productId;
-    /**城市Id*/
+    /**城市name*/
     private String destination;
+    /**城市ID*/
+    private Integer destinationId;
     /**入住日期*/
     private String checkIn;
     /**退房日期*/
@@ -20,6 +22,14 @@ public class ProductQuery  extends PageQuery{
     private String peopleNum;
     /**hotelIds*/
     private List<Integer> hotelIds;
+
+    public Integer getDestinationId() {
+        return destinationId;
+    }
+
+    public void setDestinationId(Integer destinationId) {
+        this.destinationId = destinationId;
+    }
 
     public Integer getProductId() {
         return productId;

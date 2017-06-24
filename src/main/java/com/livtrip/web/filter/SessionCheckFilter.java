@@ -30,6 +30,12 @@ public class SessionCheckFilter implements Filter {
         GREEN_CHANNEL.add("/loginPage.do");
         GREEN_CHANNEL.add("/loginServlet.do");
         GREEN_CHANNEL.add("/login.html");
+        GREEN_CHANNEL.add("/swagger-ui.html");
+        GREEN_CHANNEL.add("/swagger-resources");
+        GREEN_CHANNEL.add("/api-docs");
+        GREEN_CHANNEL.add("/droid-sans-v6-latin-700.woff");
+        GREEN_CHANNEL.add("/security");
+        GREEN_CHANNEL.add("/ui");
     }
 
     public SessionCheckFilter(){}

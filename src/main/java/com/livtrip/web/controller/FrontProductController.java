@@ -117,6 +117,7 @@ public class FrontProductController extends BaseController{
 
             modelMap.put("page", pageInfo);
             modelMap.put("destination", productQuery.getDestination());
+            modelMap.put("destinationId", destinationId);
             modelMap.put("destinationName", StringUtils.isBlank(productQuery.getDestination())?"New York,NY":productQuery.getDestination());
             modelMap.put("checkIn", productQuery.getCheckIn());
             modelMap.put("checkOut", productQuery.getCheckOut());
@@ -141,9 +142,20 @@ public class FrontProductController extends BaseController{
         }
         return map;
     }
+    public List<RoomType> getRoomTypeList(List<Hotel> hotels,Integer hotelId){
+        if(CollectionUtils.isNotEmpty(hotels)){
+            for(Hotel hotel: hotels){
+                if(hotelId != null && hotel.equals(hotel.getHotelId())){
+                    return  hotel.getRoomTypes().getRoomType();
+                }
+            }
+        }
+        return  null;
+    }
 
     @RequestMapping("/detail")
     public String getHotelDetail(ProductQuery productQuery, ModelMap modelMap){
+        if(productQuery !=null){productQuery.setDestination(productQuery.getDestination().replace(",",""));}
         HotelProductDTO hotelProductRo = productService.getHotelProductById(productQuery.getProductId());
         if(hotelProductRo == null){
             return "/front/product/no_product";
@@ -151,40 +163,40 @@ public class FrontProductController extends BaseController{
 
         //实时查询房型数据
         List<Integer> destinationIds = Lists.newArrayList();
-        Integer destination = destService.getDestinationIdByCityName(productQuery.getDestination());
+//        Integer destination = destService.getDestinationIdByCityName(productQuery.getDestination());
         //增加sort
-        destService.increaseSort(destination);
-        destinationIds.add(destination);
+        destService.increaseSort(productQuery.getDestinationId());
+        destinationIds.add(productQuery.getDestinationId());
         List<Hotel> hotelList = HotelProcessor.SearchHotelsByDestinationIds(destinationIds,productQuery.getCheckIn(),productQuery.getCheckOut(),
                 HotelProcessor.getArrayOfRoomInfoByNum(Integer.parseInt(productQuery.getPeopleNum())));
         List<RoomType> roomTypeList = null;
 
         if(CollectionUtils.isNotEmpty(hotelList)){
-            Map<Integer, List<RoomType>> roomTypeMap = getRoomTypeMap(hotelList);
-            roomTypeList = roomTypeMap.get(hotelProductRo.getHotelId());
+            roomTypeList =  getRoomTypeList(hotelList,hotelProductRo.getHotelId());
+            //房型价格增加5个点
+            if(CollectionUtils.isNotEmpty(roomTypeList)){
+                Collections.sort(roomTypeList,(m1,m2)->m1.getOccupancies().getOccupancy().get(0).getAvrNightPrice().compareTo(m2.getOccupancies().getOccupancy().get(0).getAvrNightPrice()));
+                for(RoomType roomType: roomTypeList){
+                    BigDecimal avrNightPrice = roomType.getOccupancies().getOccupancy().get(0).getAvrNightPrice();
+                    BigDecimal taxPublish = roomType.getOccupancies().getOccupancy().get(0).getTaxPublish();
+                    roomType.getOccupancies().getOccupancy().get(0).setAvrNightPrice(HotelProcessor.plusCommission(avrNightPrice));
+                    roomType.getOccupancies().getOccupancy().get(0).setTaxPublish(HotelProcessor.plusCommission(taxPublish));
+                }
+                HotelDetailVO hotelDetailVO = ObjectConvert.convertObject(hotelProductRo, HotelDetailVO.class);
+                List<HotelImages> hotelImagesList = hotelImagesService.queryForList(productQuery.getProductId());
+                hotelDetailVO.setHotelImageVOList(ObjectConvert.convertList(hotelImagesList, HotelImageVO.class));
+
+                List<Description> descriptions = descriptionService.queryForList(productQuery.getProductId());
+                hotelDetailVO.setHotelDescriptionVOList(ObjectConvert.convertList(descriptions, HotelDescriptionVO.class));
+                hotelDetailVO.setRoomTypeList(roomTypeList);
+                hotelDetailVO.setMinAvgNightPrice(roomTypeList.get(0).getOccupancies().getOccupancy().get(0).getAvrNightPrice());
+                hotelDetailVO.setCityName(productQuery.getDestination());
+                modelMap.put("hotelDetail", hotelDetailVO);
+                modelMap.put("productQuery",productQuery);
+            }
         }
-        Collections.sort(roomTypeList,(m1,m2)->m1.getOccupancies().getOccupancy().get(0).getAvrNightPrice().compareTo(m2.getOccupancies().getOccupancy().get(0).getAvrNightPrice()));
 
-        //房型价格增加5个点
-        for(RoomType roomType: roomTypeList){
-            BigDecimal avrNightPrice = roomType.getOccupancies().getOccupancy().get(0).getAvrNightPrice();
-            BigDecimal taxPublish = roomType.getOccupancies().getOccupancy().get(0).getTaxPublish();
-            roomType.getOccupancies().getOccupancy().get(0).setAvrNightPrice(HotelProcessor.plusCommission(avrNightPrice));
-            roomType.getOccupancies().getOccupancy().get(0).setTaxPublish(HotelProcessor.plusCommission(taxPublish));
-        }
 
-        HotelDetailVO hotelDetailVO = ObjectConvert.convertObject(hotelProductRo, HotelDetailVO.class);
-        List<HotelImages> hotelImagesList = hotelImagesService.queryForList(productQuery.getProductId());
-        hotelDetailVO.setHotelImageVOList(ObjectConvert.convertList(hotelImagesList, HotelImageVO.class));
-
-        List<Description> descriptions = descriptionService.queryForList(productQuery.getProductId());
-        hotelDetailVO.setHotelDescriptionVOList(ObjectConvert.convertList(descriptions, HotelDescriptionVO.class));
-        hotelDetailVO.setRoomTypeList(roomTypeList);
-        hotelDetailVO.setMinAvgNightPrice(roomTypeList.get(0).getOccupancies().getOccupancy().get(0).getAvrNightPrice());
-        hotelDetailVO.setCityName(cityIdNameMap.get(destination));
-        hotelDetailVO.setCityName(productQuery.getDestination());
-        modelMap.put("hotelDetail", hotelDetailVO);
-        modelMap.put("productQuery",productQuery);
         return "/front/product/detail";
     }
 

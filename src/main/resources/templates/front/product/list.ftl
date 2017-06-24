@@ -10,31 +10,30 @@
     <script type="text/javascript" src="http://g.alicdn.com/sj/lib/jquery/dist/jquery.min.js"></script>
     <script type="text/javascript" src="http://g.alicdn.com/sui/sui3/0.0.18/js/sui.min.js"></script>
     <script src='http://maps.google.cn/maps/api/js?key=AIzaSyAjNbgkCbR5VzzBw2VsJagYKBASIJoa2iw' type="text/javascript"></script>
+
     <script src="/resources/js/page.js"></script>
     <script src="/resources/js/product/list.js"></script>
-    <script>
-        (adsbygoogle = window.adsbygoogle || []).push({
-            google_ad_client: "ca-pub-3237101361515251",
-            enable_page_level_ads: true
-        });
+    <script type="text/javascript">
+        function toBookOne(productId){
+            var destination =$("#destination").val();
+            var destinationId =$("#destinationId").val();
+            var checkIn = $("#checkIn").val();
+            var checkOut=$("#checkOut").val();
+            var peopleNum  = $("#peopleNum").val();
+            window.location.href='detail.do?productId='+productId+'&destinationId='+destinationId+'&checkIn='
+                    +checkIn+'&checkOut='+checkOut+'&&peopleNum='+peopleNum+'&destination='+destination+'';
+        }
     </script>
-    <script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-    ga('create', 'UA-100338539-1', 'auto');
-    ga('send', 'pageview');
-
-   </script>
 </head>
 
 <body onload="initizePittingMap();">
-<form id="listForm" action="list.jhtml" method="post" class="sui-form form-horizontal">
 <#include  "/nav.ftl"/>
 <#include  "/search.ftl"/>
-
+<input type="hidden" name="destinationId" id="destinationId" value="${destinationId?c}"/>
+<input type="hidden" name="destination" id="destination" value="${destination}"/>
+<input type="hidden" name="checkIn" id="checkIn" value="${checkIn!}"/>
+<input type="hidden" name="checkOut" id="checkOut" value="${checkOut!}"/>
+<input type="hidden" name="peopleNum" id="peopleNum" value="${peopleNum}"/>
 <div class="container">
     <div class="breadcrumb_list">
         ${destinationName} 地区 共 <font color="#FF0000">${page.total}</font> 家酒店  当前 ${page.pageNum}/${page.pages} 页
@@ -42,7 +41,7 @@
 </div>
 <div class="container">
     <div class="product_list">
-        <div id="pids" style="display:none;">${pids!}</div>
+        <div id="pids" style="display:none;">${pids!}</div>
         <div style="display:none;">
             <#if page.list??>
                 <#list page.list as product>
@@ -83,7 +82,7 @@
                         <p class="booking_policy">免费取消,即刻确认</p>
                         <p class="user_room_area">
                             <button type="button"
-                                    onclick="window.location.href='detail.do?productId=${product.id!}&destination=${destination?c}&checkIn=${checkIn!}&checkOut=${checkOut}&peopleNum=${peopleNum!}'" class="btn btn-primary">选择客房>></button>
+                                    onclick="toBookOne(${product.id!})" class="btn btn-primary">选择客房>></button>
                         </p>
                     </div>
                 </div>
@@ -91,7 +90,6 @@
             </#list>
         </ul>
                 <#include "/pagination_admin.ftl"/>
-        </form>
     </div>
 
     <div class="product_map" >
