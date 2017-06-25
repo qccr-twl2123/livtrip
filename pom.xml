@@ -13,13 +13,12 @@
 
 	<groupId>com.livtrip</groupId>
 	<artifactId>livtrip</artifactId>
-	<packaging>war</packaging>
+	<packaging>jar</packaging>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<mysql.version>5.1.39</mysql.version>
-		<start-class>com.livtrip.web.Application</start-class>
 	</properties>
 
 	<build>
