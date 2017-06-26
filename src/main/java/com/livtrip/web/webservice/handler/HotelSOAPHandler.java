@@ -6,6 +6,7 @@
 package com.livtrip.web.webservice.handler;
 
 
+import com.alibaba.fastjson.JSON;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -64,6 +65,7 @@ public class HotelSOAPHandler implements SOAPHandler<SOAPMessageContext> {
 
 			elem.addTextNode(version);
 
+			logger.info(JSON.toJSONString(elem));
 			msg.getSOAPHeader().setPrefix("soapenv");
 			msg.getSOAPBody().setPrefix("soapenv");
 
