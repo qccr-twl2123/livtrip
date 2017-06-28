@@ -161,7 +161,7 @@
                     <p><strong>入住:</strong> ${checkIn!}</p>
                     <p><strong>退房:</strong> ${checkOut!}</p>
                     <p><strong>入住详情:</strong> ${nights} 晚 ${peopleNum}人</p>
-                    <p style="margin-bottom:20px; "><strong>订单总额:</strong>  <strong style="font-size: 18px; color: #ff0000; float: right;">$ ${orderPrice}</strong></p>
+                    <p style="margin-bottom:20px; "><strong>订单总额:</strong>  <strong style="font-size: 18px; color: #ff0000; float: right;">$ ${orderPrice!}</strong></p>
                     <button type="button" class="btn btn-success  btn-lg btn-block">立即预定</button>
                 </div>
             </div>

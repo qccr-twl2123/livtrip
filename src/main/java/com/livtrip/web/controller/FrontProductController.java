@@ -208,26 +208,27 @@ public class FrontProductController extends BaseController{
         List<Integer> hotelIds = Lists.newArrayList();
         hotelIds.add(hotelId);
         List<Hotel> hotels = HotelProcessor.checkAvailabilityAndPrices(hotelIds,checkIn,checkOut,HotelProcessor.getArrayOfRoomInfoByNum(peopleNum));
-        System.out.println(JSON.toJSONString(hotels));
-        modelMap.put("hotel",hotels.get(0));
-        modelMap.put("checkIn",checkIn);
-        modelMap.put("checkOut",checkOut);
-        Integer nights = DateUtil.getIntervalDays(checkIn,checkOut);
-        modelMap.put("nights",nights);
-        modelMap.put("peopleNum",peopleNum);
-        List<RoomType> roomTypes = hotels.get(0).getRoomTypes().getRoomType();
-        RoomType roomType = null;
-        for(RoomType roomType1 : roomTypes){
-            if(roomType1.getRoomId() == roomId){
-                roomType = roomType1;
+        if(CollectionUtils.isNotEmpty(hotels)){
+            modelMap.put("hotel",hotels.get(0));
+            modelMap.put("checkIn",checkIn);
+            modelMap.put("checkOut",checkOut);
+            Integer nights = DateUtil.getIntervalDays(checkIn,checkOut);
+            modelMap.put("nights",nights);
+            modelMap.put("peopleNum",peopleNum);
+            List<RoomType> roomTypes = hotels.get(0).getRoomTypes().getRoomType();
+            RoomType roomType = null;
+            for(RoomType roomType1 : roomTypes){
+                if(roomType1.getRoomId() == roomId){
+                    roomType = roomType1;
+                }
             }
-        }
-        if(roomType != null){
-            BigDecimal orderPrice = roomType.getOccupancies().getOccupancy().get(0).getAvrNightPrice().multiply(new BigDecimal(nights));
-            BigDecimal totalTax = roomType.getOccupancies().getOccupancy().get(0).getTax().multiply(new BigDecimal(nights));
-            modelMap.put("orderPrice", HotelProcessor.plusCommission(orderPrice));
-            modelMap.put("tax", HotelProcessor.plusCommission(totalTax));
-            modelMap.put("roomName", roomType.getName());
+            if(roomType != null){
+                BigDecimal orderPrice = roomType.getOccupancies().getOccupancy().get(0).getAvrNightPrice().multiply(new BigDecimal(nights));
+                BigDecimal totalTax = roomType.getOccupancies().getOccupancy().get(0).getTax().multiply(new BigDecimal(nights));
+                modelMap.put("orderPrice", HotelProcessor.plusCommission(orderPrice));
+                modelMap.put("tax", HotelProcessor.plusCommission(totalTax));
+                modelMap.put("roomName", roomType.getName());
+            }
         }
         return "/front/product/bookingOne";
     }
@@ -237,14 +238,26 @@ public class FrontProductController extends BaseController{
     public String getCity(String query){
         List<Dest> dests =  destService.queryForList(query);
         List<String> cityList = Lists.newArrayList();
-        for(Dest dest:dests){
-            cityList.add(dest.getCityName());
-        }
-        cityList = cityList.subList(0,12);
         Map map = Maps.newHashMap();
-        map.put("suggestions", cityList);
-        return JSON.toJSONString(map);
+        if(CollectionUtils.isNotEmpty(dests)){
+            for(Dest dest:dests){
+                cityList.add(dest.getCityName());
+            }
+            cityList = cityList.subList(0,12);
+            map.put("suggestions", cityList);
+            return JSON.toJSONString(map);
+        }
+        return JSON.toJSONString(map.put("suggestions", getDefaultCity()));
     }
+
+    public List<String> getDefaultCity(){
+        List<String> cityList = Lists.newArrayList();
+        cityList.add("New York,NY");
+        cityList.add("Washington,DC");
+        return  cityList;
+    }
+
+
 
 
 
