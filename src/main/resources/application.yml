@@ -31,3 +31,10 @@ spring:
                    starttls:
                       enable: true
                       required: true
+pay:
+  alipay:
+     appId: xxx
+     privateKey: xxx
+     alipayPulicKey: xxx
+     serverUrl: https://openapi.alipay.com/gateway.do
+     notifyDomain: xxx

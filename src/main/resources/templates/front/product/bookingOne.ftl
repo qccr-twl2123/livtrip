@@ -146,16 +146,18 @@
                     <h3 class="panel-title">您的选择</h3>
                 </div>
                 <div class="panel-body">
-                    <table style="margin-bottom: 15px;">
-                        <tr>
-                            <td><img src="${hotel.thumb!}" style="margin:0px;width:100px;height:100px; border-radius:3px;"></td>
-                            <td style="vertical-align: top; margin:0px;padding: 0px 5px;">
-                                <h6 style="margin: 0px;">${hotel.name!}</h6>
-                                <p style="margin:0px; font-size:12px;"><i class="fa fa-map-marker" style="color: #ff0000;"></i>&nbsp;${hotel.location.address}</p>
+                    <#if hotel??>
+                        <table style="margin-bottom: 15px;">
+                            <tr>
+                                <td><img src="${hotel.thumb!}" style="margin:0px;width:100px;height:100px; border-radius:3px;"></td>
+                                <td style="vertical-align: top; margin:0px;padding: 0px 5px;">
+                                    <h6 style="margin: 0px;">${hotel.name!}</h6>
+                                    <p style="margin:0px; font-size:12px;"><i class="fa fa-map-marker" style="color: #ff0000;"></i>&nbsp;${hotel.location.address}</p>
 
-                            </td>
-                        </tr>
-                    </table>
+                                </td>
+                            </tr>
+                        </table>
+                    </#if>
                     <p><strong>房型:</strong> ${roomName!}</p>
                     <p><strong>含税:</strong> $ ${tax!}</p>
                     <p><strong>入住:</strong> ${checkIn!}</p>
