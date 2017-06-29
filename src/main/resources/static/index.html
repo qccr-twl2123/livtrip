@@ -5,9 +5,9 @@
     <title>Livtrip  Focus on America Hotel</title>
     <meta name="keywords" content="Livtrip focus on american,New York Hotel"/>
     <meta name="description" content="Livtrip focus on american,New York Hotel"/>
-    <link rel="stylesheet" href="resources/style/public.css"/>
+    <link rel="stylesheet" href="resources/style/public.css?version=20170629.01"/>
     <link rel="stylesheet" href="http://g.alicdn.com/sui/sui3/0.0.2/old/css/icons.min.css"/>
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"/>
+    <link href="http://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="http://g.alicdn.com/sui/sui3/0.0.18/css/sui.min.css">
     <script type="text/javascript" src="http://g.alicdn.com/sj/lib/jquery/dist/jquery.min.js"></script>
     <script type="text/javascript" src="http://g.alicdn.com/sui/sui3/0.0.18/js/sui.min.js"></script>
@@ -33,28 +33,28 @@
 <body>
 <div class="container-fluid" style="background: #58B7FF;height: 400px;">
     <div class="index_logo">
-        Livtrip  Focus on America Hotel
+        专注美国酒店
     </div>
     <div class="search_span">
         <form class="form-inline" action="front/product/list" method="get" style="margin:15px auto; padding:0px;">
             <div class="form-group">
-                <input type="text" id="destination"  name="destination" placeholder="please input city name"
+                <input type="text" id="destination"  name="destination" placeholder="请输入目的地"
                        data-toggle="autocomplete" data-service-url="front/product/getCity.json" class="form-control input-lg" style="width:250px;border-radius:12px;"/>
             </div>
             <div class="form-group input-daterange" data-toggle="datepicker" >
-                <input type="text" name="checkIn" id="checkIn" class="form-control input-date input-lg" placeholder="CheckIn"  /> -
-                <input type="text" name="checkOut" id="checkOut" class="form-control input-date input-lg" placeholder="CheckOut" />
+                <input type="text" name="checkIn" id="checkIn" class="form-control input-date input-lg" placeholder="入住日期"  /> -
+                <input type="text" name="checkOut" id="checkOut" class="form-control input-date input-lg" placeholder="退房日期" />
             </div>
             <div class="form-group">
                 <select class="form-control input-lg" style="width:100px; " name="peopleNum">
-                    <option value="1">peopleNum</option>
-                    <option value="1">1 customer</option>
-                    <option value="2">2 customer</option>
-                    <option value="3">3 customer</option>
+                    <option value="1" selected="selected">1 顾客</option>
+                    <option value="2">2 顾客</option>
+                    <option value="3">3 顾客</option>
+                    <option value="4">4 顾客</option>
                 </select>
             </div>
 
-            <button type="submit" class="btn btn-danger btn-lg" style="width:120px;">Search</button>
+            <button type="submit" class="btn btn-danger btn-lg" style="width:150px;">立即搜索</button>
         </form>
 
     </div>
@@ -68,20 +68,110 @@
             <a href="front/product/list?destination=Washington, DC"><img src="resources/images/dc.jpg" /></a></div></div>
     </div>
     <div class="row">
-        <div class="col-md-4"><div class="index_city_image">
-            <a href="front/product/list?destination=Los Angeles, CA"><img src="resources/images/miami.jpg" /></a></div></div>
+        <div class="col-md-4">
+            <div class="index_city_image">
+                <a href="front/product/list?destination=Los Angeles, CA"><img src="resources/images/miami.jpg" /></a>
+            </div>
+        </div>
         <div class="col-md-4"><div class="index_city_image">
             <a href="front/product/list?destination=New York, NY"><img src="resources/images/LosAngeles.jpg" /></a></div></div>
         <div class="col-md-4"><div class="index_city_image">
             <a href="front/product/list?destination=New York, NY"><img src="resources/images/LosAngeles.jpg" /></a></div></div>
     </div>
+
+    <div class="row">
+        <div class="col-md-3">
+            <div class="index_city_image">
+                <a href="front/product/list?destination=Los Angeles, CA"><img src="resources/images/am2.jpg" /></a>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="index_city_image">
+                <a href="front/product/list?destination=Los Angeles, CA"><img src="resources/images/am3.jpg" /></a>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="index_city_image">
+                <a href="front/product/list?destination=Los Angeles, CA"><img src="resources/images/am6.jpg" /></a>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="index_city_image">
+                <a href="front/product/list?destination=Los Angeles, CA"><img src="resources/images/am7.jpg" /></a>
+            </div>
+        </div>
+    </div>
+
 </div>
 
 
 
 <div class="container-fluid" style="background: #F9FAFC;height: 300px;">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-2 footer-ul">
+                <ul>
+                    <li><STRONG>公司简介</STRONG></li>
+                    <li><a href="＃">关于我们</a></li>
+                    <li><a href="＃">团队成员</a></li>
+                    <li><a href="＃">加入我们</a></li>
+                </ul>
+            </div>
+            <div class="col-md-2 footer-ul">
+                <ul>
+                    <li><STRONG>订单服务</STRONG></li>
+                    <li><a href="＃">支付方式</a></li>
+                    <li><a href="＃">下单流程</a></li>
+                    <li><a href="＃">售后服务</a></li>
+                </ul>
+            </div>
+            <div class="col-md-2 footer-ul">
+                <ul>
+                    <li><STRONG>热门城市</STRONG></li>
+                    <li><a href="＃">纽约</a></li>
+                    <li><a href="＃">华盛顿</a></li>
+                    <li><a href="＃">洛杉矶</a></li>
+                    <li><a href="＃">迈阿密</a></li>
+                    <li><a href="＃">西雅图</a></li>
+                </ul>
+            </div>
+            <div class="col-md-2 footer-ul">
+                <ul>
+                    <li><STRONG>关注我们</STRONG></li>
+                    <li><a href="＃">FaceBook</a></li>
+                    <li><a href="＃">Twitter</a></li>
+                    <li><a href="＃">微信</a></li>
+                    <li><a href="＃">微博</a></li>
+                </ul>
+            </div>
+            <div class="col-md-4">
+                <h2><i class="fa fa-phone"></i>&nbsp;400-619-0909</h2>
+                <p>周一至周日 9:00-18:00（仅收市话费）</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="col-md-1">
+                    <br>
+                    <i class="fa fa-binoculars fa-2x" style="color:#20A0FF"></i></div>
+                <div class="col-md-11">
+                    <h3>关注我们</h3>
+                    <p>邮件订阅，我们会第一时间为您推送网站精品酒店信息</p>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <br/>
+                <div class="input-group input-group-lg" style="color:#20A0FF">
+                    <input type="text" class="form-control" placeholder="your email...">
+                    <span class="input-group-btn">
+                        <button class="btn btn-primary" type="button">立即订阅</button>
+                      </span>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
 </div>
-
 </body>
 </html>
