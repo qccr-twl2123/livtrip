@@ -172,11 +172,6 @@
 
 </div>
 
-
-<div class="container-fluid" style=" margin-top:10px;background:#EEEEEE; height:300px; ">
-    <div class="footer">
-    </div>
-</div>
-
+<#include "/footer.ftl"/>
 </body>
 </html>
