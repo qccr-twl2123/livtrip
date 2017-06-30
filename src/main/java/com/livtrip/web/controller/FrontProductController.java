@@ -78,12 +78,9 @@ public class FrontProductController extends BaseController{
             String checkOut = StringUtils.isBlank(productQuery.getCheckOut())? HotelProcessor.defaultCheckOut() : productQuery.getCheckOut();
 
             //TODO 城市名称转ID
-            List<Integer> destinationIds = Lists.newArrayList();
-           // Integer destinationId =cityNameIdMap.get(productQuery.getDestination()) == null?7263:cityNameIdMap.get(productQuery.getDestination());
-            Integer destinationId = destService.getDestinationIdByCityName(productQuery.getDestination());
+            List<Integer> destinationIds = getDestinationId(productQuery);
             //增加sort
-            destService.increaseSort(destinationId);
-            destinationIds.add(destinationId);
+            destService.increaseSort(destinationIds.get(0));
 
             //赋值productQuery
             productQuery.setCheckIn(checkIn);
@@ -94,14 +91,8 @@ public class FrontProductController extends BaseController{
             if(CollectionUtils.isEmpty(hotelList)){
                 return "/front/product/no_product";
             }
-            List<Integer> hotelIdList = Lists.newArrayList();
-            Map<Integer, List<RoomType>> roomTypeMap = Maps.newHashMap();
-            if(CollectionUtils.isNotEmpty(hotelList)){
-                roomTypeMap = getRoomTypeMap(hotelList);
-                for(Hotel hotel : hotelList){
-                    hotelIdList.add(hotel.getHotelId());
-                }
-            }
+            List<Integer> hotelIdList = getHotelIds(hotelList);
+            Map<Integer, List<RoomType>> roomTypeMap = getRoomTypeMap(hotelList);
 
             //查询酒店数据
             PageInfo<HotelProductDTO> pageInfo = productService.pageQueryHotelProduct(productQuery.getPageNumber(),productQuery.getPageSize(), hotelIdList);
@@ -118,10 +109,9 @@ public class FrontProductController extends BaseController{
                 hotelProductDTO.setMinAvgNightPrice(HotelProcessor.plusCommission(avrNightPrice));
 
             }
-
             modelMap.put("page", pageInfo);
             modelMap.put("destination", productQuery.getDestination());
-            modelMap.put("destinationId", destinationId);
+            modelMap.put("destinationId",destinationIds.get(0));
             modelMap.put("destinationName", StringUtils.isBlank(productQuery.getDestination())?"New York,NY":productQuery.getDestination());
             modelMap.put("checkIn", productQuery.getCheckIn());
             modelMap.put("checkOut", productQuery.getCheckOut());
@@ -136,6 +126,26 @@ public class FrontProductController extends BaseController{
             return "/front/product/no_product";
         }
         return "/front/product/list";
+    }
+
+    public List<Integer> getDestinationId(ProductQuery productQuery){
+        List<Integer> destinationIds = Lists.newArrayList();
+        if(StringUtils.isNoneBlank(productQuery.getDestination())){
+            Integer destinationId = destService.getDestinationIdByCityName(productQuery.getDestination());
+            destinationIds.add(destinationId == null?7263:destinationId);
+        }
+        destinationIds.add(productQuery.getDestinationId()== null?7263:productQuery.getDestinationId());
+        return  destinationIds;
+    }
+
+    public List<Integer> getHotelIds(List<Hotel> hotelList){
+        List<Integer> hotelIds = Lists.newArrayList();
+        if(CollectionUtils.isNotEmpty(hotelList)){
+            for(Hotel hotel : hotelList){
+                hotelIds.add(hotel.getHotelId());
+            }
+        }
+        return  hotelIds;
     }
 
     public Map<Integer, List<RoomType>> getRoomTypeMap(List<Hotel> hotels){
