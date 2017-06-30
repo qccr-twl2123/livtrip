@@ -222,6 +222,7 @@ public class FrontProductController extends BaseController{
         List<Integer> hotelIds = Lists.newArrayList();
         hotelIds.add(hotelId);
         List<Hotel> hotels = HotelProcessor.checkAvailabilityAndPrices(hotelIds,checkIn,checkOut,HotelProcessor.getArrayOfRoomInfoByNum(peopleNum));
+        logger.info("hotels[{}]",JSON.toJSONString(hotels));
         if(CollectionUtils.isNotEmpty(hotels)){
             modelMap.put("hotel",hotels.get(0));
             modelMap.put("checkIn",checkIn);
