@@ -57,6 +57,7 @@ public class DestServiceImpl implements DestService {
     @Override
     public List<Dest> queryForList(String cityName) {
         DestCriteria destCriteria = new DestCriteria();
+        destCriteria.setOrderByClause("sort desc");
         destCriteria.createCriteria().andCityNameLike("%"+cityName+"%");
         return destMapper.selectByCriteria(destCriteria);
     }
