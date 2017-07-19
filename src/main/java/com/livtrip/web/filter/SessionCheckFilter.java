@@ -16,8 +16,8 @@ import java.util.List;
 /**
  * Created by xierongli on 17/6/17.
  */
-@Component
-@WebFilter(filterName = "sessionCheckFilter", urlPatterns = {"/backend/*","/main.html"}, initParams = {@WebInitParam(name="loginPage",value="login.html"), @WebInitParam(name="loginServlet",value="loginProcess.do") })
+//@Component
+//@WebFilter(filterName = "sessionCheckFilter", urlPatterns = {"/backend/*","/main.html"}, initParams = {@WebInitParam(name="loginPage",value="login.html"), @WebInitParam(name="loginServlet",value="loginProcess.do") })
 public class SessionCheckFilter implements Filter {
 
     private FilterConfig config;
@@ -36,6 +36,7 @@ public class SessionCheckFilter implements Filter {
         GREEN_CHANNEL.add("/droid-sans-v6-latin-700.woff");
         GREEN_CHANNEL.add("/security");
         GREEN_CHANNEL.add("/ui");
+        GREEN_CHANNEL.add("/alipay");
     }
 
     public SessionCheckFilter(){}
