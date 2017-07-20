@@ -1,5 +1,6 @@
 package com.livtrip.web.filter;
 
+import com.alibaba.fastjson.JSON;
 import com.google.common.collect.Lists;
 import com.livtrip.web.constant.Constant;
 import org.springframework.stereotype.Component;
@@ -16,8 +17,8 @@ import java.util.List;
 /**
  * Created by xierongli on 17/6/17.
  */
-//@Component
-//@WebFilter(filterName = "sessionCheckFilter", urlPatterns = {"/backend/*","/main.html"}, initParams = {@WebInitParam(name="loginPage",value="login.html"), @WebInitParam(name="loginServlet",value="loginProcess.do") })
+@Component
+@WebFilter(filterName = "sessionCheckFilter", urlPatterns = {"/backend/*","/main.html"}, initParams = {@WebInitParam(name="loginPage",value="login.html"), @WebInitParam(name="loginServlet",value="loginProcess.do") })
 public class SessionCheckFilter implements Filter {
 
     private FilterConfig config;
@@ -36,7 +37,6 @@ public class SessionCheckFilter implements Filter {
         GREEN_CHANNEL.add("/droid-sans-v6-latin-700.woff");
         GREEN_CHANNEL.add("/security");
         GREEN_CHANNEL.add("/ui");
-        GREEN_CHANNEL.add("/alipay");
     }
 
     public SessionCheckFilter(){}
@@ -54,10 +54,8 @@ public class SessionCheckFilter implements Filter {
         String requestPath = req.getRequestURI();
        //requestPath = requestPath.substring(requestPath.lastIndexOf("/"), requestPath.length());
 
-
-        Boolean flag = requestPath.indexOf("front") > 0 || requestPath.indexOf("resources") > 0;
         if(session.getAttribute(Constant.SESSION_USER_NAME) != null
-                || "".equals(requestPath) || GREEN_CHANNEL.contains(requestPath) || flag){
+                || "".equals(requestPath) || GREEN_CHANNEL.contains(requestPath) || matchRequestPath(requestPath)){
             chain.doFilter(request, response);
         }else{
             req.setAttribute("tip", "您还未登录,请先登录!");
@@ -69,5 +67,10 @@ public class SessionCheckFilter implements Filter {
     @Override
     public void destroy() {
         this.config = null;
+    }
+
+
+    public Boolean matchRequestPath(String requestPath){
+        return requestPath.indexOf("alipay") > 0 || requestPath.indexOf("front") > 0 || requestPath.indexOf("resources") > 0;
     }
 }

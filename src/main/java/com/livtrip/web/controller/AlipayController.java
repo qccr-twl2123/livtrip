@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 @RequestMapping("alipay")
 public class AlipayController extends BaseController{
 
-    private String notify_domain ="";
+    private String notify_domain ="http://www.livtrip.com";
 
     private  String charset = "UTF-8";
     @Value("${pay.alipay.privateKey}")
@@ -47,11 +47,16 @@ public class AlipayController extends BaseController{
         return aliPayApiConfig;
     }
 
+    @RequestMapping("notify")
+    public void notifyMessage(){
+
+    }
+
 
     /**
      * Wap支付
      */
-    @RequestMapping("wayPay")
+    @RequestMapping("wapPay")
     public void wapPay(HttpServletResponse response) {
         String body = "我是测试数据-By Javen";
         String subject = "Javen Wap支付测试";
