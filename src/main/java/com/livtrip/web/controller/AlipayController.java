@@ -30,7 +30,7 @@ public class AlipayController extends BaseController{
 
     @Value("${pay.alipay.appId}")
     private  String appId ;
-    private  String signType = "RSA2";
+    private  String signType = "RSA";
     @Value("${pay.alipay.notifyDomain}")
     private  String notifyDomain;
 

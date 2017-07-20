@@ -20,7 +20,7 @@ import java.util.Map;
  * 2017年5月20日
  */
 public class AliPayApi {
-	private static Logger log = LoggerFactory.getLogger(AliPayApi.class);
+	private static Logger logger = LoggerFactory.getLogger(AliPayApi.class);
 
 
 	/**
@@ -68,10 +68,12 @@ public class AliPayApi {
 		alipayRequest.setNotifyUrl(notifyUrl);// 在公共参数中设置回跳和通知地址
 		alipayRequest.setBizModel(model);// 填充业务参数
 		String form = aliPayApiConfig.getAlipayClient().pageExecute(alipayRequest).getBody(); // 调用SDK生成表单
+		logger.info("支付返回数据"+form);
 		HttpServletResponse httpResponse = response;
 		httpResponse.setContentType("text/html;charset=" + aliPayApiConfig.getCharset());
 		httpResponse.getWriter().write(form);// 直接将完整的表单html输出到页面
 		httpResponse.getWriter().flush();
+
 	}
 
 	/**
