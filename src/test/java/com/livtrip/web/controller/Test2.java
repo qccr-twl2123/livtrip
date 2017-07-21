@@ -12,8 +12,8 @@ public class Test2 {
 
         privateKey = privateKey.replace(" ","");
         publicKey = publicKey.replace(" ","");
-        System.out.println(privateKey);
-        System.out.println(publicKey);
+//        System.out.println(privateKey);
+//        System.out.println(publicKey);
 
     }
 }
