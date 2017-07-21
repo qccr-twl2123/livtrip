@@ -1,5 +1,6 @@
 package com.livtrip.web.controller;
 
+import com.alipay.api.domain.AlipayTradePayModel;
 import com.alipay.api.domain.AlipayTradeWapPayModel;
 import com.livtrip.web.pay.AliPayApi;
 import com.livtrip.web.pay.AliPayApiConfig;
@@ -81,6 +82,34 @@ public class AlipayController extends BaseController{
             e.printStackTrace();
         }
     }
+
+    /**
+     * PC支付
+     */
+    @RequestMapping("pc")
+    public void pcPay(HttpServletResponse response){
+        try {
+            String totalAmount = "1";
+            String outTradeNo =StringUtils.getOutTradeNo();
+
+            String returnUrl = notify_domain + "/alipay/return_url";
+            String notifyUrl = notify_domain + "/alipay/notify_url";
+            AlipayTradePayModel model = new AlipayTradePayModel();
+
+            model.setOutTradeNo(outTradeNo);
+            model.setProductCode("FAST_INSTANT_TRADE_PAY");
+            model.setTotalAmount(totalAmount);
+            model.setSubject("Javen PC支付测试");
+            model.setBody("Javen IJPay PC支付测试");
+
+            AliPayApi.tradePage(getApiConfig(),response,model , notifyUrl, returnUrl);
+        } catch (Exception e) {
+            e.printStackTrace();
+
+        }
+
+    }
+
 
 
 }

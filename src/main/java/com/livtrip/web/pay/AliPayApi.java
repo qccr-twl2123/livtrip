@@ -3,7 +3,6 @@ package com.livtrip.web.pay;
 import com.alipay.api.AlipayApiException;
 import com.alipay.api.domain.*;
 import com.alipay.api.request.*;
-import com.alipay.api.response.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -331,17 +330,17 @@ public class AliPayApi {
 	 * @throws AlipayApiException
 	 * @throws IOException 
 	 */
-//	public static void tradePage(HttpServletResponse httpResponse, AlipayTradePayModel model, String notifyUrl, String returnUrl) throws AlipayApiException, IOException{
-//		AlipayTradePagePayRequest request = new AlipayTradePagePayRequest();
-//		request.setBizModel(model);
-//		request.setNotifyUrl(notifyUrl);
-//		request.setReturnUrl(returnUrl);
-//		String form  = AliPayApiConfigKit.getAliPayApiConfig().getAlipayClient().pageExecute(request).getBody();//调用SDK生成表单
-//		httpResponse.setContentType("text/html;charset=" + AliPayApiConfigKit.getAliPayApiConfig().getCharset());
-//		httpResponse.getWriter().write(form);//直接将完整的表单html输出到页面
-//	    httpResponse.getWriter().flush();
-//	    httpResponse.getWriter().close();
-//	}
+	public static void tradePage(AliPayApiConfig aliPayApiConfig,HttpServletResponse httpResponse, AlipayTradePayModel model, String notifyUrl, String returnUrl) throws AlipayApiException, IOException{
+		AlipayTradePagePayRequest request = new AlipayTradePagePayRequest();
+		request.setBizModel(model);
+		request.setNotifyUrl(notifyUrl);
+		request.setReturnUrl(returnUrl);
+		String form  = aliPayApiConfig.getAlipayClient().pageExecute(request).getBody();//调用SDK生成表单
+		httpResponse.setContentType("text/html;charset=" + aliPayApiConfig.getCharset());
+		httpResponse.getWriter().write(form);//直接将完整的表单html输出到页面
+	    httpResponse.getWriter().flush();
+	    httpResponse.getWriter().close();
+	}
 	
 	
 	/**
