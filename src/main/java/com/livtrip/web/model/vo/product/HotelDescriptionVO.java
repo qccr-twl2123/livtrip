@@ -11,6 +11,16 @@ public class HotelDescriptionVO {
     private String category;
     /**值*/
     private String value;
+    /**描述*/
+    private String description;
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
     public String getCategory() {
         return category;

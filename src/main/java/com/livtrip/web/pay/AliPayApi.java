@@ -3,6 +3,8 @@ package com.livtrip.web.pay;
 import com.alipay.api.AlipayApiException;
 import com.alipay.api.domain.*;
 import com.alipay.api.request.*;
+import com.alipay.api.response.AlipayDataDataserviceBillDownloadurlQueryResponse;
+import com.alipay.api.response.AlipayTradeRefundResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -249,19 +251,18 @@ public class AliPayApi {
 	/**
 	 * 退款
 	 * https://doc.open.alipay.com/docs/api.htm?spm=a219a.7395905.0.0.SAyEeI&docType=4&apiId=759
-	 * @param content
 	 * @return
 	 * @throws AlipayApiException
 	 */
-//	public static String tradeRefund(AlipayTradeRefundModel model) throws AlipayApiException {
-//		AlipayTradeRefundResponse response = tradeRefundToResponse(model);
-//		return response.getBody();
-//	}
-//	public static AlipayTradeRefundResponse tradeRefundToResponse(AlipayTradeRefundModel model) throws AlipayApiException {
-//		AlipayTradeRefundRequest request = new AlipayTradeRefundRequest();
-//		request.setBizModel(model);
-//		return AliPayApiConfigKit.getAliPayApiConfig().getAlipayClient().execute(request);
-//	}
+	public static String tradeRefund(AliPayApiConfig aliPayApiConfig,AlipayTradeRefundModel model) throws AlipayApiException {
+		AlipayTradeRefundResponse response = tradeRefundToResponse(aliPayApiConfig,model);
+		return response.getBody();
+	}
+	public static AlipayTradeRefundResponse tradeRefundToResponse(AliPayApiConfig aliPayApiConfig, AlipayTradeRefundModel model) throws AlipayApiException {
+		AlipayTradeRefundRequest request = new AlipayTradeRefundRequest();
+		request.setBizModel(model);
+		return aliPayApiConfig.getAlipayClient().execute(request);
+	}
 	
 	/**
 	 * 退款查询
@@ -284,20 +285,20 @@ public class AliPayApi {
 	
 	/**
 	 * 查询对账单下载地址
-	 * @param bizContent
+	 * @param model
 	 * @return
 	 * @throws AlipayApiException
 	 */
-//	public static String billDownloadurlQuery(AlipayDataDataserviceBillDownloadurlQueryModel model) throws AlipayApiException {
-//		AlipayDataDataserviceBillDownloadurlQueryResponse response =  billDownloadurlQueryToResponse(model);
-//		return response.getBillDownloadUrl();
-//	}
+	public static String billDownloadurlQuery(AliPayApiConfig aliPayApiConfig,AlipayDataDataserviceBillDownloadurlQueryModel model) throws AlipayApiException {
+		AlipayDataDataserviceBillDownloadurlQueryResponse response =  billDownloadurlQueryToResponse(aliPayApiConfig,model);
+		return response.getBillDownloadUrl();
+	}
 	
-//	public static AlipayDataDataserviceBillDownloadurlQueryResponse billDownloadurlQueryToResponse (AlipayDataDataserviceBillDownloadurlQueryModel model) throws AlipayApiException {
-//		AlipayDataDataserviceBillDownloadurlQueryRequest request = new AlipayDataDataserviceBillDownloadurlQueryRequest();
-//		request.setBizModel(model);
-//		return AliPayApiConfigKit.getAliPayApiConfig().getAlipayClient().execute(request);
-//	}
+	public static AlipayDataDataserviceBillDownloadurlQueryResponse billDownloadurlQueryToResponse (AliPayApiConfig aliPayApiConfig,AlipayDataDataserviceBillDownloadurlQueryModel model) throws AlipayApiException {
+		AlipayDataDataserviceBillDownloadurlQueryRequest request = new AlipayDataDataserviceBillDownloadurlQueryRequest();
+		request.setBizModel(model);
+		return aliPayApiConfig.getAlipayClient().execute(request);
+	}
 	
 	
 	/**

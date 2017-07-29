@@ -151,7 +151,7 @@
                     <#list hotelDetail.hotelDescriptionVOList as description>
                         <h4>${description.category!}</h4>
                         <p class="text-justify">
-                        ${description.value!}
+                        ${description.description!}
                         </p>
                     </#list>
                 </#if>
