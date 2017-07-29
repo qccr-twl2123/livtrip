@@ -1,6 +1,7 @@
 package com.livtrip.web.validator;
 
-import io.renren.common.exception.RRException;
+
+import com.livtrip.web.exception.RRException;
 
 import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
