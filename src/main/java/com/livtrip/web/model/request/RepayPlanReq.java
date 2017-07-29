@@ -1,4 +1,4 @@
-package com.livtrip.web.request;
+package com.livtrip.web.model.request;
 
 /**
  * 还款计划请求信息
