@@ -15,7 +15,7 @@ import java.util.concurrent.TimeUnit;
 public class LocalCache {
 
     private static Cache<Object, String> cache = CacheBuilder.newBuilder()
-            .maximumSize(100).expireAfterWrite(30, TimeUnit.MINUTES)
+            .maximumSize(100).expireAfterWrite(10, TimeUnit.MINUTES)
             .recordStats()
             .build();
 
