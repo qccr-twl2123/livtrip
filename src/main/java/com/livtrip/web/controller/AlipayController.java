@@ -58,11 +58,6 @@ public class AlipayController extends BaseController{
         return aliPayApiConfig;
     }
 
-    @RequestMapping("notify")
-    public void notifyMessage(){
-
-    }
-
 
     /**
      * Wap支付
@@ -173,7 +168,7 @@ public class AlipayController extends BaseController{
      * docType=1#s3
      */
     @RequestMapping("notify")
-    public void app_pay_notify(HttpServletRequest request) {
+    public void appPayNotify(HttpServletRequest request) {
         try {
             // 获取支付宝POST过来反馈信息
             Map<String, String> params = AliPayApi.toMap(request);
