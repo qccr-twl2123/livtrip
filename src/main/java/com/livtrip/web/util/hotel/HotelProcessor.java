@@ -3,12 +3,14 @@ package com.livtrip.web.util.hotel;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 import javax.xml.ws.handler.Handler;
 import javax.xml.ws.handler.HandlerResolver;
 import javax.xml.ws.handler.PortInfo;
 
 
+import com.livtrip.web.cache.LocalCache;
 import com.livtrip.web.constant.Constant;
 import com.livtrip.web.util.Money;
 import com.livtrip.web.util.date.DateStyle;
@@ -22,6 +24,7 @@ import org.apache.commons.collections.CollectionUtils;
 import com.alibaba.fastjson.JSON;
 import com.google.common.collect.Lists;
 
+import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -73,6 +76,16 @@ public class HotelProcessor {
      * @date 2016/12/13 16:58
      */
     public static List<Hotel> SearchHotelsByDestinationIds(List<Integer> destinationIds, String checkIn, String checkOut, ArrayOfRoomInfo arrayOfRoomInfo){
+        //先从缓存取
+        try {
+            String result = (String)LocalCache.get(destinationIds.get(0));
+            if(StringUtils.isNotBlank(result)){
+                return JSON.parseArray(result,Hotel.class);
+            }
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+
         if(CollectionUtils.isEmpty(destinationIds)){ return null;}
         try{
 
@@ -95,6 +108,9 @@ public class HotelProcessor {
 
 
             SearchResult result = port.searchHotelsByDestinationIds(request, null);
+            if(result != null && CollectionUtils.isNotEmpty(result.getHotelList().getHotel())){
+                LocalCache.put(destinationIds.get(0),result.getHotelList().getHotel());
+            }
             return result.getHotelList().getHotel();
         }catch (Exception e) {
             logger.error("tourico request error", e);
