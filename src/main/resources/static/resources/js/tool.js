@@ -96,3 +96,18 @@ function formToObject(formId){
     });
     return o;
 }
+
+function printError(result){
+    // if(result&&result.error){
+    //     error(result.error);
+    //     return true;
+    // }
+    // if(typeof result =="string"){
+    //     var obj=str2obj(result);
+    //     if(obj.error){
+    //         error(obj.error);
+    //         return true;
+    //     }
+    // }
+    return false;
+}

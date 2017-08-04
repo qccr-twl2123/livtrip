@@ -37,7 +37,7 @@ public class PaySerial {
      *
      * @mbg.generated
      */
-    private String amount;
+    private Integer amount;
 
     /**
      *
@@ -236,7 +236,7 @@ public class PaySerial {
      *
      * @mbg.generated
      */
-    public String getAmount() {
+    public Integer getAmount() {
         return amount;
     }
 
@@ -248,7 +248,7 @@ public class PaySerial {
      *
      * @mbg.generated
      */
-    public void setAmount(String amount) {
+    public void setAmount(Integer amount) {
         this.amount = amount;
     }
 

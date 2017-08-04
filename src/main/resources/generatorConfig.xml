@@ -37,7 +37,10 @@
 		</sqlMapGenerator>
 
 
-		<table tableName="liv_hotel" domainObjectName="HotelProduct">
+		<table tableName="liv_pay_serial" domainObjectName="PaySerial">
+			<generatedKey column="id" sqlStatement="JDBC" />
+		</table>
+		<table tableName="liv_order" domainObjectName="Order">
 			<generatedKey column="id" sqlStatement="JDBC" />
 		</table>
 

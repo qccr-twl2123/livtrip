@@ -6,11 +6,17 @@ import com.alipay.api.domain.AlipayTradePayModel;
 import com.alipay.api.domain.AlipayTradeRefundModel;
 import com.alipay.api.domain.AlipayTradeWapPayModel;
 import com.alipay.api.internal.util.AlipaySignature;
+import com.livtrip.web.constant.Constant;
+import com.livtrip.web.domain.PaySerial;
+import com.livtrip.web.model.request.OrderReq;
 import com.livtrip.web.model.request.RefundReq;
 import com.livtrip.web.pay.AliPayApi;
 import com.livtrip.web.pay.AliPayApiConfig;
+import com.livtrip.web.service.PayService;
 import com.livtrip.web.util.StringUtils;
 import com.livtrip.web.validator.ValidatorUtils;
+import org.apache.tomcat.util.bcel.Const;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -45,6 +51,9 @@ public class AlipayController extends BaseController{
     @Value("${pay.alipay.notifyDomain}")
     private  String notifyDomain;
 
+    @Autowired
+    private PayService payService;
+
 
     public AliPayApiConfig getApiConfig() {
         AliPayApiConfig aliPayApiConfig = AliPayApiConfig.New()
@@ -59,34 +68,6 @@ public class AlipayController extends BaseController{
     }
 
 
-    /**
-     * Wap支付
-     */
-    @RequestMapping("wapPay")
-    public void wapPay(HttpServletResponse response) {
-        String body = "我是测试数据-By Javen";
-        String subject = "Javen Wap支付测试";
-        String totalAmount = "1";
-        String passbackParams = "1";
-        String returnUrl = notify_domain + "/alipay/return_url";
-        String notifyUrl = notify_domain + "/alipay/notify.do";
-
-        AlipayTradeWapPayModel model = new AlipayTradeWapPayModel();
-        model.setBody(body);
-        model.setSubject(subject);
-        model.setTotalAmount(totalAmount);
-        model.setPassbackParams(passbackParams);
-        String outTradeNo = StringUtils.getOutTradeNo();
-        System.out.println("wap outTradeNo>"+outTradeNo);
-        model.setOutTradeNo(outTradeNo);
-        model.setProductCode("QUICK_WAP_PAY");
-
-        try {
-            AliPayApi.wapPay(getApiConfig(),response, model, returnUrl, notifyUrl);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
 
     /**
      * PC支付
@@ -96,23 +77,18 @@ public class AlipayController extends BaseController{
         try {
             String totalAmount = "1";
             String outTradeNo =StringUtils.getOutTradeNo();
-
-            String returnUrl = notify_domain + "/alipay/return_url";
-            String notifyUrl = notify_domain + "/alipay/notify_url";
             AlipayTradePayModel model = new AlipayTradePayModel();
-
             model.setOutTradeNo(outTradeNo);
             model.setProductCode("FAST_INSTANT_TRADE_PAY");
             model.setTotalAmount(totalAmount);
             model.setSubject("Javen PC支付测试");
             model.setBody("Javen IJPay PC支付测试");
 
-            AliPayApi.tradePage(getApiConfig(),response,model , notifyUrl, returnUrl);
+            payService.pcPay(response,model, Constant.RETURN_URL, Constant.NOTIFY_URL);
         } catch (Exception e) {
             e.printStackTrace();
 
         }
-
     }
 
 
