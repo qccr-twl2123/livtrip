@@ -21,9 +21,9 @@ spring:
       auto: true
       proxy-target-class: false
     mail:
-        host: smtp.163.com
-        username: livtrip@163.com
-        password: livtrip2017
+        host: smtp.tourongjia.com
+        username: xierongli@tourongjia.com
+        password: Tourongjia2017
         properties:
                mail:
                  smtp:

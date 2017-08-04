@@ -1,5 +1,7 @@
 package com.livtrip.web.controller;
 
+import com.livtrip.web.model.Email;
+import com.livtrip.web.service.IMailService;
 import org.apache.commons.collections.map.HashedMap;
 import org.apache.velocity.app.VelocityEngine;
 import org.junit.Test;
@@ -28,6 +30,9 @@ public class TestEmail {
     @Autowired
     private VelocityEngine velocityEngine;
 
+    @Autowired
+    private IMailService mailService;
+
     @Test
     public void sendSimpleMail() throws Exception {
         SimpleMailMessage message = new SimpleMailMessage();
@@ -52,5 +57,29 @@ public class TestEmail {
         helper.setText(text, true);
         mailSender.send(mimeMessage);
     }
+
+    @Test
+    public void testSendFreemarkerMail() throws Exception {
+        Email mail = new Email();
+        mail.setEmail("545739504@qq.com");
+        mail.setSubject("你个小逗比");
+        mail.setContent("科帮网欢迎您");
+        mail.setTemplate("welcome");
+        mailService.sendFreemarker(mail);
+    }
+
+    @Test
+    public void testSend() throws Exception {
+        Email email = new Email();
+        email.setEmail("545739504@qq.com");
+        email.setSubject("你个小逗比");
+        email.setContent("科帮网欢迎您");
+        mailService.send(email);
+
+    }
+
+
+
+
 
 }
