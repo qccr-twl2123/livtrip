@@ -32,12 +32,6 @@ public class OrderController  extends  BaseController{
          Order order = ObjectConvert.convertObject(orderReq, Order.class);
          order.setIp(getIRealIPAddr(request));
 
-         String paySerialNo = UUID.randomUUID().toString();
-         PaySerial paySerial = new PaySerial();
-         paySerial.setSerialNo(paySerialNo);
-         paySerial.setAmount(Money.convertYuanToCent(orderReq.getReceiptAmount()).intValue());
-         paySerial.setReturnUrl(Constant.RETURN_URL);
-         paySerial.setNotifyUrl(Constant.NOTIFY_URL);
 
      }
 

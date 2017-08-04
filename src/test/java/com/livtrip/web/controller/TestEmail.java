@@ -64,7 +64,7 @@ public class TestEmail {
         mail.setEmail("545739504@qq.com");
         mail.setSubject("你个小逗比");
         mail.setContent("科帮网欢迎您");
-        mail.setTemplate("welcome");
+        mail.setTemplate("mail/welcome");
         mailService.sendFreemarker(mail);
     }
 
