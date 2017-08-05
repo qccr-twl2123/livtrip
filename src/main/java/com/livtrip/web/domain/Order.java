@@ -1,5 +1,6 @@
 package com.livtrip.web.domain;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 public class Order {
@@ -118,7 +119,7 @@ public class Order {
      *
      * @mbg.generated
      */
-    private Integer amount;
+    private BigDecimal amount;
 
     /**
      *
@@ -127,7 +128,7 @@ public class Order {
      *
      * @mbg.generated
      */
-    private Integer receiptAmount;
+    private BigDecimal receiptAmount;
 
     /**
      *
@@ -488,7 +489,7 @@ public class Order {
      *
      * @mbg.generated
      */
-    public Integer getAmount() {
+    public BigDecimal getAmount() {
         return amount;
     }
 
@@ -500,7 +501,7 @@ public class Order {
      *
      * @mbg.generated
      */
-    public void setAmount(Integer amount) {
+    public void setAmount(BigDecimal amount) {
         this.amount = amount;
     }
 
@@ -512,7 +513,7 @@ public class Order {
      *
      * @mbg.generated
      */
-    public Integer getReceiptAmount() {
+    public BigDecimal getReceiptAmount() {
         return receiptAmount;
     }
 
@@ -524,7 +525,7 @@ public class Order {
      *
      * @mbg.generated
      */
-    public void setReceiptAmount(Integer receiptAmount) {
+    public void setReceiptAmount(BigDecimal receiptAmount) {
         this.receiptAmount = receiptAmount;
     }
 

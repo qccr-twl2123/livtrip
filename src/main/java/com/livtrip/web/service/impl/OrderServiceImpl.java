@@ -11,6 +11,7 @@ import com.livtrip.web.service.OrderService;
 import com.livtrip.web.service.PayService;
 import com.livtrip.web.util.Money;
 import com.livtrip.web.util.StringUtils;
+import com.livtrip.web.validator.Assert;
 import org.apache.commons.collections.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -40,24 +41,18 @@ public class OrderServiceImpl implements OrderService{
 
     @Transactional
     public void createOrder(HttpServletResponse response,Order order) {
-        //构建支付流水模型
-        String paySerialNo = UUID.randomUUID().toString();
-        PaySerial paySerial = new PaySerial();
-        paySerial.setSerialNo(paySerialNo);
-        paySerial.setAmount(Money.convertYuanToCent(order.getReceiptAmount()).intValue());
-        paySerial.setReturnUrl(Constant.RETURN_URL);
-        paySerial.setNotifyUrl(Constant.NOTIFY_URL);
-
+        String paySerialNo = StringUtils.getUUID();
+        order.setSerialNo(paySerialNo);
+        order.setOrderSn(StringUtils.getOutTradeNo());
         //生成数据
-        orderMapper.insertSelective(order);
-        paySerialMapper.insertSelective(paySerial);
-
+        int orderNum = orderMapper.insertSelective(order);
+        Assert.isTrue(orderNum < 0,"订单生成失败");
         //调用支付宝接口
-        payService.pcPay(response,generateAlipayTradePayModel(order), Constant.RETURN_URL,Constant.NOTIFY_URL);
+        payService.pcPay(response,generateAlipayTradePayModel(order,paySerialNo), Constant.RETURN_URL,Constant.NOTIFY_URL);
 
     }
 
-    public AlipayTradePayModel generateAlipayTradePayModel(Order order){
+    public AlipayTradePayModel generateAlipayTradePayModel(Order order,String paySerialNo){
         AlipayTradePayModel alipayTradePayModel = null;
         ProductCriteria productCriteria = new ProductCriteria();
         productCriteria.createCriteria().andIdEqualTo(order.getProductId());
@@ -74,6 +69,21 @@ public class OrderServiceImpl implements OrderService{
             alipayTradePayModel.setTotalAmount(totalAmount);
             alipayTradePayModel.setSubject(product.getName());
             alipayTradePayModel.setBody(product.getDescription());
+
+
+            //构建支付流水模型
+            PaySerial paySerial = new PaySerial();
+            paySerial.setSerialNo(paySerialNo);
+            paySerial.setBillNo(outTradeNo);
+            paySerial.setProductCode("productId-"+order.getProductId()+"-hotelId-"+order.getHotelId());
+            paySerial.setAmount(order.getReceiptAmount());
+            paySerial.setReturnUrl(Constant.RETURN_URL);
+            paySerial.setNotifyUrl(Constant.NOTIFY_URL);
+            paySerial.setSubject(product.getName());
+            paySerial.setBody(product.getDescription()==null?"":product.getDescription().substring(0,200));
+
+            int serialNum = paySerialMapper.insertSelective(paySerial);
+            Assert.isTrue(serialNum < 0,"支付流水生成失败");
         }
         return alipayTradePayModel;
     }

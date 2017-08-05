@@ -9,7 +9,7 @@
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="serial_no" jdbcType="VARCHAR" property="serialNo" />
     <result column="bill_no" jdbcType="VARCHAR" property="billNo" />
-    <result column="amount" jdbcType="INTEGER" property="amount" />
+    <result column="amount" jdbcType="DECIMAL" property="amount" />
     <result column="status" jdbcType="INTEGER" property="status" />
     <result column="mer_id" jdbcType="VARCHAR" property="merId" />
     <result column="pay_account" jdbcType="VARCHAR" property="payAccount" />
@@ -155,7 +155,7 @@
       subject, body, retain, 
       create_person, create_time, update_person, 
       update_time)
-    values (#{serialNo,jdbcType=VARCHAR}, #{billNo,jdbcType=VARCHAR}, #{amount,jdbcType=INTEGER}, 
+    values (#{serialNo,jdbcType=VARCHAR}, #{billNo,jdbcType=VARCHAR}, #{amount,jdbcType=DECIMAL}, 
       #{status,jdbcType=INTEGER}, #{merId,jdbcType=VARCHAR}, #{payAccount,jdbcType=VARCHAR}, 
       #{returnUrl,jdbcType=VARCHAR}, #{notifyUrl,jdbcType=VARCHAR}, #{productCode,jdbcType=VARCHAR}, 
       #{subject,jdbcType=VARCHAR}, #{body,jdbcType=VARCHAR}, #{retain,jdbcType=VARCHAR}, 
@@ -226,7 +226,7 @@
         #{billNo,jdbcType=VARCHAR},
       </if>
       <if test="amount != null">
-        #{amount,jdbcType=INTEGER},
+        #{amount,jdbcType=DECIMAL},
       </if>
       <if test="status != null">
         #{status,jdbcType=INTEGER},
@@ -296,7 +296,7 @@
         bill_no = #{record.billNo,jdbcType=VARCHAR},
       </if>
       <if test="record.amount != null">
-        amount = #{record.amount,jdbcType=INTEGER},
+        amount = #{record.amount,jdbcType=DECIMAL},
       </if>
       <if test="record.status != null">
         status = #{record.status,jdbcType=INTEGER},
@@ -351,7 +351,7 @@
     set id = #{record.id,jdbcType=INTEGER},
       serial_no = #{record.serialNo,jdbcType=VARCHAR},
       bill_no = #{record.billNo,jdbcType=VARCHAR},
-      amount = #{record.amount,jdbcType=INTEGER},
+      amount = #{record.amount,jdbcType=DECIMAL},
       status = #{record.status,jdbcType=INTEGER},
       mer_id = #{record.merId,jdbcType=VARCHAR},
       pay_account = #{record.payAccount,jdbcType=VARCHAR},
@@ -383,7 +383,7 @@
         bill_no = #{billNo,jdbcType=VARCHAR},
       </if>
       <if test="amount != null">
-        amount = #{amount,jdbcType=INTEGER},
+        amount = #{amount,jdbcType=DECIMAL},
       </if>
       <if test="status != null">
         status = #{status,jdbcType=INTEGER},
@@ -435,7 +435,7 @@
     update liv_pay_serial
     set serial_no = #{serialNo,jdbcType=VARCHAR},
       bill_no = #{billNo,jdbcType=VARCHAR},
-      amount = #{amount,jdbcType=INTEGER},
+      amount = #{amount,jdbcType=DECIMAL},
       status = #{status,jdbcType=INTEGER},
       mer_id = #{merId,jdbcType=VARCHAR},
       pay_account = #{payAccount,jdbcType=VARCHAR},

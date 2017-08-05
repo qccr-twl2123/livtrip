@@ -18,8 +18,8 @@
     <result column="email" jdbcType="VARCHAR" property="email" />
     <result column="mobile" jdbcType="VARCHAR" property="mobile" />
     <result column="status" jdbcType="INTEGER" property="status" />
-    <result column="amount" jdbcType="INTEGER" property="amount" />
-    <result column="receipt_amount" jdbcType="INTEGER" property="receiptAmount" />
+    <result column="amount" jdbcType="DECIMAL" property="amount" />
+    <result column="receipt_amount" jdbcType="DECIMAL" property="receiptAmount" />
     <result column="pay_type" jdbcType="INTEGER" property="payType" />
     <result column="unit" jdbcType="VARCHAR" property="unit" />
     <result column="ip" jdbcType="VARCHAR" property="ip" />
@@ -164,8 +164,8 @@
     values (#{orderSn,jdbcType=VARCHAR}, #{serialNo,jdbcType=VARCHAR}, #{productId,jdbcType=INTEGER}, 
       #{hotelId,jdbcType=INTEGER}, #{checkIn,jdbcType=DATE}, #{checkOut,jdbcType=DATE}, 
       #{roomInfo,jdbcType=VARCHAR}, #{userId,jdbcType=INTEGER}, #{email,jdbcType=VARCHAR}, 
-      #{mobile,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, #{amount,jdbcType=INTEGER}, 
-      #{receiptAmount,jdbcType=INTEGER}, #{payType,jdbcType=INTEGER}, #{unit,jdbcType=VARCHAR}, 
+      #{mobile,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, #{amount,jdbcType=DECIMAL}, 
+      #{receiptAmount,jdbcType=DECIMAL}, #{payType,jdbcType=INTEGER}, #{unit,jdbcType=VARCHAR}, 
       #{ip,jdbcType=VARCHAR}, #{createPerson,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
       #{updatePerson,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP})
   </insert>
@@ -272,10 +272,10 @@
         #{status,jdbcType=INTEGER},
       </if>
       <if test="amount != null">
-        #{amount,jdbcType=INTEGER},
+        #{amount,jdbcType=DECIMAL},
       </if>
       <if test="receiptAmount != null">
-        #{receiptAmount,jdbcType=INTEGER},
+        #{receiptAmount,jdbcType=DECIMAL},
       </if>
       <if test="payType != null">
         #{payType,jdbcType=INTEGER},
@@ -354,10 +354,10 @@
         status = #{record.status,jdbcType=INTEGER},
       </if>
       <if test="record.amount != null">
-        amount = #{record.amount,jdbcType=INTEGER},
+        amount = #{record.amount,jdbcType=DECIMAL},
       </if>
       <if test="record.receiptAmount != null">
-        receipt_amount = #{record.receiptAmount,jdbcType=INTEGER},
+        receipt_amount = #{record.receiptAmount,jdbcType=DECIMAL},
       </if>
       <if test="record.payType != null">
         pay_type = #{record.payType,jdbcType=INTEGER},
@@ -403,8 +403,8 @@
       email = #{record.email,jdbcType=VARCHAR},
       mobile = #{record.mobile,jdbcType=VARCHAR},
       status = #{record.status,jdbcType=INTEGER},
-      amount = #{record.amount,jdbcType=INTEGER},
-      receipt_amount = #{record.receiptAmount,jdbcType=INTEGER},
+      amount = #{record.amount,jdbcType=DECIMAL},
+      receipt_amount = #{record.receiptAmount,jdbcType=DECIMAL},
       pay_type = #{record.payType,jdbcType=INTEGER},
       unit = #{record.unit,jdbcType=VARCHAR},
       ip = #{record.ip,jdbcType=VARCHAR},
@@ -457,10 +457,10 @@
         status = #{status,jdbcType=INTEGER},
       </if>
       <if test="amount != null">
-        amount = #{amount,jdbcType=INTEGER},
+        amount = #{amount,jdbcType=DECIMAL},
       </if>
       <if test="receiptAmount != null">
-        receipt_amount = #{receiptAmount,jdbcType=INTEGER},
+        receipt_amount = #{receiptAmount,jdbcType=DECIMAL},
       </if>
       <if test="payType != null">
         pay_type = #{payType,jdbcType=INTEGER},
@@ -503,8 +503,8 @@
       email = #{email,jdbcType=VARCHAR},
       mobile = #{mobile,jdbcType=VARCHAR},
       status = #{status,jdbcType=INTEGER},
-      amount = #{amount,jdbcType=INTEGER},
-      receipt_amount = #{receiptAmount,jdbcType=INTEGER},
+      amount = #{amount,jdbcType=DECIMAL},
+      receipt_amount = #{receiptAmount,jdbcType=DECIMAL},
       pay_type = #{payType,jdbcType=INTEGER},
       unit = #{unit,jdbcType=VARCHAR},
       ip = #{ip,jdbcType=VARCHAR},

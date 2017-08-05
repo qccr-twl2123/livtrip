@@ -3,6 +3,7 @@ package com.livtrip.web.model.request;
 import org.hibernate.validator.constraints.NotBlank;
 
 import javax.validation.constraints.NotNull;
+import java.math.BigDecimal;
 import java.util.Date;
 
 /**
@@ -22,15 +23,15 @@ public class OrderReq {
     @NotBlank(message = "房间信息不能为空")
     private String roomInfo;
 
-    private Integer userId;
+    private String userId;
     @NotBlank(message = "email 不能为空")
     private String email;
     private String mobile;
 
     @NotNull(message = "订单金额不为空")
-    private Double amount;
+    private BigDecimal amount;
     @NotNull(message = "实付金额不为空")
-    private Double receiptAmount;
+    private BigDecimal receiptAmount;
 
     public Integer getProductId() {
         return productId;
@@ -72,11 +73,11 @@ public class OrderReq {
         this.roomInfo = roomInfo;
     }
 
-    public Integer getUserId() {
+    public String getUserId() {
         return userId;
     }
 
-    public void setUserId(Integer userId) {
+    public void setUserId(String userId) {
         this.userId = userId;
     }
 
@@ -96,19 +97,19 @@ public class OrderReq {
         this.mobile = mobile;
     }
 
-    public Double getAmount() {
+    public BigDecimal getAmount() {
         return amount;
     }
 
-    public void setAmount(Double amount) {
+    public void setAmount(BigDecimal amount) {
         this.amount = amount;
     }
 
-    public Double getReceiptAmount() {
+    public BigDecimal getReceiptAmount() {
         return receiptAmount;
     }
 
-    public void setReceiptAmount(Double receiptAmount) {
+    public void setReceiptAmount(BigDecimal receiptAmount) {
         this.receiptAmount = receiptAmount;
     }
 }

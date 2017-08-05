@@ -1,5 +1,6 @@
 package com.livtrip.web.domain;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
@@ -1002,52 +1003,52 @@ public class OrderCriteria {
             return (Criteria) this;
         }
 
-        public Criteria andAmountEqualTo(Integer value) {
+        public Criteria andAmountEqualTo(BigDecimal value) {
             addCriterion("amount =", value, "amount");
             return (Criteria) this;
         }
 
-        public Criteria andAmountNotEqualTo(Integer value) {
+        public Criteria andAmountNotEqualTo(BigDecimal value) {
             addCriterion("amount <>", value, "amount");
             return (Criteria) this;
         }
 
-        public Criteria andAmountGreaterThan(Integer value) {
+        public Criteria andAmountGreaterThan(BigDecimal value) {
             addCriterion("amount >", value, "amount");
             return (Criteria) this;
         }
 
-        public Criteria andAmountGreaterThanOrEqualTo(Integer value) {
+        public Criteria andAmountGreaterThanOrEqualTo(BigDecimal value) {
             addCriterion("amount >=", value, "amount");
             return (Criteria) this;
         }
 
-        public Criteria andAmountLessThan(Integer value) {
+        public Criteria andAmountLessThan(BigDecimal value) {
             addCriterion("amount <", value, "amount");
             return (Criteria) this;
         }
 
-        public Criteria andAmountLessThanOrEqualTo(Integer value) {
+        public Criteria andAmountLessThanOrEqualTo(BigDecimal value) {
             addCriterion("amount <=", value, "amount");
             return (Criteria) this;
         }
 
-        public Criteria andAmountIn(List<Integer> values) {
+        public Criteria andAmountIn(List<BigDecimal> values) {
             addCriterion("amount in", values, "amount");
             return (Criteria) this;
         }
 
-        public Criteria andAmountNotIn(List<Integer> values) {
+        public Criteria andAmountNotIn(List<BigDecimal> values) {
             addCriterion("amount not in", values, "amount");
             return (Criteria) this;
         }
 
-        public Criteria andAmountBetween(Integer value1, Integer value2) {
+        public Criteria andAmountBetween(BigDecimal value1, BigDecimal value2) {
             addCriterion("amount between", value1, value2, "amount");
             return (Criteria) this;
         }
 
-        public Criteria andAmountNotBetween(Integer value1, Integer value2) {
+        public Criteria andAmountNotBetween(BigDecimal value1, BigDecimal value2) {
             addCriterion("amount not between", value1, value2, "amount");
             return (Criteria) this;
         }
@@ -1062,52 +1063,52 @@ public class OrderCriteria {
             return (Criteria) this;
         }
 
-        public Criteria andReceiptAmountEqualTo(Integer value) {
+        public Criteria andReceiptAmountEqualTo(BigDecimal value) {
             addCriterion("receipt_amount =", value, "receiptAmount");
             return (Criteria) this;
         }
 
-        public Criteria andReceiptAmountNotEqualTo(Integer value) {
+        public Criteria andReceiptAmountNotEqualTo(BigDecimal value) {
             addCriterion("receipt_amount <>", value, "receiptAmount");
             return (Criteria) this;
         }
 
-        public Criteria andReceiptAmountGreaterThan(Integer value) {
+        public Criteria andReceiptAmountGreaterThan(BigDecimal value) {
             addCriterion("receipt_amount >", value, "receiptAmount");
             return (Criteria) this;
         }
 
-        public Criteria andReceiptAmountGreaterThanOrEqualTo(Integer value) {
+        public Criteria andReceiptAmountGreaterThanOrEqualTo(BigDecimal value) {
             addCriterion("receipt_amount >=", value, "receiptAmount");
             return (Criteria) this;
         }
 
-        public Criteria andReceiptAmountLessThan(Integer value) {
+        public Criteria andReceiptAmountLessThan(BigDecimal value) {
             addCriterion("receipt_amount <", value, "receiptAmount");
             return (Criteria) this;
         }
 
-        public Criteria andReceiptAmountLessThanOrEqualTo(Integer value) {
+        public Criteria andReceiptAmountLessThanOrEqualTo(BigDecimal value) {
             addCriterion("receipt_amount <=", value, "receiptAmount");
             return (Criteria) this;
         }
 
-        public Criteria andReceiptAmountIn(List<Integer> values) {
+        public Criteria andReceiptAmountIn(List<BigDecimal> values) {
             addCriterion("receipt_amount in", values, "receiptAmount");
             return (Criteria) this;
         }
 
-        public Criteria andReceiptAmountNotIn(List<Integer> values) {
+        public Criteria andReceiptAmountNotIn(List<BigDecimal> values) {
             addCriterion("receipt_amount not in", values, "receiptAmount");
             return (Criteria) this;
         }
 
-        public Criteria andReceiptAmountBetween(Integer value1, Integer value2) {
+        public Criteria andReceiptAmountBetween(BigDecimal value1, BigDecimal value2) {
             addCriterion("receipt_amount between", value1, value2, "receiptAmount");
             return (Criteria) this;
         }
 
-        public Criteria andReceiptAmountNotBetween(Integer value1, Integer value2) {
+        public Criteria andReceiptAmountNotBetween(BigDecimal value1, BigDecimal value2) {
             addCriterion("receipt_amount not between", value1, value2, "receiptAmount");
             return (Criteria) this;
         }

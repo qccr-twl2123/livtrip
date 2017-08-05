@@ -1,5 +1,6 @@
 package com.livtrip.web.domain;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 public class PaySerial {
@@ -37,7 +38,7 @@ public class PaySerial {
      *
      * @mbg.generated
      */
-    private Integer amount;
+    private BigDecimal amount;
 
     /**
      *
@@ -236,7 +237,7 @@ public class PaySerial {
      *
      * @mbg.generated
      */
-    public Integer getAmount() {
+    public BigDecimal getAmount() {
         return amount;
     }
 
@@ -248,7 +249,7 @@ public class PaySerial {
      *
      * @mbg.generated
      */
-    public void setAmount(Integer amount) {
+    public void setAmount(BigDecimal amount) {
         this.amount = amount;
     }
 
