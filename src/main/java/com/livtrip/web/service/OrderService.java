@@ -1,6 +1,7 @@
 package com.livtrip.web.service;
 
 
+import com.alipay.api.domain.AlipayTradePayModel;
 import com.livtrip.web.domain.Order;
 import com.livtrip.web.domain.PaySerial;
 
@@ -11,5 +12,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 public interface OrderService {
 
-    void createOrder(HttpServletResponse response,Order order);
+    AlipayTradePayModel generateAlipayTradePayModel(Order order);
+
+    void createOrder(HttpServletResponse response,Order order,PaySerial paySerial);
 }
