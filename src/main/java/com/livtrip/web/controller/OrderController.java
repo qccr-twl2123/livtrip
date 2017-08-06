@@ -39,19 +39,18 @@ public class OrderController  extends  BaseController{
      @RequestMapping("create")
      public void  createOrder(HttpServletRequest request,HttpServletResponse response, OrderReq orderReq){
          ValidatorUtils.validateEntity(orderReq);
+         //生成外部交易号
+         String outTradeNo = StringUtils.getOutTradeNo();
          Order order = ObjectConvert.convertObject(orderReq,Order.class);
          order.setIp(getIRealIPAddr(request));
-         String paySerialNo = StringUtils.getUUID();
-
+         order.setOutTradeNo(outTradeNo);
          //调用支付宝接口
          AlipayTradePayModel alipayTradePayModel = orderService.generateAlipayTradePayModel(order);
-
          payService.pcPay(response,alipayTradePayModel, Constant.RETURN_URL,Constant.NOTIFY_URL);
 
          //构建支付流水模型
          PaySerial paySerial = new PaySerial();
-         paySerial.setSerialNo(paySerialNo);
-         paySerial.setBillNo(StringUtils.getOutTradeNo());
+         paySerial.setOutTradeNo(outTradeNo);
          paySerial.setAmount(order.getReceiptAmount());
          paySerial.setReturnUrl(Constant.RETURN_URL);
          paySerial.setNotifyUrl(Constant.NOTIFY_URL);

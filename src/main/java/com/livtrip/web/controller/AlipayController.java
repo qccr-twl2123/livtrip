@@ -6,12 +6,17 @@ import com.alipay.api.domain.AlipayTradePayModel;
 import com.alipay.api.domain.AlipayTradeRefundModel;
 import com.alipay.api.internal.util.AlipaySignature;
 import com.livtrip.web.constant.Constant;
+import com.livtrip.web.model.request.AliPayNotifyReq;
+import com.livtrip.web.model.request.AlipayReturnReq;
 import com.livtrip.web.model.request.RefundReq;
 import com.livtrip.web.pay.AliPayApi;
 import com.livtrip.web.pay.AliPayApiConfig;
+import com.livtrip.web.service.OrderService;
+import com.livtrip.web.service.PaySerialService;
 import com.livtrip.web.service.PayService;
 import com.livtrip.web.util.StringUtils;
 import com.livtrip.web.validator.ValidatorUtils;
+import com.xiaoleilu.hutool.util.BeanUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -49,6 +54,12 @@ public class AlipayController extends BaseController{
 
     @Autowired
     private PayService payService;
+
+    @Autowired
+    private PaySerialService paySerialService;
+
+    @Autowired
+    private OrderService orderService;
 
 
     public AliPayApiConfig getApiConfig() {
@@ -147,13 +158,18 @@ public class AlipayController extends BaseController{
             for (Map.Entry<String, String> entry : params.entrySet()) {
                 logger.info("支付宝回调信息message[{}]",entry.getKey() + " = " + entry.getValue());
             }
+
             // 切记alipaypublickey是支付宝的公钥，请去open.alipay.com对应应用下查看。
             // boolean AlipaySignature.rsaCheckV1(Map<String, String> params,
             // String publicKey, String charset, String sign_type)
             boolean flag = AlipaySignature.rsaCheckV1(params, alipayPublicKey, charset,
                     signType);
             if (flag) {
-                // TODO
+                // 更改订单的状态至支付成功and更新支付流水状态至支付陈宫
+                AliPayNotifyReq aliPayNotifyReq = BeanUtil.mapToBean(params,AliPayNotifyReq.class,true);
+                paySerialService.update(aliPayNotifyReq);
+                orderService.update(aliPayNotifyReq);
+
                 logger.info("success");
                 return;
             } else {
@@ -164,6 +180,13 @@ public class AlipayController extends BaseController{
             e.printStackTrace();
             logger.info("failure");
         }
+    }
+
+
+    @RequestMapping("return")
+    public String returnProcess(AlipayReturnReq alipayReturnReq,ModelMap modelMap){
+        modelMap.put("amount", alipayReturnReq.getTotal_amount());
+        return "common/return";
     }
 
 

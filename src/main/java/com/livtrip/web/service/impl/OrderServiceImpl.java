@@ -5,6 +5,7 @@ import com.livtrip.web.domain.*;
 import com.livtrip.web.mapper.OrderMapper;
 import com.livtrip.web.mapper.PaySerialMapper;
 import com.livtrip.web.mapper.ProductMapper;
+import com.livtrip.web.model.request.AliPayNotifyReq;
 import com.livtrip.web.service.OrderService;
 import com.livtrip.web.util.StringUtils;
 import com.livtrip.web.validator.Assert;
@@ -62,12 +63,20 @@ public class OrderServiceImpl implements OrderService{
 
         int serialNum = paySerialMapper.insertSelective(paySerial);
         Assert.isTrue(serialNum < 0,"支付流水生成失败");
-
-
     }
 
-
-
+    @Override
+    public int update(AliPayNotifyReq aliPayNotifyReq) {
+        OrderCriteria orderCriteria = new OrderCriteria();
+        orderCriteria.createCriteria().andOutTradeNoEqualTo(aliPayNotifyReq.getOut_trade_no());
+        List<Order> orderList = orderMapper.selectByCriteria(orderCriteria);
+        if(CollectionUtils.isNotEmpty(orderList)){
+            Order order = orderList.get(0);
+            order.setStatus(2);
+            orderMapper.updateByCriteria(order,orderCriteria);
+        }
+        return 0;
+    }
 
 
 }

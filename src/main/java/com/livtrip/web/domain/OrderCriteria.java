@@ -353,73 +353,73 @@ public class OrderCriteria {
             return (Criteria) this;
         }
 
-        public Criteria andSerialNoIsNull() {
-            addCriterion("serial_no is null");
+        public Criteria andOutTradeNoIsNull() {
+            addCriterion("out_trade_no is null");
             return (Criteria) this;
         }
 
-        public Criteria andSerialNoIsNotNull() {
-            addCriterion("serial_no is not null");
+        public Criteria andOutTradeNoIsNotNull() {
+            addCriterion("out_trade_no is not null");
             return (Criteria) this;
         }
 
-        public Criteria andSerialNoEqualTo(String value) {
-            addCriterion("serial_no =", value, "serialNo");
+        public Criteria andOutTradeNoEqualTo(String value) {
+            addCriterion("out_trade_no =", value, "outTradeNo");
             return (Criteria) this;
         }
 
-        public Criteria andSerialNoNotEqualTo(String value) {
-            addCriterion("serial_no <>", value, "serialNo");
+        public Criteria andOutTradeNoNotEqualTo(String value) {
+            addCriterion("out_trade_no <>", value, "outTradeNo");
             return (Criteria) this;
         }
 
-        public Criteria andSerialNoGreaterThan(String value) {
-            addCriterion("serial_no >", value, "serialNo");
+        public Criteria andOutTradeNoGreaterThan(String value) {
+            addCriterion("out_trade_no >", value, "outTradeNo");
             return (Criteria) this;
         }
 
-        public Criteria andSerialNoGreaterThanOrEqualTo(String value) {
-            addCriterion("serial_no >=", value, "serialNo");
+        public Criteria andOutTradeNoGreaterThanOrEqualTo(String value) {
+            addCriterion("out_trade_no >=", value, "outTradeNo");
             return (Criteria) this;
         }
 
-        public Criteria andSerialNoLessThan(String value) {
-            addCriterion("serial_no <", value, "serialNo");
+        public Criteria andOutTradeNoLessThan(String value) {
+            addCriterion("out_trade_no <", value, "outTradeNo");
             return (Criteria) this;
         }
 
-        public Criteria andSerialNoLessThanOrEqualTo(String value) {
-            addCriterion("serial_no <=", value, "serialNo");
+        public Criteria andOutTradeNoLessThanOrEqualTo(String value) {
+            addCriterion("out_trade_no <=", value, "outTradeNo");
             return (Criteria) this;
         }
 
-        public Criteria andSerialNoLike(String value) {
-            addCriterion("serial_no like", value, "serialNo");
+        public Criteria andOutTradeNoLike(String value) {
+            addCriterion("out_trade_no like", value, "outTradeNo");
             return (Criteria) this;
         }
 
-        public Criteria andSerialNoNotLike(String value) {
-            addCriterion("serial_no not like", value, "serialNo");
+        public Criteria andOutTradeNoNotLike(String value) {
+            addCriterion("out_trade_no not like", value, "outTradeNo");
             return (Criteria) this;
         }
 
-        public Criteria andSerialNoIn(List<String> values) {
-            addCriterion("serial_no in", values, "serialNo");
+        public Criteria andOutTradeNoIn(List<String> values) {
+            addCriterion("out_trade_no in", values, "outTradeNo");
             return (Criteria) this;
         }
 
-        public Criteria andSerialNoNotIn(List<String> values) {
-            addCriterion("serial_no not in", values, "serialNo");
+        public Criteria andOutTradeNoNotIn(List<String> values) {
+            addCriterion("out_trade_no not in", values, "outTradeNo");
             return (Criteria) this;
         }
 
-        public Criteria andSerialNoBetween(String value1, String value2) {
-            addCriterion("serial_no between", value1, value2, "serialNo");
+        public Criteria andOutTradeNoBetween(String value1, String value2) {
+            addCriterion("out_trade_no between", value1, value2, "outTradeNo");
             return (Criteria) this;
         }
 
-        public Criteria andSerialNoNotBetween(String value1, String value2) {
-            addCriterion("serial_no not between", value1, value2, "serialNo");
+        public Criteria andOutTradeNoNotBetween(String value1, String value2) {
+            addCriterion("out_trade_no not between", value1, value2, "outTradeNo");
             return (Criteria) this;
         }
 
