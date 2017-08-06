@@ -326,73 +326,73 @@ public class PaySerialCriteria {
             return (Criteria) this;
         }
 
-        public Criteria andBillNoIsNull() {
-            addCriterion("bill_no is null");
+        public Criteria andTradeNoIsNull() {
+            addCriterion("trade_no is null");
             return (Criteria) this;
         }
 
-        public Criteria andBillNoIsNotNull() {
-            addCriterion("bill_no is not null");
+        public Criteria andTradeNoIsNotNull() {
+            addCriterion("trade_no is not null");
             return (Criteria) this;
         }
 
-        public Criteria andBillNoEqualTo(String value) {
-            addCriterion("bill_no =", value, "billNo");
+        public Criteria andTradeNoEqualTo(String value) {
+            addCriterion("trade_no =", value, "tradeNo");
             return (Criteria) this;
         }
 
-        public Criteria andBillNoNotEqualTo(String value) {
-            addCriterion("bill_no <>", value, "billNo");
+        public Criteria andTradeNoNotEqualTo(String value) {
+            addCriterion("trade_no <>", value, "tradeNo");
             return (Criteria) this;
         }
 
-        public Criteria andBillNoGreaterThan(String value) {
-            addCriterion("bill_no >", value, "billNo");
+        public Criteria andTradeNoGreaterThan(String value) {
+            addCriterion("trade_no >", value, "tradeNo");
             return (Criteria) this;
         }
 
-        public Criteria andBillNoGreaterThanOrEqualTo(String value) {
-            addCriterion("bill_no >=", value, "billNo");
+        public Criteria andTradeNoGreaterThanOrEqualTo(String value) {
+            addCriterion("trade_no >=", value, "tradeNo");
             return (Criteria) this;
         }
 
-        public Criteria andBillNoLessThan(String value) {
-            addCriterion("bill_no <", value, "billNo");
+        public Criteria andTradeNoLessThan(String value) {
+            addCriterion("trade_no <", value, "tradeNo");
             return (Criteria) this;
         }
 
-        public Criteria andBillNoLessThanOrEqualTo(String value) {
-            addCriterion("bill_no <=", value, "billNo");
+        public Criteria andTradeNoLessThanOrEqualTo(String value) {
+            addCriterion("trade_no <=", value, "tradeNo");
             return (Criteria) this;
         }
 
-        public Criteria andBillNoLike(String value) {
-            addCriterion("bill_no like", value, "billNo");
+        public Criteria andTradeNoLike(String value) {
+            addCriterion("trade_no like", value, "tradeNo");
             return (Criteria) this;
         }
 
-        public Criteria andBillNoNotLike(String value) {
-            addCriterion("bill_no not like", value, "billNo");
+        public Criteria andTradeNoNotLike(String value) {
+            addCriterion("trade_no not like", value, "tradeNo");
             return (Criteria) this;
         }
 
-        public Criteria andBillNoIn(List<String> values) {
-            addCriterion("bill_no in", values, "billNo");
+        public Criteria andTradeNoIn(List<String> values) {
+            addCriterion("trade_no in", values, "tradeNo");
             return (Criteria) this;
         }
 
-        public Criteria andBillNoNotIn(List<String> values) {
-            addCriterion("bill_no not in", values, "billNo");
+        public Criteria andTradeNoNotIn(List<String> values) {
+            addCriterion("trade_no not in", values, "tradeNo");
             return (Criteria) this;
         }
 
-        public Criteria andBillNoBetween(String value1, String value2) {
-            addCriterion("bill_no between", value1, value2, "billNo");
+        public Criteria andTradeNoBetween(String value1, String value2) {
+            addCriterion("trade_no between", value1, value2, "tradeNo");
             return (Criteria) this;
         }
 
-        public Criteria andBillNoNotBetween(String value1, String value2) {
-            addCriterion("bill_no not between", value1, value2, "billNo");
+        public Criteria andTradeNoNotBetween(String value1, String value2) {
+            addCriterion("trade_no not between", value1, value2, "tradeNo");
             return (Criteria) this;
         }
 

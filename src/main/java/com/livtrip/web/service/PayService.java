@@ -1,6 +1,7 @@
 package com.livtrip.web.service;
 
 import com.alipay.api.domain.AlipayTradePayModel;
+import com.alipay.api.domain.AlipayTradeRefundModel;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -10,5 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 public interface PayService {
 
     void pcPay(HttpServletResponse response,AlipayTradePayModel model,String returnUrl,String notifyUrl);
+
+    String refund(AlipayTradeRefundModel alipayTradeRefundModel);
 
 }

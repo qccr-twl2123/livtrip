@@ -1,6 +1,8 @@
 package com.livtrip.web.service.impl;
 
+import com.alipay.api.AlipayApiException;
 import com.alipay.api.domain.AlipayTradePayModel;
+import com.alipay.api.domain.AlipayTradeRefundModel;
 import com.livtrip.web.pay.AliPayApi;
 import com.livtrip.web.pay.AliPayApiConfig;
 import com.livtrip.web.service.PayService;
@@ -49,6 +51,16 @@ public class PayServiceImpl implements PayService {
         } catch (Exception e) {
             e.printStackTrace();
 
+        }
+    }
+
+    @Override
+    public String refund(AlipayTradeRefundModel alipayTradeRefundModel) {
+        try {
+           return  AliPayApi.tradeRefund(getApiConfig(),alipayTradeRefundModel);
+        } catch (AlipayApiException e) {
+            e.printStackTrace();
+            return "";
         }
     }
 }

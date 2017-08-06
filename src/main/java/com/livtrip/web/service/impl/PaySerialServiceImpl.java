@@ -27,7 +27,7 @@ public class PaySerialServiceImpl implements PaySerialService {
         List<PaySerial> paySerialList = paySerialMapper.selectByCriteria(paySerialCriteria);
         if(CollectionUtils.isNotEmpty(paySerialList)){
             PaySerial paySerial = paySerialList.get(0);
-            paySerial.setBillNo(aliPayNotifyReq.getTrade_no());
+            paySerial.setTradeNo(aliPayNotifyReq.getTrade_no());
             paySerial.setPayAccount(aliPayNotifyReq.getBuyer_id());
             paySerial.setMerId(aliPayNotifyReq.getSeller_id());
             paySerial.setStatus(2);

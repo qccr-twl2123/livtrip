@@ -19,5 +19,7 @@ public interface OrderService {
 
     int update(AliPayNotifyReq aliPayNotifyReq);
 
+    Order queryByOrderSn(String orderSn);
+
 
 }

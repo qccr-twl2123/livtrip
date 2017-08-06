@@ -423,6 +423,76 @@ public class OrderCriteria {
             return (Criteria) this;
         }
 
+        public Criteria andTradeNoIsNull() {
+            addCriterion("trade_no is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTradeNoIsNotNull() {
+            addCriterion("trade_no is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTradeNoEqualTo(String value) {
+            addCriterion("trade_no =", value, "tradeNo");
+            return (Criteria) this;
+        }
+
+        public Criteria andTradeNoNotEqualTo(String value) {
+            addCriterion("trade_no <>", value, "tradeNo");
+            return (Criteria) this;
+        }
+
+        public Criteria andTradeNoGreaterThan(String value) {
+            addCriterion("trade_no >", value, "tradeNo");
+            return (Criteria) this;
+        }
+
+        public Criteria andTradeNoGreaterThanOrEqualTo(String value) {
+            addCriterion("trade_no >=", value, "tradeNo");
+            return (Criteria) this;
+        }
+
+        public Criteria andTradeNoLessThan(String value) {
+            addCriterion("trade_no <", value, "tradeNo");
+            return (Criteria) this;
+        }
+
+        public Criteria andTradeNoLessThanOrEqualTo(String value) {
+            addCriterion("trade_no <=", value, "tradeNo");
+            return (Criteria) this;
+        }
+
+        public Criteria andTradeNoLike(String value) {
+            addCriterion("trade_no like", value, "tradeNo");
+            return (Criteria) this;
+        }
+
+        public Criteria andTradeNoNotLike(String value) {
+            addCriterion("trade_no not like", value, "tradeNo");
+            return (Criteria) this;
+        }
+
+        public Criteria andTradeNoIn(List<String> values) {
+            addCriterion("trade_no in", values, "tradeNo");
+            return (Criteria) this;
+        }
+
+        public Criteria andTradeNoNotIn(List<String> values) {
+            addCriterion("trade_no not in", values, "tradeNo");
+            return (Criteria) this;
+        }
+
+        public Criteria andTradeNoBetween(String value1, String value2) {
+            addCriterion("trade_no between", value1, value2, "tradeNo");
+            return (Criteria) this;
+        }
+
+        public Criteria andTradeNoNotBetween(String value1, String value2) {
+            addCriterion("trade_no not between", value1, value2, "tradeNo");
+            return (Criteria) this;
+        }
+
         public Criteria andProductIdIsNull() {
             addCriterion("product_id is null");
             return (Criteria) this;

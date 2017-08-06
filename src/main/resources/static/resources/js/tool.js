@@ -98,16 +98,9 @@ function formToObject(formId){
 }
 
 function printError(result){
-    // if(result&&result.error){
-    //     error(result.error);
-    //     return true;
-    // }
-    // if(typeof result =="string"){
-    //     var obj=str2obj(result);
-    //     if(obj.error){
-    //         error(obj.error);
-    //         return true;
-    //     }
-    // }
-    return false;
+    if(!result.success){
+        alert(result.message);
+        return false;
+    }
+    return true;
 }

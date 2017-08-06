@@ -1,28 +1,27 @@
 package com.livtrip.web.controller;
 
+import com.alipay.api.AlipayApiException;
 import com.alipay.api.domain.AlipayTradePayModel;
+import com.alipay.api.domain.AlipayTradeRefundModel;
 import com.livtrip.web.constant.Constant;
 import com.livtrip.web.domain.Order;
 import com.livtrip.web.domain.PaySerial;
-import com.livtrip.web.domain.Product;
-import com.livtrip.web.domain.ProductCriteria;
-import com.livtrip.web.mapper.ProductMapper;
+import com.livtrip.web.model.Result;
+import com.livtrip.web.model.Results;
+import com.livtrip.web.model.request.OrderRefundReq;
 import com.livtrip.web.model.request.OrderReq;
+import com.livtrip.web.pay.AliPayApi;
 import com.livtrip.web.service.OrderService;
 import com.livtrip.web.service.PayService;
 import com.livtrip.web.util.ObjectConvert;
 import com.livtrip.web.util.StringUtils;
 import com.livtrip.web.validator.Assert;
 import com.livtrip.web.validator.ValidatorUtils;
-import com.xiaoleilu.hutool.convert.Convert;
-import org.apache.commons.collections.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.List;
 
 /**
  * Created by xierongli on 17/8/1.
@@ -56,8 +55,25 @@ public class OrderController  extends  BaseController{
          paySerial.setNotifyUrl(Constant.NOTIFY_URL);
          paySerial.setSubject(alipayTradePayModel.getSubject());
          paySerial.setBody(alipayTradePayModel.getBody());
-
          orderService.createOrder(response,order,paySerial);
+     }
+
+
+
+     @RequestMapping("refund")
+     public Result<String> refund(OrderRefundReq orderRefundReq){
+         ValidatorUtils.validateEntity(orderRefundReq);
+         //根据orderSn构建退款参数
+         Order order = orderService.queryByOrderSn(orderRefundReq.getOrderSn());
+         Assert.isNull(order,"订单编号不合法");
+         AlipayTradeRefundModel model = new AlipayTradeRefundModel();
+         model.setOutTradeNo(order.getOutTradeNo());
+         model.setTradeNo(order.getTradeNo());
+         model.setRefundAmount(orderRefundReq.getRefundAmount());
+         model.setRefundReason("default");
+         String resultStr = payService.refund(model);
+         Assert.isBlank(resultStr,"退款操作失败");
+         return Results.newSuccessResult(resultStr);
      }
 
 

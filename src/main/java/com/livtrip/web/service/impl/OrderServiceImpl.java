@@ -73,9 +73,21 @@ public class OrderServiceImpl implements OrderService{
         if(CollectionUtils.isNotEmpty(orderList)){
             Order order = orderList.get(0);
             order.setStatus(2);
+            order.setTradeNo(aliPayNotifyReq.getTrade_no());
             orderMapper.updateByCriteria(order,orderCriteria);
         }
         return 0;
+    }
+
+    @Override
+    public Order queryByOrderSn(String orderSn) {
+        OrderCriteria orderCriteria = new OrderCriteria();
+        orderCriteria.createCriteria().andOrderSnEqualTo(orderSn);
+        List<Order> orderList = orderMapper.selectByCriteria(orderCriteria);
+        if(CollectionUtils.isNotEmpty(orderList)){
+            return orderList.get(0);
+        }
+        return null;
     }
 
 
