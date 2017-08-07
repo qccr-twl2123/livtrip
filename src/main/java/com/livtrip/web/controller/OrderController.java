@@ -40,7 +40,7 @@ public class OrderController  extends  BaseController{
     private IMailService mailService;
 
      @RequestMapping("create")
-     public void  createOrder(HttpServletRequest request,HttpServletResponse response, OrderReq orderReq){
+     public Result<Boolean>  createOrder(HttpServletRequest request,HttpServletResponse response, OrderReq orderReq){
          ValidatorUtils.validateEntity(orderReq);
          //生成外部交易号
          String outTradeNo = StringUtils.getOutTradeNo();
@@ -61,12 +61,13 @@ public class OrderController  extends  BaseController{
          paySerial.setBody(alipayTradePayModel.getBody());
          orderService.createOrder(response,order,paySerial);
 
-         //TODO 邮件的推送
          Email email = new Email();
          email.setEmail(orderReq.getEmail());
-         email.setSubject("Livtrip 订单支付陈宫");
+         email.setSubject("Livtrip 订单支付");
          email.setContent("订单支付成功,支付金额:"+order.getReceiptAmount());
          mailService.send(email);
+
+         return Results.newSuccessResult(true);
 
      }
 

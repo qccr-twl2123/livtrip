@@ -21,11 +21,20 @@
                 }
             });
         }
+        function  pay() {
+            var params = formToObject("payForm");
+            $.axs("/order/create.do", params, function(data){
+                if(printError(data)){
+                    alert(data.data);
+                }
+            });
+
+        }
     </script>
 </head>
 <body style="background: #F8F8F8; text-align: center;">
 <div style="margin:200px auto; padding: 0px;max-width: 400px;  ">
-    <form class="form-horizontal" action="/order/create.do" method="post">
+    <form class="form-horizontal" id="payForm">
         <div class="form-group" style="text-align: center">
             <label class="col-md-2 control-label"></label>
             <div class="col-md-10">
