@@ -13,7 +13,7 @@ public interface IMailService {
 	  * 更新日志
 	  * 2017年7月20日  科帮网 首次创建
 	  */
-	 public void send(Email mail) throws Exception;
+	 public void send(Email mail);
 	 /**
 	  * 富文本
 	  * @Author  科帮网

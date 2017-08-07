@@ -32,7 +32,7 @@ public class MailServiceImpl implements IMailService {
 	public String USER_NAME;//发送者
 
 	@Override
-	public void send(Email mail) throws Exception {
+	public void send(Email mail)  {
 		MailUtil mailUtil = new MailUtil();
 		SimpleMailMessage message = new SimpleMailMessage();
 		message.setFrom(USER_NAME);

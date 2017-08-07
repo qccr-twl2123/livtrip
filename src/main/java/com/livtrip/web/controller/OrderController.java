@@ -6,10 +6,12 @@ import com.livtrip.web.constant.Constant;
 import com.livtrip.web.domain.Order;
 import com.livtrip.web.domain.PaySerial;
 import com.livtrip.web.enums.OrderStatusEnum;
+import com.livtrip.web.model.Email;
 import com.livtrip.web.model.Result;
 import com.livtrip.web.model.Results;
 import com.livtrip.web.model.request.OrderRefundReq;
 import com.livtrip.web.model.request.OrderReq;
+import com.livtrip.web.service.IMailService;
 import com.livtrip.web.service.OrderService;
 import com.livtrip.web.service.PayService;
 import com.livtrip.web.util.ObjectConvert;
@@ -34,6 +36,9 @@ public class OrderController  extends  BaseController{
     @Autowired
     private PayService payService;
 
+    @Autowired
+    private IMailService mailService;
+
      @RequestMapping("create")
      public void  createOrder(HttpServletRequest request,HttpServletResponse response, OrderReq orderReq){
          ValidatorUtils.validateEntity(orderReq);
@@ -55,6 +60,14 @@ public class OrderController  extends  BaseController{
          paySerial.setSubject(alipayTradePayModel.getSubject());
          paySerial.setBody(alipayTradePayModel.getBody());
          orderService.createOrder(response,order,paySerial);
+
+         //TODO 邮件的推送
+         Email email = new Email();
+         email.setEmail(orderReq.getEmail());
+         email.setSubject("Livtrip 订单支付陈宫");
+         email.setContent("订单支付成功,支付金额:"+order.getReceiptAmount());
+         mailService.send(email);
+
      }
 
 

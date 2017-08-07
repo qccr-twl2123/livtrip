@@ -1,5 +1,6 @@
 package com.livtrip.web.model.request;
 
+import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
 
 import javax.validation.constraints.NotNull;
@@ -25,6 +26,7 @@ public class OrderReq {
 
     private String userId;
     @NotBlank(message = "email 不能为空")
+    @Email(message = "邮件格式不合法")
     private String email;
     private String mobile;
 
