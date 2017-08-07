@@ -10,6 +10,7 @@ import javax.xml.ws.handler.HandlerResolver;
 import javax.xml.ws.handler.PortInfo;
 
 
+import com.livtrip.web.cache.KeyGenerate;
 import com.livtrip.web.cache.LocalCache;
 import com.livtrip.web.constant.Constant;
 import com.livtrip.web.util.Money;
@@ -77,15 +78,11 @@ public class HotelProcessor {
      */
     public static List<Hotel> SearchHotelsByDestinationIds(List<Integer> destinationIds, String checkIn, String checkOut, ArrayOfRoomInfo arrayOfRoomInfo){
         //先从缓存取
-        try {
-            String result = (String)LocalCache.get(destinationIds.get(0));
-            if(StringUtils.isNotBlank(result)){
-                return JSON.parseArray(result,Hotel.class);
-            }
-        } catch (ExecutionException e) {
-            e.printStackTrace();
+        String key = KeyGenerate.generateHotelKey(destinationIds.get(0),checkIn,checkOut,arrayOfRoomInfo);
+        String resultStr = LocalCache.get(key);
+        if(StringUtils.isNotBlank(resultStr)){
+            return JSON.parseArray(resultStr,Hotel.class);
         }
-
         if(CollectionUtils.isEmpty(destinationIds)){ return null;}
         try{
 
@@ -109,7 +106,7 @@ public class HotelProcessor {
 
             SearchResult result = port.searchHotelsByDestinationIds(request, null);
             if(result != null && CollectionUtils.isNotEmpty(result.getHotelList().getHotel())){
-                LocalCache.put(destinationIds.get(0),result.getHotelList().getHotel());
+                LocalCache.put(key,result.getHotelList().getHotel());
             }
             return result.getHotelList().getHotel();
         }catch (Exception e) {

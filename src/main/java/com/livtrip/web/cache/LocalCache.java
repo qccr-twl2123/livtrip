@@ -14,23 +14,27 @@ import java.util.concurrent.TimeUnit;
  */
 public class LocalCache {
 
-    private static Cache<Object, String> cache = CacheBuilder.newBuilder()
+    private static Cache<String, String> cache = CacheBuilder.newBuilder()
             .maximumSize(100).expireAfterWrite(10, TimeUnit.MINUTES)
             .recordStats()
             .build();
 
-    public static String get(Object key) throws ExecutionException {
-
-        String var = cache.get(key, new Callable<String>() {
-
-            @Override
-            public String call() throws Exception {
-                return "";
-            }
-        });
+    public static String get(String key)  {
+        String var = null;
+        try {
+            var = cache.get(key, new Callable<String>() {
+                @Override
+                public String call() throws Exception {
+                    return "";
+                }
+            });
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+            return "";
+        }
         return var;
     }
-    public static void put(Object key, Object value) {
+    public static void put(String key, Object value) {
         cache.put(key, JSON.toJSONString(value));
     }
 
