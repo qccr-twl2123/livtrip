@@ -1,16 +1,15 @@
 package com.livtrip.web.controller;
 
-import com.alipay.api.AlipayApiException;
 import com.alipay.api.domain.AlipayTradePayModel;
 import com.alipay.api.domain.AlipayTradeRefundModel;
 import com.livtrip.web.constant.Constant;
 import com.livtrip.web.domain.Order;
 import com.livtrip.web.domain.PaySerial;
+import com.livtrip.web.enums.OrderStatusEnum;
 import com.livtrip.web.model.Result;
 import com.livtrip.web.model.Results;
 import com.livtrip.web.model.request.OrderRefundReq;
 import com.livtrip.web.model.request.OrderReq;
-import com.livtrip.web.pay.AliPayApi;
 import com.livtrip.web.service.OrderService;
 import com.livtrip.web.service.PayService;
 import com.livtrip.web.util.ObjectConvert;
@@ -70,9 +69,12 @@ public class OrderController  extends  BaseController{
          model.setOutTradeNo(order.getOutTradeNo());
          model.setTradeNo(order.getTradeNo());
          model.setRefundAmount(orderRefundReq.getRefundAmount());
-         model.setRefundReason("default");
+         model.setRefundReason("正常退款");
          String resultStr = payService.refund(model);
          Assert.isBlank(resultStr,"退款操作失败");
+         //修改订单状态＝>退款状态
+         int updateNum = orderService.updateOrderStatus(order.getId(), OrderStatusEnum.REFUND.getCode());
+         Assert.isTrue(updateNum<0,"订单退款状态更新失败");
          return Results.newSuccessResult(resultStr);
      }
 

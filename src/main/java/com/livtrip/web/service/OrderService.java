@@ -21,5 +21,7 @@ public interface OrderService {
 
     Order queryByOrderSn(String orderSn);
 
+    int updateOrderStatus(Integer orderId,Integer status);
+
 
 }

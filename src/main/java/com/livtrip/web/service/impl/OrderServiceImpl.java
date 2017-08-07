@@ -90,5 +90,13 @@ public class OrderServiceImpl implements OrderService{
         return null;
     }
 
+    @Override
+    public int updateOrderStatus(Integer orderId,Integer status) {
+        OrderCriteria orderCriteria = new OrderCriteria();
+        orderCriteria.createCriteria().andStatusEqualTo(status);
+        Order order = orderMapper.selectByPrimaryKey(orderId);
+        return orderMapper.updateByCriteria(order,orderCriteria);
+    }
+
 
 }

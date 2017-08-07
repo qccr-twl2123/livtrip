@@ -3,9 +3,12 @@ package com.livtrip.web.service.impl;
 import com.alipay.api.AlipayApiException;
 import com.alipay.api.domain.AlipayTradePayModel;
 import com.alipay.api.domain.AlipayTradeRefundModel;
+import com.livtrip.web.controller.BaseController;
 import com.livtrip.web.pay.AliPayApi;
 import com.livtrip.web.pay.AliPayApiConfig;
 import com.livtrip.web.service.PayService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +19,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 @Service
 public class PayServiceImpl implements PayService {
+    public final static Logger logger = LoggerFactory.getLogger(PayServiceImpl.class);
 
     private  String charset = "UTF-8";
     @Value("${pay.alipay.privateKey}")
@@ -59,6 +63,7 @@ public class PayServiceImpl implements PayService {
         try {
            return  AliPayApi.tradeRefund(getApiConfig(),alipayTradeRefundModel);
         } catch (AlipayApiException e) {
+            logger.error("退款失败:"+e.getMessage());
             e.printStackTrace();
             return "";
         }

@@ -158,10 +158,7 @@ public class AlipayController extends BaseController{
             for (Map.Entry<String, String> entry : params.entrySet()) {
                 logger.info("支付宝回调信息message[{}]",entry.getKey() + " = " + entry.getValue());
             }
-            //更改订单的状态至支付成功and更新支付流水状态至支付成功
-            AliPayNotifyReq aliPayNotifyReq = BeanUtil.mapToBean(params,AliPayNotifyReq.class,true);
-            paySerialService.update(aliPayNotifyReq);
-            orderService.update(aliPayNotifyReq);
+
 
             // 切记alipaypublickey是支付宝的公钥，请去open.alipay.com对应应用下查看。
             // boolean AlipaySignature.rsaCheckV1(Map<String, String> params,
@@ -169,8 +166,10 @@ public class AlipayController extends BaseController{
             boolean flag = AlipaySignature.rsaCheckV1(params, alipayPublicKey, charset,
                     signType);
             if (flag) {
-
-
+                //更改订单的状态至支付成功and更新支付流水状态至支付成功
+                AliPayNotifyReq aliPayNotifyReq = BeanUtil.mapToBean(params,AliPayNotifyReq.class,true);
+                paySerialService.update(aliPayNotifyReq);
+                orderService.update(aliPayNotifyReq);
                 logger.info("success");
                 return;
             } else {
