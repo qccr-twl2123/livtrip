@@ -23,9 +23,9 @@
         }
         function  pay() {
             var params = formToObject("payForm");
-            $.axs("/order/create.do", params, function(data){
+            $.axs("/order/orderParams.do", params, function(data){
                 if(printError(data)){
-                    alert(data.data);
+                   render("order/createOrder.do",$("#payForm").serialize());
                 }
             });
 
@@ -42,9 +42,9 @@
             </div>
         </div>
         <div class="form-group">
-            <label for="pid" class="col-md-2 control-label"></label>
+            <label for="productId" class="col-md-2 control-label"></label>
             <div class="col-md-10">
-                <input type="text" name="productId" class="form-control input-lg" id="pid" placeholder="产品ID">
+                <input type="text" name="productId" class="form-control input-lg" id="productId" placeholder="产品ID">
             </div>
         </div>
         <div class="form-group">

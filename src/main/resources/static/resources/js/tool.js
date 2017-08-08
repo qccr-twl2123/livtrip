@@ -99,8 +99,12 @@ function formToObject(formId){
 
 function printError(result){
     if(!result.success){
-        alert(result.message);
+        $.toast(result.message);
         return false;
     }
     return true;
+}
+
+function render(url,params){
+    window.location.href=url+'?'+params;
 }

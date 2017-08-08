@@ -39,9 +39,13 @@ public class OrderController  extends  BaseController{
     @Autowired
     private IMailService mailService;
 
-     @RequestMapping("create")
-     public Result<Boolean>  createOrder(HttpServletRequest request,HttpServletResponse response, OrderReq orderReq){
+     @RequestMapping("orderParams")
+     public Result<Boolean>  orderParams(HttpServletRequest request,HttpServletResponse response, OrderReq orderReq){
          ValidatorUtils.validateEntity(orderReq);
+         return Results.newSuccessResult(true);
+     }
+    @RequestMapping("createOrder")
+     public void createOrder(HttpServletRequest request,HttpServletResponse response, OrderReq orderReq){
          //生成外部交易号
          String outTradeNo = StringUtils.getOutTradeNo();
          Order order = ObjectConvert.convertObject(orderReq,Order.class);
@@ -66,9 +70,6 @@ public class OrderController  extends  BaseController{
          email.setSubject("Livtrip 订单支付");
          email.setContent("订单支付成功,支付金额:"+order.getReceiptAmount());
          mailService.send(email);
-
-         return Results.newSuccessResult(true);
-
      }
 
 
