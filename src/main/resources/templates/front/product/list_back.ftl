@@ -12,7 +12,13 @@
     <script src="${base}/resources/js/product/list.js"></script>
     <script src="${base}/resources/js/page.js"></script>
     <link rel="stylesheet" href="${base}/resources/style/style.css"/>
-
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({
+            google_ad_client: "ca-pub-3237101361515251",
+            enable_page_level_ads: true
+        });
+    </script>
 </head>
 <body onload="initizePittingMap()">
 <nav class="navbar navbar-default navbar-fix-top" role="navigation" style="margin:0px;">
