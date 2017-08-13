@@ -20,8 +20,8 @@
                     $.each(data.data,function(n,hotel) {
                         var a = "<div class='col-md-4'><a href='＃'  style='text-decoration: none;color: #000000;'>";
                         var b ="<div class='product_img product_item'><img src="+hotel.thumb+" /><div class='product_title'> "+hotel.name+"</div>";
-                        var c ="<div class='product_address'><i class='fa fa-map-marker'></i>&nbsp;135 West 45th Street</div>";
-                        var d ="<div class='product_key'><span class='left product_level'> <i class='fa  fa-star'></i> </span> ";
+                        var c ="<div class='product_address'><i class='fa fa-map-marker'></i>&nbsp;"+hotel.address+"</div>";
+                        var d ="<div class='product_key'><span class='left product_level'> "+hotel.starLevelHtml+" </span> ";
                         var e = "<span class='right product_price'>$ "+hotel.minAverPrice+"</span></div></div> </a> </div>";
                         showHtml += (a+b+c+d+e);
                     });

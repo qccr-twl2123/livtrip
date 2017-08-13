@@ -292,20 +292,23 @@ public class FrontProductController extends BaseController{
         hotelIds.add(1341221);
 
 
-        List<Hotel> hotels =  HotelProcessor.checkAvailabilityAndPrices(hotelIds,DateUtil.DateToString(checkIn, DateStyle.YYYY_MM_DD),DateUtil.DateToString(checkOut, DateStyle.YYYY_MM_DD),HotelProcessor.getArrayOfRoomInfoByNum(1));;
-//        String key = Joiner.on(",").join(hotelIds);
-//        String hotelJSON = LocalCache.get(key);
-//        if(StringUtils.isNoneBlank(hotelJSON)){
-//            hotels =JSON.parseArray(hotelJSON,Hotel.class);
-//        }else{
-//            hotels = HotelProcessor.checkAvailabilityAndPrices(hotelIds,DateUtil.DateToString(checkIn, DateStyle.YYYY_MM_DD),DateUtil.DateToString(checkOut, DateStyle.YYYY_MM_DD),HotelProcessor.getArrayOfRoomInfoByNum(1));
-//            LocalCache.put(key,JSON.toJSONString(hotels));
-//        }
-        Assert.isTrue(CollectionUtils.isEmpty(hotels),"酒店数据不存在");
-        List<BestValueHotelRes> bestValueHotelResList = ObjectConvert.convertList(hotels,BestValueHotelRes.class);
-        for(BestValueHotelRes bestValueHotelRes : bestValueHotelResList){
-            bestValueHotelRes.setThumb(bestValueHotelRes.getThumb().replace("100x100","200x200"));
+        List<BestValueHotelRes> bestValueHotelResList =  null;
+        String key = Joiner.on("-").join(hotelIds);
+        String hotelJSON = LocalCache.get(key);
+        if(StringUtils.isNoneBlank(hotelJSON)){
+            bestValueHotelResList =JSON.parseArray(hotelJSON,BestValueHotelRes.class);
+        }else{
+            List<Hotel> hotels = HotelProcessor.checkAvailabilityAndPrices(hotelIds,DateUtil.DateToString(checkIn, DateStyle.YYYY_MM_DD),DateUtil.DateToString(checkOut, DateStyle.YYYY_MM_DD),HotelProcessor.getArrayOfRoomInfoByNum(1));
+            Assert.isTrue(CollectionUtils.isEmpty(hotels),"酒店数据不存在");
+             bestValueHotelResList = ObjectConvert.convertList(hotels,BestValueHotelRes.class);
+            for(BestValueHotelRes bestValueHotelRes : bestValueHotelResList){
+                bestValueHotelRes.setThumb(bestValueHotelRes.getThumb().replace("100x100","200x200"));
+                bestValueHotelRes.setAddress(bestValueHotelRes.getLocation().getAddress());
+                bestValueHotelRes.setStarLevelHtml(productService.getProductStarLevel(bestValueHotelRes.getStarsLevel().toString()));
+            }
+            LocalCache.put(key,bestValueHotelResList);
         }
+
         return Results.newSuccessResult(bestValueHotelResList);
     }
 

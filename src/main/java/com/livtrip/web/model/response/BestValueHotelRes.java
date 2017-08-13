@@ -1,5 +1,7 @@
 package com.livtrip.web.model.response;
 
+import com.livtrip.web.webservice.hotel.HotelLocation;
+
 import java.math.BigDecimal;
 
 /**
@@ -22,6 +24,27 @@ public class BestValueHotelRes {
     private BigDecimal minAverPrice;
     /**跳转连接*/
     private String renderUrl;
+
+    protected HotelLocation location;
+
+    private String starLevelHtml;
+
+
+    public String getStarLevelHtml() {
+        return starLevelHtml;
+    }
+
+    public void setStarLevelHtml(String starLevelHtml) {
+        this.starLevelHtml = starLevelHtml;
+    }
+
+    public HotelLocation getLocation() {
+        return location;
+    }
+
+    public void setLocation(HotelLocation location) {
+        this.location = location;
+    }
 
     public String getName() {
         return name;
