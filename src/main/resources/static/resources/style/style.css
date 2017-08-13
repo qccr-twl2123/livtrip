@@ -38,8 +38,16 @@ ul#nav li a:hover{background:#0095BB; text-decoration: none;}
 .product_img img{ width: 100%;height: 230px; z-index: -1px;border-radius:3px}
 .destination_name{	position:relative;left:100px;  top:200px;}
 
+.product_item{height: 320px;border-bottom: 1px solid #f8f8f9; margin: 15px 0px 0px 0px;}
+.product_title{color: #495060; font-size: 14px; margin: 5px 0px 2px 0px; padding: 0px; text-align: left;}
+.product_address{margin:0px; padding:0px; color:#80848f; font-size: 12px; text-align: left;}
+.product_key{ margin: 5px 0px; padding: 0px;font-size: 17px;  }
+.product_level{color:#ff9900; }
+.product_price{color:#19be6b;}
+
 .footer-ul ul{margin: 20px 0px; padding: 0px; list-style-type: none;}
 .footer-ul ul li{margin:10px 0px; padding: 0px;font-size: 12px; }
+
 .footer-ul ul li a{color: #495060; }
 
 

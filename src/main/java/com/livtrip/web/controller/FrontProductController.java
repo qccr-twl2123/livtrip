@@ -3,16 +3,18 @@ package com.livtrip.web.controller;
 import com.alibaba.fastjson.JSON;
 import com.github.pagehelper.PageInfo;
 import com.google.common.base.Joiner;
-import com.google.common.base.Predicate;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
+import com.livtrip.web.cache.LocalCache;
 import com.livtrip.web.domain.Description;
 import com.livtrip.web.domain.Dest;
 import com.livtrip.web.domain.HotelImages;
-import com.livtrip.web.domain.HotelProduct;
+import com.livtrip.web.model.Result;
+import com.livtrip.web.model.Results;
 import com.livtrip.web.model.dto.HotelProductDTO;
 import com.livtrip.web.model.query.HotelProductRo;
 import com.livtrip.web.model.query.ProductQuery;
+import com.livtrip.web.model.response.BestValueHotelRes;
 import com.livtrip.web.model.vo.product.HotelDescriptionVO;
 import com.livtrip.web.model.vo.product.HotelDetailVO;
 import com.livtrip.web.model.vo.product.HotelImageVO;
@@ -21,10 +23,13 @@ import com.livtrip.web.service.DestService;
 import com.livtrip.web.service.HotelImagesService;
 import com.livtrip.web.service.ProductService;
 import com.livtrip.web.util.ObjectConvert;
+import com.livtrip.web.util.date.DateStyle;
 import com.livtrip.web.util.date.DateUtil;
 import com.livtrip.web.util.hotel.HotelProcessor;
+import com.livtrip.web.validator.Assert;
 import com.livtrip.web.webservice.hotel.Hotel;
 import com.livtrip.web.webservice.hotel.RoomType;
+import com.xiaoleilu.hutool.util.CollectionUtil;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,9 +41,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.math.BigDecimal;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 /**
  * 前台产品
@@ -92,6 +97,7 @@ public class FrontProductController extends BaseController{
                 return "/front/product/no_product";
             }
             List<Integer> hotelIdList = getHotelIds(hotelList);
+            logger.info("hotelIdList",hotelIdList);
             Map<Integer, List<RoomType>> roomTypeMap = getRoomTypeMap(hotelList);
 
             //查询酒店数据
@@ -184,6 +190,7 @@ public class FrontProductController extends BaseController{
         destinationIds.add(productQuery.getDestinationId());
         List<Hotel> hotelList = HotelProcessor.SearchHotelsByDestinationIds(destinationIds,productQuery.getCheckIn(),productQuery.getCheckOut(),
                 HotelProcessor.getArrayOfRoomInfoByNum(Integer.parseInt(productQuery.getPeopleNum())));
+
         List<RoomType> roomTypeList = null;
 
         if(CollectionUtils.isNotEmpty(hotelList)){
@@ -264,6 +271,43 @@ public class FrontProductController extends BaseController{
         }
         return JSON.toJSONString(map.put("suggestions", getDefaultCity()));
     }
+
+    /**
+     * 获取精选酒店
+     * @author xierongli
+     * @date 17/8/13 上午10:02
+     */
+    @RequestMapping("getBestValueHotels")
+    @ResponseBody
+    public Result<List<BestValueHotelRes>> getBestValueHotels(){
+        Date checkIn = DateUtil.getCurrentDate();
+        Date checkOut = DateUtil.addDay(checkIn,2);
+
+        List<Integer> hotelIds = Lists.newArrayList();
+        hotelIds.add(11560);
+        hotelIds.add(3005);
+        hotelIds.add(9018);
+        hotelIds.add(6804);
+        hotelIds.add(7792);
+        hotelIds.add(1341221);
+
+        List<Hotel> hotels =  HotelProcessor.checkAvailabilityAndPrices(hotelIds,DateUtil.DateToString(checkIn, DateStyle.YYYY_MM_DD),DateUtil.DateToString(checkOut, DateStyle.YYYY_MM_DD),HotelProcessor.getArrayOfRoomInfoByNum(1));;
+//        String key = Joiner.on(",").join(hotelIds);
+//        String hotelJSON = LocalCache.get(key);
+//        if(StringUtils.isNoneBlank(hotelJSON)){
+//            hotels =JSON.parseArray(hotelJSON,Hotel.class);
+//        }else{
+//            hotels = HotelProcessor.checkAvailabilityAndPrices(hotelIds,DateUtil.DateToString(checkIn, DateStyle.YYYY_MM_DD),DateUtil.DateToString(checkOut, DateStyle.YYYY_MM_DD),HotelProcessor.getArrayOfRoomInfoByNum(1));
+//            LocalCache.put(key,JSON.toJSONString(hotels));
+//        }
+        Assert.isTrue(CollectionUtils.isEmpty(hotels),"酒店数据不存在");
+        List<BestValueHotelRes> bestValueHotelResList = ObjectConvert.convertList(hotels,BestValueHotelRes.class);
+        for(BestValueHotelRes bestValueHotelRes : bestValueHotelResList){
+            bestValueHotelRes.setThumb(bestValueHotelRes.getThumb().replace("100x100","200x200"));
+        }
+        return Results.newSuccessResult(bestValueHotelResList);
+    }
+
 
     public List<String> getDefaultCity(){
         List<String> cityList = Lists.newArrayList();

@@ -11,8 +11,27 @@
     <script type="text/javascript" src="http://g.alicdn.com/sui/sui3/0.0.18/js/sui.min.js"></script>
     <script src='http://maps.google.cn/maps/api/js?key=AIzaSyDY0kkJiTPVd2U7aTOAwhc9ySH6oHxOIYM' type="text/javascript"></script>
     <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script src="resources/js/tool.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        function getBestValueHotel(){
+            $.axs("/front/product/getBestValueHotels.do", null, function(data){
+                if(printError(data)){
+                    var showHtml = "";
+                    $.each(data.data,function(n,hotel) {
+                        var a = "<div class='col-md-4'><a href='＃'  style='text-decoration: none;color: #000000;'>";
+                        var b ="<div class='product_img product_item'><img src="+hotel.thumb+" /><div class='product_title'> "+hotel.name+"</div>";
+                        var c ="<div class='product_address'><i class='fa fa-map-marker'></i>&nbsp;135 West 45th Street</div>";
+                        var d ="<div class='product_key'><span class='left product_level'> <i class='fa  fa-star'></i> </span> ";
+                        var e = "<span class='right product_price'>$ "+hotel.minAverPrice+"</span></div></div> </a> </div>";
+                        showHtml += (a+b+c+d+e);
+                    });
+                    $("#bestValue").html(showHtml);
+                }
+            });
+        }
+    </script>
 </head>
-<body>
+<body onload="getBestValueHotel();">
 <div class="container" style="height: 70px;">
     <img src="resources/images/logo.png" class="logo"/>
     <div class="info">
@@ -96,6 +115,7 @@
         </div>
     </div>
 </div>
+<h2 style="margin: 30px 0px 0px 0px;">热门地区</h2>
 <div class="container">
     <div class="row" style="margin: 20px 0px;">
         <div class="col-md-4">
@@ -166,6 +186,10 @@
             </div>
         </div>
     </div>
+</div>
+<h2>今日精选</h2>
+<div class="container" id="bestValue" style="margin: 20px auto">
+
 </div>
 <div class="container-fluid" style="background: #F9FAFC;height: 300px;">
     <div class="container">
