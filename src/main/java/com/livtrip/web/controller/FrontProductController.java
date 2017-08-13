@@ -291,6 +291,7 @@ public class FrontProductController extends BaseController{
         hotelIds.add(7792);
         hotelIds.add(1341221);
 
+
         List<Hotel> hotels =  HotelProcessor.checkAvailabilityAndPrices(hotelIds,DateUtil.DateToString(checkIn, DateStyle.YYYY_MM_DD),DateUtil.DateToString(checkOut, DateStyle.YYYY_MM_DD),HotelProcessor.getArrayOfRoomInfoByNum(1));;
 //        String key = Joiner.on(",").join(hotelIds);
 //        String hotelJSON = LocalCache.get(key);
