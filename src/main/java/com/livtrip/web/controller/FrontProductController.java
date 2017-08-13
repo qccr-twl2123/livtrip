@@ -289,7 +289,7 @@ public class FrontProductController extends BaseController{
         hotelIds.add(9018);
         hotelIds.add(6804);
         hotelIds.add(7792);
-        hotelIds.add(1341221);
+        hotelIds.add(1419735);
 
 
         List<BestValueHotelRes> bestValueHotelResList =  null;
