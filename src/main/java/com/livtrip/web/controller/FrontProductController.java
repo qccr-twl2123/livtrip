@@ -29,7 +29,6 @@ import com.livtrip.web.util.hotel.HotelProcessor;
 import com.livtrip.web.validator.Assert;
 import com.livtrip.web.webservice.hotel.Hotel;
 import com.livtrip.web.webservice.hotel.RoomType;
-import com.xiaoleilu.hutool.util.CollectionUtil;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -184,7 +183,6 @@ public class FrontProductController extends BaseController{
 
         //实时查询房型数据
         List<Integer> destinationIds = Lists.newArrayList();
-//        Integer destination = destService.getDestinationIdByCityName(productQuery.getDestination());
         //增加sort
         destService.increaseSort(productQuery.getDestinationId());
         destinationIds.add(productQuery.getDestinationId());
@@ -217,8 +215,6 @@ public class FrontProductController extends BaseController{
                 modelMap.put("productQuery",productQuery);
             }
         }
-
-
         return "/front/product/detail";
     }
 
