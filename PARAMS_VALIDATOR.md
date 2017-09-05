@@ -2,6 +2,8 @@
 
 ## Hibernate Validator 框架
 
+
+
 ### Java Bean 的验证通常可分为如下四个步骤：
 ```
     约束注解的定义
