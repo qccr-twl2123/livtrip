@@ -1,7 +1,8 @@
-# 参数校验框架
+## 参数校验框架
 
 ## Hibernate Validator 框架
 
+![输入图片说明](https://github.com/qccr-twl2123/livtrip/blob/master/src/main/resources/static/resources/images/canshujiaoyan.png "在这里输入图片标题")
 
 
 ### Java Bean 的验证通常可分为如下四个步骤：
