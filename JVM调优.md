@@ -46,6 +46,7 @@ export MAVEN_OPTS="-Xms512m -Xmx2048m -XX:PermSize=256m -XX:MaxPermSize=512m"
 nohup mvn clean spring-boot:run | tee ../log 2>&1 &
 ```
 export MAVEN_OPTS="-Xms512m -Xmx2048m -XX:PermSize=256m -XX:MaxPermSize=512m"
+
 这句代码设置发布模块内存分布情况
 
 tomcat:
