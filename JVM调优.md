@@ -4,6 +4,7 @@
 ![输入图片说明](https://github.com/qccr-twl2123/livtrip/blob/master/src/main/resources/static/resources/images/JVM调优.png "在这里输入图片标题")
 
 #### JVM 内存模型及垃圾回收算法
+```
 1.JVM内存划分
 堆(heap)区:
 New Generation(新生代)
@@ -19,11 +20,9 @@ Jvm Stack(java虚拟机栈):方法参数、局域变量等的引用,方法执行
 Local Method Statck(本地方法栈)
 
 2.垃圾回收算法(分代回收and标记清除)
-
-
-
-
+```
 #### OOM内存溢出定位
+```
 1.查看内存分配情况:
   jmap -heap 10765(进程ID)
 
@@ -37,7 +36,7 @@ Local Method Statck(本地方法栈)
   查看线程数: ll /proc/${PID}/task
   句柄详情:   ll /proc/${PID}/fd
   
-
+```
 #### OOM内存溢出解决方案
 springboot:
 ```
