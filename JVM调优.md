@@ -25,9 +25,14 @@ Local Method Statck(本地方法栈)
 ```
 1.查看内存分配情况:
   jmap -heap 10765(进程ID)
+  
+  ![输入图片说明](https://github.com/qccr-twl2123/livtrip/blob/master/src/main/resources/static/resources/images/内存分配.png "在这里输入图片标题")
 
 2.找到最耗内存的对象:
   jmap -histo:live 10765 | more
+  
+  ![输入图片说明](https://github.com/qccr-twl2123/livtrip/blob/master/src/main/resources/static/resources/images/对象内存消耗.png "在这里输入图片标题")
+
 
 3.确认资源是否耗尽:
   pstree
