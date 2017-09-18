@@ -22,6 +22,8 @@ public class Test {
         for (String str : list){
             System.out.println(str);
         }
+        StringBuilder sb = new StringBuilder();
+        sb.append("ab").append("cd");
     }
 
 }
