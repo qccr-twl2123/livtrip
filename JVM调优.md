@@ -3,6 +3,8 @@
 
 ![输入图片说明](https://github.com/qccr-twl2123/livtrip/blob/master/src/main/resources/static/resources/images/JVM调优.png "在这里输入图片标题")
 
+![输入图片说明](https://github.com/qccr-twl2123/livtrip/blob/master/src/main/resources/static/resources/images/spring-boot-spring-cloud-memory-5.png "在这里输入图片标题")
+
 #### JVM 内存模型及垃圾回收算法
 ```
 1.JVM内存划分
