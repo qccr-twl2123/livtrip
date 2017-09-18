@@ -67,6 +67,9 @@ https://mp.weixin.qq.com/s?__biz=MjM5ODYxMDA5OQ==&mid=2651960342&idx=1&sn=9b2dbb
 
 JVM调优总结
 http://www.cnblogs.com/andy-zhou/p/5327288.html
+
+Spring Boot & Spring Cloud应用内存管理
+http://blog.didispace.com/spring-boot-spring-cloud-memory/
 ```
 
 
