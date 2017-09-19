@@ -8,8 +8,6 @@
 应用场景:
 链式编程
 需要动态构建一个对象
-
-
 ```
 
 ### Builder模式几种实现方式
@@ -29,7 +27,6 @@ public StringBuilder append(String str) {
 }
 
 父类:
-
 char[] value;
 int count;
 
