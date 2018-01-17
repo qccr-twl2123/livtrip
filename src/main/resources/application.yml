@@ -6,9 +6,9 @@ app:
   datasource:
     livtrip:
       driverClassName: com.mysql.jdbc.Driver
-      url: jdbc:mysql://47.89.193.4:3306/livtrip?useSSL=false
-      username: livtrip
-      password: livtrip#A2016
+      url: jdbc:mysql://192.168.10.80:3306/test?useSSL=false
+      username: root
+      password: tourongjia123!
       testOnBorrow: true
       testWhileIdle: true
       validationQuery: select 1
