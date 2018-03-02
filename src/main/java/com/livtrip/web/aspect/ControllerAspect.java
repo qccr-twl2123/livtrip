@@ -58,8 +58,8 @@ public class ControllerAspect {
         LogEvent logEvent = logEventThreadLocal.get();
         Long cost = System.currentTimeMillis() - startTime.get();
         logEvent.setCost(cost.intValue());
-        eventBus.register(invokeLogService);
-        eventBus.post(logEvent);
+//        eventBus.register(invokeLogService);
+//        eventBus.post(logEvent);
     }
 
     public void generateLogEvent(JoinPoint joinPoint,HttpServletRequest request){

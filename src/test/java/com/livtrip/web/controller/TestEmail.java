@@ -72,7 +72,7 @@ public class TestEmail {
     public void testSend() throws Exception {
         Email email = new Email();
         email.setEmail("545739504@qq.com");
-        email.setSubject("你个小逗比");
+        email.setSubject("你个小逗ewwe比");
         email.setContent("科帮网欢迎您");
         mailService.send(email);
 

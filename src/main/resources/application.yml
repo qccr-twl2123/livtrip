@@ -2,16 +2,6 @@ server:
    port: 8080
 mybatis:
   config-location: classpath:mybatis-config.xml
-app:
-  datasource:
-    livtrip:
-      driverClassName: com.mysql.jdbc.Driver
-      url: jdbc:mysql://192.168.10.80:3306/test?useSSL=false
-      username: root
-      password: tourongjia123!
-      testOnBorrow: true
-      testWhileIdle: true
-      validationQuery: select 1
 pagehelper:
   autoDialect: true
   closeConn: false
@@ -20,10 +10,18 @@ spring:
     aop:
       auto: true
       proxy-target-class: false
+    datasource:
+          driverClassName: com.mysql.jdbc.Driver
+          url: jdbc:mysql://192.168.10.80:3306/test?useSSL=false
+          username: root
+          password: tourongjia123!
+          testOnBorrow: true
+          testWhileIdle: true
+          validationQuery: select 1
     mail:
         host: smtp.tourongjia.com
-        username: xierongli@tourongjia.com
-        password: Tourongjia2017
+        username: no-replay@tourongjia.com
+        password: Trj87397999
         properties:
                mail:
                  smtp:
