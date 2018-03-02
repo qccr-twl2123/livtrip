@@ -37,7 +37,7 @@ public class AdminUserController extends BaseController{
         return "redirect:login.html";
     }
 
-    @RequestMapping("login")
+    @RequestMapping("loginProcess")
     public String login(String userName, String password, ModelMap modelMap, HttpServletRequest request, HttpServletResponse response){
         logger.info("用户登录 userName[{}] password[{}]",userName,password);
         if(StringUtils.isBlank(userName) || StringUtils.isBlank(password)){
