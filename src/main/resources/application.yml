@@ -28,7 +28,6 @@ spring:
                    auth: true
                    starttls:
                       enable: true
-                      required: true
 pay:
   alipay:
      appId: 2017071907811942
