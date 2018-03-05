@@ -108,3 +108,31 @@ function printError(result){
 function render(url,params){
     window.location.href=url+'?'+params;
 }
+
+/**
+ * post方式异步提交
+ * @param url
+ * @param param
+ * @param callback
+ */
+function doPost(url,param,callback,context){
+    var tmpUrl;
+    if(url.indexOf('?')==-1){
+        tmpUrl=url+"?randomNum="+Math.random()*99999+"&ajax_request=async";
+    }else{
+        tmpUrl=url+"&randomNum="+Math.random()*99999+"&ajax_request=async";
+    }
+    $.ajax({
+        type:"POST",
+        url:tmpUrl,
+        data:param,
+        dataType:"text",
+        context:context,
+        cache:false,
+        error:function(result){
+            $.toast(result);
+        },
+        success:callback
+    });
+}
+

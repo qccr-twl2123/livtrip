@@ -6,6 +6,7 @@ import com.livtrip.web.service.AdminUserService;
 import com.livtrip.web.util.MD5;
 import com.livtrip.web.validator.Assert;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -21,7 +22,7 @@ public class LoginController extends BaseController{
     @Autowired
     private AdminUserService adminUserService;
 
-    @RequestMapping("signIn")
+    @PostMapping("signIn")
     public Result<Boolean> signIn(String userName, String password){
         Assert.isBlank(userName,"用户名不能为空");
         Assert.isBlank(password,"密码不能为空");

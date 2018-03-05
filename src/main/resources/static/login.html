@@ -13,7 +13,7 @@
     <script type="text/javascript">
         function login(){
             var params = formToObject("loginForm");
-            $.axs("login/signIn", params, function(data){
+            doPost("/login/signIn", params, function(data) {
                 if(printError(data)){
                     render("login/toMain",null);
                 }
