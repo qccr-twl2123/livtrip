@@ -22,8 +22,8 @@
 		</commentGenerator>
 
 		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
-			connectionURL="jdbc:mysql://47.89.193.4:3306/livtrip" userId="livtrip"
-			password="livtrip#A2016">
+			connectionURL="jdbc:mysql://192.168.10.80:3306/test" userId="root"
+			password="tourongjia123!">
 		</jdbcConnection>
 
 		<javaModelGenerator targetPackage="com.livtrip.web.domain"
@@ -37,10 +37,13 @@
 		</sqlMapGenerator>
 
 
-		<table tableName="liv_pay_serial" domainObjectName="PaySerial">
+		<table tableName="sys_role" domainObjectName="SysRole">
 			<generatedKey column="id" sqlStatement="JDBC" />
 		</table>
-		<table tableName="liv_order" domainObjectName="Order">
+		<table tableName="sys_user" domainObjectName="SysUser">
+			<generatedKey column="id" sqlStatement="JDBC" />
+		</table>
+		<table tableName="sys_role_user" domainObjectName="SysRoleUser">
 			<generatedKey column="id" sqlStatement="JDBC" />
 		</table>
 

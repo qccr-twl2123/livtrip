@@ -32,9 +32,15 @@ public class LoginController extends BaseController{
         Assert.isTrue(!result,"用户名或密码不合法");
         return Results.newSuccessResult(true);
     }
+
     @RequestMapping("toMain")
     public String toMain(){
         return  "main";
+    }
+
+    @RequestMapping("/login")
+    public  String login(){
+        return "login";
     }
 
 }

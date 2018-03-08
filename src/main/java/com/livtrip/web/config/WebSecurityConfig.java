@@ -1,17 +1,41 @@
 package com.livtrip.web.config;
 
+import com.livtrip.web.security.CustomUserService;
+import com.livtrip.web.util.MD5Util;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+
+    @Bean
+    UserDetailsService customUserService(){ //注册UserDetailsService 的bean
+        return new CustomUserService();
+    }
+
+    @Override
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth.userDetailsService(customUserService()).passwordEncoder(new PasswordEncoder(){
+
+            @Override
+            public String encode(CharSequence rawPassword) {
+                return MD5Util.encode((String)rawPassword);
+            }
+            //user Details Service验证
+            @Override
+            public boolean matches(CharSequence rawPassword, String encodedPassword) {
+                return encodedPassword.equals(MD5Util.encode((String)rawPassword));
+            }});
+    }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -26,6 +50,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .logout()
                 .permitAll();
+        //session失效后跳转
+        http.sessionManagement().invalidSessionUrl("/login");
+        //只允许一个用户登录,如果同一个账户两次登录,那么第一个账户将被踢下线,跳转到登录页面
+        http.sessionManagement().maximumSessions(1).expiredUrl("/login");
     }
 
     @Autowired
