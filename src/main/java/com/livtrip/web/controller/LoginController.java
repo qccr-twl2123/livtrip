@@ -33,7 +33,7 @@ public class LoginController extends BaseController{
         return Results.newSuccessResult(true);
     }
 
-    @RequestMapping("toMain")
+    @RequestMapping("main")
     public String toMain(){
         return  "main";
     }

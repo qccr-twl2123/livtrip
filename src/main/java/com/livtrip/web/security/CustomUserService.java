@@ -31,10 +31,10 @@ public class CustomUserService implements UserDetailsService { //自定义UserDe
     SysRoleMapper sysRoleMapper;
 
     @Override
-    public UserDetails loadUserByUsername(String userName) {
+    public UserDetails loadUserByUsername(String username) {
         //重写loadUserByUsername 方法获得 userdetails 类型用户
         SysUserCriteria sysUserCriteria = new SysUserCriteria();
-        sysUserCriteria.createCriteria().andUserNameEqualTo(userName);
+        sysUserCriteria.createCriteria().andUserNameEqualTo(username);
         List<SysUser> sysUserList = sysUserMapper.selectByCriteria(sysUserCriteria);
         if(CollectionUtils.isEmpty(sysUserList)){
             throw new UsernameNotFoundException("用户名不存在");

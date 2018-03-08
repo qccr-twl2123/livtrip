@@ -1,6 +1,7 @@
 package com.livtrip.web.config;
 
 import com.livtrip.web.security.CustomUserService;
+import com.livtrip.web.security.LoggingAccessDeniedHandler;
 import com.livtrip.web.util.MD5Util;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -12,10 +13,14 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+
+    @Autowired
+    private LoggingAccessDeniedHandler accessDeniedHandler;
 
     @Bean
     UserDetailsService customUserService(){ //注册UserDetailsService 的bean
@@ -45,11 +50,17 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
-                .loginPage("/login.html")
+                    .loginPage("/login")
+                    .permitAll()
+                .and().logout()
+                .invalidateHttpSession(true)
+                    .clearAuthentication(true)
+                    .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                    .logoutSuccessUrl("/login?logout")
                 .permitAll()
                 .and()
-                .logout()
-                .permitAll();
+                .exceptionHandling()
+                .accessDeniedHandler(accessDeniedHandler);;
         //session失效后跳转
         http.sessionManagement().invalidSessionUrl("/login");
         //只允许一个用户登录,如果同一个账户两次登录,那么第一个账户将被踢下线,跳转到登录页面
