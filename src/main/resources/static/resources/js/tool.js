@@ -98,8 +98,9 @@ function formToObject(formId){
 }
 
 function printError(result){
-    if(!result.success){
-        $.toast(result.message);
+    var obj = $.parseJSON(result);
+    if(!obj.success){
+        $.toast(obj.message);
         return false;
     }
     return true;

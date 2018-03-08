@@ -27,7 +27,7 @@ public class LoginController extends BaseController{
         Assert.isBlank(userName,"用户名不能为空");
         Assert.isBlank(password,"密码不能为空");
         Boolean result = adminUserService.queryAdminUser(userName, MD5.GetMD5Code(password));
-        Assert.isTrue(result,"用户名或密码不合法");
+        Assert.isTrue(!result,"用户名或密码不合法");
         return Results.newSuccessResult(true);
     }
     @RequestMapping("toMain")
