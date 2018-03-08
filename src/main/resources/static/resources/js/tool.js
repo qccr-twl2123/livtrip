@@ -98,7 +98,7 @@ function formToObject(formId){
 }
 
 function printError(result){
-    var obj = $.parseJSON(result);
+    var obj = eval('(' + result + ')');
     if(!obj.success){
         $.toast(obj.message);
         return false;
@@ -106,8 +106,12 @@ function printError(result){
     return true;
 }
 
-function render(url,params){
-    window.location.href=url+'?'+params;
+function render(url, params){
+    if(params == null){
+        window.location.href=url;
+    }else{
+        window.location.href=url+'?'+params;
+    }
 }
 
 /**

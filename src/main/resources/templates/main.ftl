@@ -17,7 +17,7 @@
         </a>
     </div>
 
-    <div class="dl-log">欢迎您，<span class="dl-log-user">${userName}</span><a href="/backend/admin/loginout" title="退出系统" class="dl-log-quit">[退出]</a><a href="http://http://sc.chinaz.com/" title="文档库" class="dl-log-quit">文档库</a>
+    <div class="dl-log">欢迎您，<span class="dl-log-user">ss</span><a href="/backend/admin/loginout" title="退出系统" class="dl-log-quit">[退出]</a><a href="http://http://sc.chinaz.com/" title="文档库" class="dl-log-quit">文档库</a>
     </div>
 </div>
 <div class="content">
