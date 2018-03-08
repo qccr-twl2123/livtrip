@@ -3,9 +3,9 @@
 <head>
     <title>Livtrip管理系统</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <link href="resources/assets/css/dpl-min.css" rel="stylesheet" type="text/css" />
-    <link href="resources/assets/css/bui-min.css" rel="stylesheet" type="text/css" />
-    <link href="resources/assets/css/main-min.css" rel="stylesheet" type="text/css" />
+    <link href="/resources/assets/css/dpl-min.css" rel="stylesheet" type="text/css" />
+    <link href="/resources/assets/css/bui-min.css" rel="stylesheet" type="text/css" />
+    <link href="/resources/assets/css/main-min.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
 
@@ -35,9 +35,9 @@
 
     </ul>
 </div>
-<script type="text/javascript" src="resources/assets/js/jquery-1.8.1.min.js"></script>
-<script type="text/javascript" src="resources/assets/js/bui.js"></script>
-<script type="text/javascript" src="resources/assets/js/config.js"></script>
+<script type="text/javascript" src="/resources/assets/js/jquery-1.8.1.min.js"></script>
+<script type="text/javascript" src="/resources/assets/js/bui.js"></script>
+<script type="text/javascript" src="/resources/assets/js/config.js"></script>
 
 <script>
     BUI.use('common/main',function(){
