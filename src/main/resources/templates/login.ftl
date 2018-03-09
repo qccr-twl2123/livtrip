@@ -9,17 +9,6 @@
     <script type="text/javascript" src="http://g.alicdn.com/sj/lib/jquery/dist/jquery.min.js"></script>
     <script type="text/javascript" src="http://g.alicdn.com/sui/sui3/0.0.18/js/sui.min.js"></script>
     <script src="resources/js/tool.js" type="text/javascript"></script>
-
-    <script type="text/javascript">
-        function login(){
-            var params = formToObject("loginForm");
-            doPost("/login/signIn", params, function(data) {
-                if(printError(data)){
-                    render("login/toMain",null);
-                }
-            });
-        }
-    </script>
 </head>
 <body style="background: #F8F8F8; text-align: center;">
 <div style="margin:200px auto; padding: 0px;max-width: 400px;  ">

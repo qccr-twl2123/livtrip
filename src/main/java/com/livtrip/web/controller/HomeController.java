@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.GetMapping;
  * @author xierongli
  * @version $$Id: livtrip, v 0.1 18/3/8 下午5:56 mark1xie Exp $$
  */
-
 @Controller
 public class HomeController {
 
@@ -16,9 +15,9 @@ public class HomeController {
         return "index";
     }
 
-    @GetMapping("/user")
+    @GetMapping("/main")
     public String userIndex() {
-        return "user/index";
+        return "main";
     }
 
     @GetMapping("/login")

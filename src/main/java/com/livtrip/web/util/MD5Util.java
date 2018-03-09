@@ -39,7 +39,7 @@ public class MD5Util {
     }
 
     public static void main(String[] args) {
-        System.out.println(MD5Util.encode("abel"));
+        System.out.println(MD5Util.encode("admin"));
 
 
     }
